@@ -286,8 +286,9 @@ const ToursSection = () => {
             Coming Soon
           </div>
           <p className="text-lg text-slate-600 max-w-3xl mx-auto">
-            We're currently developing unique tour packages that showcase Kenya's natural beauty and cultural heritage.
-            From safari adventures to beach getaways, we'll have something for every traveler.
+            We will soon offer curated travel packages including Kenyan safari packages, weekend getaways,
+            coast and beach holidays, and international tour packages. Until the dedicated booking system launches,
+            clients can inquire via the Contact Us form for tailor-made tours.
           </p>
         </motion.div>
 
