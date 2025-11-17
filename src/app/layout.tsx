@@ -66,6 +66,7 @@ export default function RootLayout({
         </main>
         <Footer />
         <CookieConsent />
+        <WhatsAppButton />
       </body>
     </html>
   )
