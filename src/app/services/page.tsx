@@ -229,14 +229,14 @@ const services = [
     id: 'car-hire',
     icon: Car,
     title: 'Car Hire & Airport Transfers',
-    description: 'Reliable transportation solutions including airport transfers, self-drive rentals, and chauffeur services. We maintain a fleet of well-maintained vehicles to suit various needs and budgets.',
+    description: 'Available services include airport transfers, daily or weekly rentals, chauffeur-driven vehicle options, and tourist transport. We partner with trusted local providers to ensure safety and reliability.',
     features: [
       'Airport Transfers',
-      'Self-drive Options',
-      'Chauffeur Services',
-      'Various Vehicle Types',
-      'Insurance Coverage',
-      '24/7 Roadside Assistance'
+      'Daily or Weekly Rentals',
+      'Chauffeur-Driven Vehicle Options',
+      'Tourist Transport',
+      'Trusted Local Providers',
+      'Safety and Reliability Guaranteed'
     ],
     process: [
       'Select vehicle type and rental period',
