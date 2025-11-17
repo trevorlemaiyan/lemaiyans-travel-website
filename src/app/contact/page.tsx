@@ -123,6 +123,13 @@ const ContactInfo = () => {
       label: 'Business Hours',
       value: 'Mon-Fri: 8AM-6PM, Sat: 9AM-4PM',
       description: 'We\'re here to serve you during business hours'
+    },
+    {
+      icon: MapPin,
+      label: 'Physical Location',
+      value: 'Eldoret, Kenya',
+      description: 'Visit our office for personalized consultation',
+      action: null
     }
   ]
 
