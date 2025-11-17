@@ -276,17 +276,17 @@ const MissionValues = () => {
     {
       icon: Target,
       title: 'Our Mission',
-      description: 'To provide exceptional travel experiences that connect people to destinations while fostering cultural understanding and creating lasting memories through professional, reliable, and personalized service.'
+      description: 'To provide reliable, affordable, and stress-free travel solutions that connect people to destinations across Kenya and the world.'
     },
     {
       icon: Heart,
-      title: 'Our Values',
-      description: 'Customer-first approach, integrity in all dealings, cultural appreciation, continuous improvement, environmental responsibility, and community engagement guide everything we do.'
+      title: 'Core Values',
+      description: 'Professionalism: Accurate, timely, and dependable service delivery. Trust: Honest support with no hidden fees. Customer Care: Personalized attention for each traveler. Efficiency: Fast response times and seamless communication. Heritage: Celebrating Kenyan culture in a modern travel context.'
     },
     {
       icon: Users,
       title: 'Our Vision',
-      description: 'To be East Africa\'s leading travel agency, known for innovation, reliability, and exceptional customer service while promoting sustainable tourism and cultural exchange.'
+      description: 'To become Kenya\'s most trusted travel partner—combining world-class service, cultural identity, and exceptional client care to elevate every traveler\'s journey.'
     }
   ]
 
