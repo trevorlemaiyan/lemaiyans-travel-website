@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { Shield, Eye, Lock, Database, UserCheck, FileText } from 'lucide-react'
+import { Shield, Eye, Lock, Database, UserCheck, FileText, Globe } from 'lucide-react'
 
 const PrivacyHero = () => {
   return (
