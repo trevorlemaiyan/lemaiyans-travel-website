@@ -166,14 +166,14 @@ const services = [
     id: 'air-ticketing',
     icon: Plane,
     title: 'Air Ticketing',
-    description: 'Comprehensive flight booking services for domestic and international travel. We offer competitive pricing, flexible booking options, and 24/7 support to ensure your journey starts smoothly.',
+    description: 'We handle flights for local and regional travel, global destinations, one-way, round-trip, and multi-city bookings. Clients enjoy professional guidance, best available fares, flexible itineraries, and 24/7 support for any issues.',
     features: [
-      'Domestic & International Flights',
-      'Best Price Guarantee',
-      '24/7 Booking Support',
-      'Special Requests Assistance',
-      'Group Bookings',
-      'Last-minute Availability'
+      'Local and Regional Travel',
+      'Global Destinations',
+      'One-way, Round-trip, Multi-city Bookings',
+      'Best Available Fares',
+      'Flexible Itineraries',
+      '24/7 Support for Any Issues'
     ],
     process: [
       'Share your travel details and preferences',
