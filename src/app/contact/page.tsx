@@ -433,6 +433,7 @@ export default function ContactPage() {
     <>
       <ContactHero />
       <ContactInfo />
+      <EngagementMethods />
       <StatsSection />
     </>
   )
