@@ -410,6 +410,7 @@ export default function AboutPage() {
       <AboutHero />
       <CompanyStory />
       <Timeline />
+      <TargetAudience />
       <MissionValues />
     </>
   )
