@@ -93,7 +93,7 @@ const ContactForm = () => {
   }
 
   return (
-    <div className="bg-white rounded-xl shadow-lg p-8 lg:p-12">
+    <div id="contact-form" className="bg-white rounded-xl shadow-lg p-8 lg:p-12">
       <h2 className="text-2xl lg:text-3xl font-bold text-slate-900 mb-8">
         Get in Touch
       </h2>
