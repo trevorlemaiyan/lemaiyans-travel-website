@@ -187,14 +187,14 @@ const services = [
     id: 'hotel-bookings',
     icon: Hotel,
     title: 'Hotel Bookings & Reservations',
-    description: 'Access to our global network of hotels ranging from budget-friendly accommodations to luxury resorts. We negotiate special rates and ensure quality standards across all properties.',
+    description: 'We help clients book local lodgings and Airbnb stays, luxury hotels, and international accommodations. Our team ensures secure, reliable reservations at competitive rates.',
     features: [
-      'Global Hotel Network',
-      'Budget to Luxury Options',
-      'Group Booking Discounts',
-      'Last-minute Availability',
-      'Verified Properties',
-      'Special Amenities'
+      'Local Lodgings and Airbnb Stays',
+      'Luxury Hotels',
+      'International Accommodations',
+      'Competitive Rates',
+      'Secure Reservations',
+      'Reliable Service'
     ],
     process: [
       'Specify destination, dates, and preferences',
