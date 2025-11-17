@@ -245,6 +245,120 @@ const ContactInfo = () => {
   )
 }
 
+const EngagementMethods = () => {
+  const [isVisible, setIsVisible] = useState(false)
+  const sectionRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+        }
+      },
+      { threshold: 0.1 }
+    )
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current)
+    }
+
+    return () => observer.disconnect()
+  }, [])
+
+  const engagementMethods = [
+    {
+      title: 'Call Us Directly',
+      description: 'Speak with our travel consultants immediately for quick responses and personalized assistance.',
+      icon: Phone,
+      action: 'tel:+254123456789',
+      buttonText: 'Call Now'
+    },
+    {
+      title: 'Email Us',
+      description: 'Send detailed inquiries and receive comprehensive travel solutions tailored to your needs.',
+      icon: Mail,
+      action: 'mailto:info@lemaiyanstravels.com',
+      buttonText: 'Send Email'
+    },
+    {
+      title: 'Contact Form',
+      description: 'Use our website\'s Contact Us form for structured travel planning and detailed consultation requests.',
+      icon: Users,
+      action: '#contact-form',
+      buttonText: 'Use Form'
+    },
+    {
+      title: 'WhatsApp Messaging',
+      description: 'Message us on WhatsApp for instant responses and quick travel advice.',
+      icon: MessageCircle,
+      action: 'https://wa.me/254123456789?text=Hi! I\'m interested in your travel services.',
+      buttonText: 'Chat on WhatsApp'
+    },
+    {
+      title: 'Physical Visit',
+      description: 'Visit our office in Eldoret for face-to-face consultation and personalized travel planning.',
+      icon: MapPin,
+      action: null,
+      buttonText: 'Get Directions'
+    }
+  ]
+
+  return (
+    <section ref={sectionRef} className="py-16 lg:py-24 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 30 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4">
+            How Clients Engage With Us
+          </h2>
+          <p className="text-lg text-slate-600 max-w-3xl mx-auto">
+            Lemaiyan's Travels uses a simple, easy-to-access system where customers can reach out through multiple channels.
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {engagementMethods.map((method, index) => {
+            const Icon = method.icon
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 50 }}
+                transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
+                whileHover={{ y: -8 }}
+                className="bg-slate-50 rounded-xl p-8 hover:shadow-xl transition-all duration-300"
+              >
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-primary-red/10 rounded-xl mb-6">
+                  <Icon className="text-primary-red" size={32} />
+                </div>
+
+                <h3 className="text-xl font-bold text-slate-900 mb-4">{method.title}</h3>
+                <p className="text-slate-600 leading-relaxed mb-6">{method.description}</p>
+
+                {method.action && (
+                  <a
+                    href={method.action}
+                    target={method.action?.startsWith('http') ? '_blank' : undefined}
+                    rel={method.action?.startsWith('http') ? 'noopener noreferrer' : undefined}
+                    className="inline-flex items-center justify-center bg-primary-red text-white px-6 py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors duration-300 w-full"
+                  >
+                    {method.buttonText}
+                  </a>
+                )}
+              </motion.div>
+            )
+          })}
+        </div>
+      </div>
+    </section>
+  )
+}
+
 const StatsSection = () => {
   const [isVisible, setIsVisible] = useState(false)
   const sectionRef = useRef<HTMLDivElement>(null)
