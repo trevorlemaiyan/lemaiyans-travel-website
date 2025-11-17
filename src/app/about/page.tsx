@@ -251,6 +251,77 @@ const Timeline = () => {
   )
 }
 
+const TargetAudience = () => {
+  const [isVisible, setIsVisible] = useState(false)
+  const sectionRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+        }
+      },
+      { threshold: 0.1 }
+    )
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current)
+    }
+
+    return () => observer.disconnect()
+  }, [])
+
+  const targetClients = [
+    'First-time travelers',
+    'Families and groups',
+    'Domestic and global tourists',
+    'Business and corporate travelers',
+    'Students and young professionals',
+    'Anyone requiring structured travel planning'
+  ]
+
+  return (
+    <section ref={sectionRef} className="py-16 lg:py-24 bg-slate-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 30 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4">
+            Our Target Clients
+          </h2>
+          <p className="text-lg text-slate-600 max-w-3xl mx-auto">
+            We proudly serve a diverse range of travelers with personalized solutions for every journey.
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {targetClients.map((client, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 50 }}
+              transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
+              whileHover={{ y: -8 }}
+              className="bg-white rounded-xl p-6 hover:shadow-xl transition-all duration-300"
+            >
+              <div className="flex items-center space-x-3">
+                <div className="w-12 h-12 bg-primary-red/10 rounded-lg flex items-center justify-center">
+                  <Users className="text-primary-red" size={24} />
+                </div>
+                <h3 className="text-lg font-semibold text-slate-900">{client}</h3>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
 const MissionValues = () => {
   const [isVisible, setIsVisible] = useState(false)
   const sectionRef = useRef<HTMLDivElement>(null)
