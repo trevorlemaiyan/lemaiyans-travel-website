@@ -208,14 +208,14 @@ const services = [
     id: 'visa-processing',
     icon: Passports,
     title: 'Visa Processing & Travel Documentation',
-    description: 'Professional assistance with visa applications and travel documentation. Our experienced team navigates complex requirements and ensures smooth processing for various destinations.',
+    description: 'We support travelers with visa application assistance, required documentation guidance, and travel advisory for different countries. Our goal is to simplify the visa process and minimize traveler stress.',
     features: [
-      'Document Preparation Assistance',
-      'Embassy Liaison',
-      'Application Tracking',
-      'Expedited Processing Options',
-      'Requirement Guidance',
-      'Document Verification'
+      'Visa Application Assistance',
+      'Required Documentation Guidance',
+      'Travel Advisory for Different Countries',
+      'Simplified Visa Process',
+      'Stress-Free Experience',
+      'Expert Support'
     ],
     process: [
       'Consultation on visa requirements',
