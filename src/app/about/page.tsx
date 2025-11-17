@@ -85,16 +85,23 @@ const CompanyStory = () => {
 
             <div className="space-y-6 text-slate-600 leading-relaxed">
               <p>
-                Founded in 2015 in the heart of Eldoret, Lemaiyan's Travels began with a simple mission:
-                to provide exceptional travel services that connect Kenyans to the world and bring the world to Kenya.
-                Our name, inspired by the Maasai tradition of travel and exploration, reflects our deep-rooted
-                commitment to mobility and discovery.
+                Lemaiyan's Travels is a professional tours and travel agency based in Eldoret, Kenya, specializing
+                in domestic and international travel solutions. We provide seamless end-to-end travel support for
+                individuals, families, corporate clients, and groups looking for reliable, affordable, and
+                stress-free travel planning.
               </p>
 
               <p>
-                What started as a small office with a passionate team has grown into one of Eldoret's most
+                Inspired by the iconic Kenyan heritage represented in our Maasai-themed logo, Lemaiyan's Travels
+                blends cultural identity with modern global travel services, offering both regional and international
+                solutions with a personal touch. Our name reflects the deep-rooted Maasai tradition of travel and
+                exploration, embodying our commitment to connecting people across Kenya and beyond.
+              </p>
+
+              <p>
+                What started as a vision to provide exceptional travel services has grown into one of Eldoret's most
                 trusted travel agencies, serving thousands of clients across domestic and international destinations.
-                We've built our reputation on reliability, professionalism, and an unwavering focus on customer satisfaction.
+                We've built our reputation on professionalism, trust, and an unwavering focus on customer satisfaction.
               </p>
 
               <p>
