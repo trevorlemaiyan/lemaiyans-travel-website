@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
-import { ArrowRight, Plane } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 
 const Hero = () => {
@@ -23,22 +23,16 @@ const Hero = () => {
             backgroundImage: "url('data:image/svg+xml,%3Csvg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1440 800\"%3E%3Cdefs%3E%3ClinearGradient id=\"grad1\" x1=\"0%25\" y1=\"0%25\" x2=\"100%25\" y2=\"100%25\"%3E%3Cstop offset=\"0%25\" style=\"stop-color:rgb(198,18,23);stop-opacity:0.8\" /%3E%3Cstop offset=\"100%25\" style=\"stop-color:rgb(15,23,42);stop-opacity:0.9\" /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width=\"1440\" height=\"800\" fill=\"url(%23grad1)\" /%3E%3Cpath d=\"M0,400 Q360,300 720,400 T1440,400 L1440,800 L0,800 Z\" fill=\"rgba(255,255,255,0.05)\" /%3E%3Cpath d=\"M0,500 Q360,400 720,500 T1440,500 L1440,800 L0,800 Z\" fill=\"rgba(255,255,255,0.03)\" /%3E%3C/svg%3E')",
           }}
         />
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"none\" fill-rule=\"evenodd\"%3E%3Cg fill=\"%23ffffff\" fill-opacity=\"0.05\"%3E%3Ccircle cx=\"30\" cy=\"30\" r=\"2\"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20"></div>
+        <div 
+          className="absolute inset-0 opacity-20"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+          }}
+        ></div>
       </div>
 
       {/* Content */}
       <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: isLoaded ? 1 : 0, scale: isLoaded ? 1 : 0.8 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="mb-6"
-        >
-          <div className="inline-flex items-center justify-center w-20 h-20 bg-white rounded-full mb-6 shadow-2xl">
-            <Plane className="text-primary-red" size={40} />
-          </div>
-        </motion.div>
-
         <motion.h1
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 50 }}
@@ -63,7 +57,7 @@ const Hero = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 30 }}
           transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+          className="flex justify-center items-center"
         >
           <Link
             href="/contact"
@@ -72,30 +66,6 @@ const Hero = () => {
             Contact Us
             <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform duration-300" size={20} />
           </Link>
-
-          <Link
-            href="/contact"
-            className="group inline-flex items-center justify-center bg-transparent hover:bg-white hover:bg-opacity-10 text-white border-2 border-white hover:border-primary-red px-8 py-4 rounded-lg font-semibold transition-all duration-300"
-          >
-            Make a Booking Inquiry
-          </Link>
-        </motion.div>
-
-        {/* Floating decorative elements */}
-        <motion.div
-          animate={{ y: [-10, 10, -10] }}
-          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-20 left-10 text-primary-red/20 text-6xl"
-        >
-          <Plane />
-        </motion.div>
-
-        <motion.div
-          animate={{ y: [10, -10, 10] }}
-          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-          className="absolute bottom-20 right-10 text-primary-red/20 text-6xl"
-        >
-          <Plane />
         </motion.div>
       </div>
 

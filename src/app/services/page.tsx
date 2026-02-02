@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
-import { Plane, Hotel, Passports, Car, Map, ArrowRight, Clock, Shield, Globe, Users, Star, CheckCircle } from 'lucide-react'
+import { Plane, Hotel, FileText, Car, Map, ArrowRight, Clock, Shield, Globe, Users, Star, CheckCircle } from 'lucide-react'
 
 const ServicesHero = () => {
   const [isVisible, setIsVisible] = useState(false)
@@ -206,7 +206,7 @@ const services = [
   },
   {
     id: 'visa-processing',
-    icon: Passports,
+    icon: FileText,
     title: 'Visa Processing & Travel Documentation',
     description: 'We support travelers with visa application assistance, required documentation guidance, and travel advisory for different countries. Our goal is to simplify the visa process and minimize traveler stress.',
     features: [

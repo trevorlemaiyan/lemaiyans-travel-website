@@ -3,8 +3,6 @@ import {
   MapPin,
   Phone,
   Mail,
-  Facebook,
-  Twitter,
   Instagram,
   Clock,
   MessageCircle
@@ -29,9 +27,7 @@ const Footer = () => {
   ]
 
   const socialLinks = [
-    { name: 'Facebook', href: '#', icon: Facebook },
-    { name: 'Twitter', href: '#', icon: Twitter },
-    { name: 'Instagram', href: '#', icon: Instagram },
+    { name: 'Instagram', href: 'https://instagram.com/lemaiyans_travels', icon: Instagram },
   ]
 
   return (

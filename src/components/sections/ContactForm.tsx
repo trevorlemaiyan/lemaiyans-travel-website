@@ -245,7 +245,7 @@ const ContactForm = () => {
           </div>
           <div className="mt-2 text-sm text-slate-500 text-right">
             {typeof document !== 'undefined' &&
-              document.querySelector('textarea[name="message"]')?.value?.length || 0
+              (document.querySelector('textarea[name="message"]') as HTMLTextAreaElement)?.value?.length || 0
             }/500 characters
           </div>
           {errors.message && (

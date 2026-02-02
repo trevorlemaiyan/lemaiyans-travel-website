@@ -22,7 +22,8 @@ const Header = () => {
     { name: 'About', href: '/about' },
     { name: 'Services', href: '/services' },
     { name: 'Tours', href: '/tours' },
-    { name: 'Contact', href: '/contact' },
+    { name: 'Blog', href: '/blog' },
+    { name: 'Contact', href: '/contact', isButton: true },
   ]
 
   return (
@@ -51,22 +52,26 @@ const Header = () => {
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-8">
             {navigation.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className={`text-sm font-medium transition-colors duration-300 hover:text-primary-red ${
-                  isScrolled ? 'text-slate-700' : 'text-white'
-                }`}
-              >
-                {item.name}
-              </Link>
+              item.isButton ? (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className="bg-primary-red text-white px-6 py-2 rounded-lg font-medium hover:bg-red-700 transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+                >
+                  {item.name}
+                </Link>
+              ) : (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className={`text-sm font-medium transition-colors duration-300 hover:text-primary-red ${
+                    isScrolled ? 'text-slate-700' : 'text-white'
+                  }`}
+                >
+                  {item.name}
+                </Link>
+              )
             ))}
-            <Link
-              href="/contact"
-              className="bg-primary-red text-white px-6 py-2 rounded-lg font-medium hover:bg-red-700 transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
-            >
-              Contact Us
-            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -94,18 +99,15 @@ const Header = () => {
                 key={item.name}
                 href={item.href}
                 onClick={() => setIsMenuOpen(false)}
-                className="block px-4 py-3 text-slate-700 hover:bg-slate-50 rounded-lg font-medium transition-colors duration-300"
+                className={`block px-4 py-3 rounded-lg font-medium transition-colors duration-300 ${
+                  item.isButton 
+                    ? 'bg-primary-red text-white mx-4 mt-4 hover:bg-red-700 text-center'
+                    : 'text-slate-700 hover:bg-slate-50'
+                }`}
               >
                 {item.name}
               </Link>
             ))}
-            <Link
-              href="/contact"
-              onClick={() => setIsMenuOpen(false)}
-              className="block mx-4 mt-4 bg-primary-red text-white px-6 py-3 rounded-lg font-medium hover:bg-red-700 transition-all duration-300 text-center"
-            >
-              Contact Us
-            </Link>
           </div>
         </div>
       </nav>

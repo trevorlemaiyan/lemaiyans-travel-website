@@ -6,7 +6,7 @@ import Link from 'next/link'
 import {
   Plane,
   Hotel,
-  Passports,
+  FileText,
   Car,
   Map,
   ArrowRight
@@ -31,7 +31,7 @@ const services = [
   },
   {
     id: 'visa-processing',
-    icon: Passports,
+    icon: FileText,
     title: 'Visa Processing',
     description: 'Travel Documentation',
     color: 'from-green-500 to-green-600',

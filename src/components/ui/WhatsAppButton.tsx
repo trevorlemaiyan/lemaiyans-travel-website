@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { motion } from 'framer-motion'
 import { MessageCircle, X } from 'lucide-react'
 
 const WhatsAppButton = () => {

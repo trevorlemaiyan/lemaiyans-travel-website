@@ -3,7 +3,8 @@
 import { motion } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import { Map, Mountain, Waves, TreePine, Camera, Users, Clock, Star, ArrowRight, Calendar, Heart } from 'lucide-react'
+import { Map, Mountain, Waves, TreePine, Camera, Users, Clock, Star, ArrowRight, Calendar, Heart, Plane, Hotel, Car } from 'lucide-react'
+import { getFeaturedTours, getActiveTours, getTourByCategory, TourPackage } from '@/data/tours'
 
 const ToursHero = () => {
   const [isVisible, setIsVisible] = useState(false)
@@ -101,7 +102,7 @@ const ComingSoon = () => {
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
           className="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-3xl p-8 lg:p-16 text-center mb-16 border-2 border-yellow-200"
         >
-          <div className="text-8xl mb-6">🦒</div>
+          <div className="text-8xl mb-6"></div>
           <h3 className="text-2xl lg:text-3xl font-bold text-slate-900 mb-4">
             Something Wild is Coming
           </h3>
@@ -158,28 +159,24 @@ const TeaserSection = () => {
       icon: Map,
       title: 'Safari Adventures',
       description: 'Experience the Big Five in Kenya\'s world-renowned national parks.',
-      emoji: '🦁',
       features: ['Maasai Mara', 'Amboseli', 'Samburu', 'Lake Nakuru']
     },
     {
       icon: Waves,
       title: 'Coastal Experiences',
       description: 'Relax on pristine beaches and explore Swahili culture.',
-      emoji: '🏖️',
       features: ['Diani Beach', 'Watamu', 'Lamu', 'Malindi']
     },
     {
       icon: Mountain,
       title: 'Mountain Adventures',
       description: 'Challenge yourself with hiking and climbing expeditions.',
-      emoji: '🏔️',
       features: ['Mount Kenya', 'Aberdares', 'Chyulu Hills', 'Hells Gate']
     },
     {
       icon: Camera,
       title: 'Cultural Tours',
       description: 'Immerse yourself in Kenya\'s rich cultural heritage.',
-      emoji: '🎭',
       features: ['Maasai Villages', 'Karen Blixen', 'Bomas of Kenya', 'Local Markets']
     }
   ]
@@ -214,11 +211,10 @@ const TeaserSection = () => {
                 className="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group"
               >
                 <div className="p-8">
-                  <div className="flex items-center justify-between mb-6">
+                  <div className="flex items-center mb-6">
                     <div className="inline-flex items-center justify-center w-14 h-14 bg-primary-red/10 rounded-xl">
                       <Icon className="text-primary-red" size={28} />
                     </div>
-                    <div className="text-4xl">{teaser.emoji}</div>
                   </div>
 
                   <h3 className="text-xl font-bold text-slate-900 mb-3">
