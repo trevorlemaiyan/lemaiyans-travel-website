@@ -8,28 +8,34 @@ const CookieConsent = () => {
 
   useEffect(() => {
     // Check if user has already made a choice
-    const consent = localStorage.getItem('cookie-consent')
+    if (typeof window !== 'undefined') {
+      const consent = localStorage.getItem('cookie-consent')
 
-    if (!consent) {
-      // Show banner after 2 seconds if no consent exists
-      const timer = setTimeout(() => {
-        setIsVisible(true)
-      }, 2000)
+      if (!consent) {
+        // Show banner after 2 seconds if no consent exists
+        const timer = setTimeout(() => {
+          setIsVisible(true)
+        }, 2000)
 
-      return () => clearTimeout(timer)
-    } else {
-      setHasConsent(consent === 'accepted')
+        return () => clearTimeout(timer)
+      } else {
+        setHasConsent(consent === 'accepted')
+      }
     }
   }, [])
 
   const handleAccept = () => {
-    localStorage.setItem('cookie-consent', 'accepted')
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('cookie-consent', 'accepted')
+    }
     setHasConsent(true)
     setIsVisible(false)
   }
 
   const handleDecline = () => {
-    localStorage.setItem('cookie-consent', 'declined')
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('cookie-consent', 'declined')
+    }
     setIsVisible(false)
   }
 
