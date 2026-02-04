@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "postinstall": "echo 'Dependencies installed successfully'"
+    "postinstall": "echo 'Dependencies installed successfully'",
+    "firebase:deploy": "npm run build && firebase deploy --only hosting",
+    "firebase:serve": "npm run build && firebase serve"
   },
   "dependencies": {
     "@hookform/resolvers": "3.3.4",
