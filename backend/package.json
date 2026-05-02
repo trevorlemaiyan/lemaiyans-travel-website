@@ -1,0 +1,14 @@
+{
+  "name": "lemaiyan-travels-backend",
+  "version": "1.0.0",
+  "description": "Backend API for Lemaiyan's Travels",
+  "main": "src/server.js",
+  "scripts": {
+    "dev": "nodemon src/server.js",
+    "start": "node src/server.js",
+    "test": "jest"
+  },
+  "keywords": ["travel", "api", "backend"],
+  "author": "Lemaiyan's Travels",
+  "license": "proprietary"
+}
