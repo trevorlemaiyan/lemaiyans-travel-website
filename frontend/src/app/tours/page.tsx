@@ -116,15 +116,16 @@ const ComingSoon = () => {
               href="/contact"
               className="inline-flex items-center justify-center bg-primary-red text-white px-8 py-4 rounded-lg font-semibold hover:bg-red-700 transition-all duration-300 transform hover:scale-105"
             >
-              Join Waitlist
+              Get More Information
               <ArrowRight className="ml-2" size={20} />
             </Link>
 
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center bg-transparent border-2 border-primary-red text-primary-red px-8 py-4 rounded-lg font-semibold hover:bg-primary-red hover:text-white transition-all duration-300"
+              className="inline-flex items-center justify-center bg-white text-primary-red border-2 border-primary-red px-8 py-4 rounded-lg font-semibold hover:bg-red-50 transition-all duration-300"
             >
-              Request Custom Quote
+              Request Quote
+              <ArrowRight className="ml-2" size={20} />
             </Link>
           </div>
         </motion.div>
@@ -276,11 +277,11 @@ const ContactSection = () => {
           className="bg-gradient-to-r from-primary-red to-red-600 rounded-2xl p-8 lg:p-16 text-center text-white"
         >
           <h2 className="text-3xl lg:text-4xl font-bold mb-6">
-            Don&apos;t Miss Out!
+            Don't Miss Out!
           </h2>
 
           <p className="text-xl mb-8 text-red-50 max-w-3xl mx-auto leading-relaxed">
-            Be the first to know when our tour packages launch. Get exclusive early bird discounts and priority access to our most popular destinations.
+            Contact us today for more information about our upcoming tour packages and get personalized travel recommendations for your Kenyan adventure.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12">
@@ -288,8 +289,8 @@ const ContactSection = () => {
               href="/contact"
               className="group inline-flex items-center justify-center bg-white text-primary-red px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
             >
-              <Heart className="mr-2" size={20} />
-              Join Our Waitlist
+              <Users className="mr-2" size={20} />
+              Contact for Tours
             </Link>
 
             <div className="flex items-center space-x-6 text-red-50">
