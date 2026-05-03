@@ -132,8 +132,8 @@ const CompanyStory = () => {
               <div className="aspect-square bg-gradient-to-br from-primary-red to-red-600 rounded-xl flex items-center justify-center text-white">
                 <div className="text-center">
                   <MapPin size={64} className="mx-auto mb-4" />
-                  <div className="text-4xl font-bold">Eldoret</div>
-                  <div className="text-xl">Kenya</div>
+                  <div className="text-4xl font-bold">Professional Travel Services</div>
+                  <div className="text-xl">Since 2015</div>
                 </div>
               </div>
             </div>
