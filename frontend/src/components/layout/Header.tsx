@@ -2,116 +2,144 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { Menu, X, Phone } from 'lucide-react'
+import { Menu, X, ArrowUpRight, Phone } from 'lucide-react'
+import Logo from '@/components/ui/Logo'
+import { siteConfig } from '@/lib/site-config'
 
-const Header = () => {
+export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20)
-    }
-
+    const handleScroll = () => setIsScrolled(window.scrollY > 20)
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  useEffect(() => {
+    document.body.style.overflow = isMenuOpen ? 'hidden' : ''
+    return () => { document.body.style.overflow = '' }
+  }, [isMenuOpen])
+
   const navigation = [
     { name: 'Home', href: '/' },
-    { name: 'About', href: '/about' },
     { name: 'Services', href: '/services' },
-    { name: 'Tours', href: '/tours' },
-        { name: 'Contact', href: '/contact', isButton: true },
+    { name: 'About Us', href: '/about' },
+    { name: 'Contact', href: '/contact' },
   ]
 
+  const linkColor = isScrolled
+    ? 'text-slate-800 hover:text-primary-crimson'
+    : 'text-slate-100 hover:text-white'
+
   return (
-    <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-      isScrolled
-        ? 'bg-white shadow-lg backdrop-blur-lg bg-opacity-95'
-        : 'bg-transparent'
-    }`}>
+    <header
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+        isScrolled
+          ? 'bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-sm'
+          : 'bg-gradient-to-b from-black/80 via-black/40 to-transparent'
+      }`}
+    >
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16 lg:h-20">
-          {/* Logo */}
-          <Link
-            href="/"
-            className="flex items-center space-x-2 group"
-          >
-            <div className="w-10 h-10 bg-primary-red rounded-lg flex items-center justify-center transform transition-all duration-300 group-hover:scale-110">
-              <span className="text-white font-bold text-lg">L</span>
+        <div className="flex justify-between items-center h-18 lg:h-22">
+          
+          {/* Logo & Trust Stamp */}
+          <div className="flex items-center gap-4 sm:gap-6">
+            <Logo showText dark={isScrolled} />
+            <div className="hidden xl:flex items-center gap-2 pl-4 border-l border-slate-300/40 text-xs">
+              <span className={`font-medium ${isScrolled ? 'text-slate-600' : 'text-slate-300'}`}>
+                IATA Accredited · KATA Member
+              </span>
             </div>
-            <span className={`text-xl font-bold transition-colors duration-300 ${
-              isScrolled ? 'text-slate-900' : 'text-white'
-            }`}>
-              Lemaiyan&apos;s Travels
-            </span>
-          </Link>
+          </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-8">
-            {navigation.map((item) => (
-              item.isButton ? (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className="bg-primary-red text-white px-6 py-2 rounded-lg font-medium hover:bg-red-700 transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
-                >
-                  {item.name}
-                </Link>
-              ) : (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className={`text-sm font-medium transition-colors duration-300 hover:text-primary-red ${
-                    isScrolled ? 'text-slate-700' : 'text-white'
-                  }`}
-                >
-                  {item.name}
-                </Link>
-              )
-            ))}
-          </div>
-
-          {/* Mobile menu button */}
-          <div className="lg:hidden">
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className={`p-2 rounded-lg transition-colors duration-300 ${
-                isScrolled
-                  ? 'text-slate-700 hover:bg-slate-100'
-                  : 'text-white hover:bg-white hover:bg-opacity-10'
-              }`}
-            >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
-        </div>
-
-        {/* Mobile Navigation */}
-        <div className={`lg:hidden overflow-hidden transition-all duration-300 ${
-          isMenuOpen ? 'max-h-96' : 'max-h-0'
-        }`}>
-          <div className="py-4 space-y-2">
+          <div className="hidden lg:flex items-center gap-8">
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                onClick={() => setIsMenuOpen(false)}
-                className={`block px-4 py-3 rounded-lg font-medium transition-colors duration-300 ${
-                  item.isButton 
-                    ? 'bg-primary-red text-white mx-4 mt-4 hover:bg-red-700 text-center'
-                    : 'text-slate-700 hover:bg-slate-50'
-                }`}
+                className={`font-medium text-sm tracking-normal transition-colors ${linkColor}`}
               >
                 {item.name}
               </Link>
             ))}
+
+            <div className="flex items-center gap-3 pl-4 border-l border-slate-300/30">
+              <a
+                href={`tel:${siteConfig.phoneTel}`}
+                className={`hidden md:flex items-center gap-2 text-xs font-medium px-3 py-2 rounded-lg transition-colors ${
+                  isScrolled ? 'text-slate-700 hover:text-primary-crimson' : 'text-slate-200 hover:text-white'
+                }`}
+              >
+                <Phone size={14} className="text-primary-crimson" />
+                <span>{siteConfig.phone}</span>
+              </a>
+
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-1.5 text-xs font-semibold px-4 py-2.5 rounded-lg shadow-sm bg-primary-crimson hover:bg-primary-burgundy text-white transition-all transform hover:-translate-y-0.5"
+              >
+                <span>Request Quotation</span>
+                <ArrowUpRight size={14} />
+              </Link>
+            </div>
           </div>
+
+          {/* Mobile Hamburger Toggle */}
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className={`lg:hidden p-2 rounded-lg transition-colors ${
+              isScrolled ? 'text-slate-900 hover:bg-slate-100' : 'text-white hover:bg-white/10'
+            }`}
+            aria-label="Toggle navigation menu"
+          >
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
         </div>
       </nav>
+
+      {/* Mobile Drawer */}
+      <div
+        className={`lg:hidden fixed inset-0 top-18 bg-black/60 backdrop-blur-sm transition-opacity duration-200 ${
+          isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        }`}
+        onClick={() => setIsMenuOpen(false)}
+      />
+      <div
+        className={`lg:hidden absolute top-full left-0 right-0 bg-white border-b border-slate-200 shadow-xl transition-all duration-200 origin-top ${
+          isMenuOpen ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-95 pointer-events-none'
+        }`}
+      >
+        <div className="px-5 py-6 space-y-3">
+          {navigation.map((item) => (
+            <Link
+              key={item.name}
+              href={item.href}
+              onClick={() => setIsMenuOpen(false)}
+              className="block px-3 py-2.5 text-base font-semibold text-slate-800 hover:bg-slate-50 hover:text-primary-crimson rounded-lg transition-colors"
+            >
+              {item.name}
+            </Link>
+          ))}
+          <div className="pt-4 border-t border-slate-200 space-y-2">
+            <a
+              href={`tel:${siteConfig.phoneTel}`}
+              className="flex items-center justify-center gap-2 w-full py-3 text-sm font-semibold text-slate-800 bg-slate-100 rounded-lg hover:bg-slate-200 transition-colors"
+            >
+              <Phone size={15} className="text-primary-crimson" />
+              <span>Call Desk: {siteConfig.phone}</span>
+            </a>
+            <Link
+              href="/contact"
+              onClick={() => setIsMenuOpen(false)}
+              className="block w-full text-center bg-primary-crimson text-white py-3 rounded-lg text-sm font-semibold hover:bg-primary-burgundy transition-colors shadow-sm"
+            >
+              Request a Travel Quotation
+            </Link>
+          </div>
+        </div>
+      </div>
     </header>
   )
 }
-
-export default Header

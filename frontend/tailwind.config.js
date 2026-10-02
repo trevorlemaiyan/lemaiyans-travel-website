@@ -9,41 +9,27 @@ module.exports = {
     extend: {
       colors: {
         primary: {
-          red: '#C61217',
-          black: '#000000',
-          white: '#FFFFFF',
+          crimson: '#9B1D20',
+          burgundy: '#7D171A',
+          light: '#B82428',
+          dark: '#7A1619',
         },
-        slate: {
-          50: '#F8FAFC',
-          100: '#F1F5F9',
-          200: '#E2E8F0',
-          300: '#CBD5E1',
-          600: '#475569',
-          800: '#1E293B',
-          900: '#0F172A',
-        }
+        graphite: {
+          black: '#1A1A1A',
+          dark: '#2D2D2D',
+          light: '#4A4A4A',
+        },
+        warm: {
+          white: '#F8F7F5',
+          light: '#FAF9F7',
+          dark: '#E8E6E1',
+        },
+        'light-grey': '#D9D9D9',
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-      },
-      animation: {
-        'fade-in': 'fadeIn 0.6s ease-out',
-        'slide-up': 'slideUp 0.6s ease-out',
-        'scale-in': 'scaleIn 0.8s ease-out',
-      },
-      keyframes: {
-        fadeIn: {
-          '0%': { opacity: '0' },
-          '100%': { opacity: '1' },
-        },
-        slideUp: {
-          '0%': { opacity: '0', transform: 'translateY(50px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)' },
-        },
-        scaleIn: {
-          '0%': { opacity: '0', transform: 'scale(0.8)' },
-          '100%': { opacity: '1', transform: 'scale(1)' },
-        },
+        sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
+        display: ['var(--font-display)', 'sans-serif'],
+        mono: ['var(--font-mono)', 'monospace'],
       },
     },
   },

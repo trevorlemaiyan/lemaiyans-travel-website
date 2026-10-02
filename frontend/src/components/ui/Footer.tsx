@@ -1,158 +1,130 @@
 import Link from 'next/link'
-import {
-  MapPin,
-  Phone,
-  Mail,
-  Instagram,
-  Clock,
-  MessageCircle
-} from 'lucide-react'
+import { MapPin, Phone, Mail, Clock, ArrowUpRight, ShieldCheck, Award } from 'lucide-react'
+import Logo from '@/components/ui/Logo'
+import { siteConfig } from '@/lib/site-config'
 
-const Footer = () => {
+export default function Footer() {
   const quickLinks = [
-    { name: 'Home', href: '/' },
-    { name: 'About', href: '/about' },
-    { name: 'Services', href: '/services' },
-    { name: 'Tours', href: '/tours' },
-    { name: 'Contact', href: '/contact' },
-    { name: 'Privacy Policy', href: '/privacy' },
+    { name: 'Our Services', href: '/services' },
+    { name: 'About Lemaiyans', href: '/about' },
+    { name: 'Contact & Location', href: '/contact' },
+    { name: 'Privacy Notice', href: '/privacy' },
   ]
 
   const services = [
-    { name: 'Air Ticketing', href: '/services#air-ticketing' },
-    { name: 'Hotel Bookings', href: '/services#hotel-bookings' },
-    { name: 'Visa Processing', href: '/services#visa-processing' },
-    { name: 'Car Hire', href: '/services#car-hire' },
-    { name: 'Custom Tours', href: '/tours' },
-  ]
-
-  const socialLinks = [
-    { name: 'Instagram', href: 'https://instagram.com/lemaiyans_travels', icon: Instagram },
+    { name: 'Air Ticketing & Reservations', href: '/services#air-ticketing' },
+    { name: 'Hotel & Accommodation Booking', href: '/services#hotel-bookings' },
+    { name: 'Visa Application & Advisory', href: '/services#visa-assistance' },
+    { name: 'Car Hire & Airport Transfers (Any Airport)', href: '/services#car-hire' },
+    /* NOTE: Tour packages dormant until launch
+    { name: 'Tour Packages', href: '/services#tour-packages' },
+    */
   ]
 
   return (
-    <footer className="bg-slate-900 text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-          {/* Company Info */}
-          <div className="space-y-4">
-            <div className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-primary-red rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">L</span>
-              </div>
-              <span className="text-xl font-bold">Lemaiyan&apos;s Travels</span>
-            </div>
-            <p className="text-slate-400 text-sm leading-relaxed">
-              Your trusted partner in international and regional travel solutions.
-              Connecting Kenya to the world with professionalism and care.
+    <footer className="bg-[#131722] text-slate-200 border-t border-slate-800">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
+        
+        {/* Top 4 Columns */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8">
+          
+          {/* Brand & Mission */}
+          <div className="lg:col-span-5 space-y-5">
+            <Logo showText />
+            <p className="text-slate-300 text-sm leading-relaxed max-w-sm">
+              {siteConfig.name} is an IATA-accredited travel agency providing strategic, dependable flight ticketing, worldwide accommodations, visa applications, and airport transfers for local and international clientele.
             </p>
-            <div className="flex items-center space-x-1 text-slate-400 text-sm">
-              <MapPin size={16} className="flex-shrink-0" />
-              <span>Eldoret, Kenya</span>
+
+            <p className="text-xs text-rose-300/90 italic">
+              &ldquo;{siteConfig.motto}&rdquo;
+            </p>
+
+            <div className="pt-2 flex flex-wrap gap-2 text-[11px] font-medium text-slate-300">
+              <span className="px-2.5 py-1 rounded bg-white/5 border border-white/10">
+                IATA Accredited
+              </span>
+              <span className="px-2.5 py-1 rounded bg-white/5 border border-white/10">
+                KATA Certified
+              </span>
+              <span className="px-2.5 py-1 rounded bg-white/5 border border-white/10">
+                TRA Licensed
+              </span>
+              <span className="px-2.5 py-1 rounded bg-white/5 border border-white/10">
+                AGPO Certified
+              </span>
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
-            <ul className="space-y-2">
-              {quickLinks.map((link) => (
-                <li key={link.name}>
-                  <Link
-                    href={link.href}
-                    className="text-slate-400 hover:text-primary-red transition-colors duration-300 text-sm"
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Services */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold mb-4">Services</h3>
-            <ul className="space-y-2">
+          {/* Active Services */}
+          <div className="lg:col-span-4 space-y-4">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400">
+              Travel Capabilities
+            </h4>
+            <ul className="space-y-3">
               {services.map((service) => (
                 <li key={service.name}>
                   <Link
                     href={service.href}
-                    className="text-slate-400 hover:text-primary-red transition-colors duration-300 text-sm"
+                    className="text-sm text-slate-300 hover:text-white transition-colors flex items-center justify-between group"
                   >
-                    {service.name}
+                    <span>{service.name}</span>
+                    <ArrowUpRight size={13} className="text-slate-500 opacity-0 group-hover:opacity-100 transition-opacity" />
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Contact Info */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
-            <div className="space-y-3">
-              <div className="flex items-center space-x-2 text-slate-400 text-sm">
-                <Mail size={16} className="flex-shrink-0" />
-                <a
-                  href="mailto:info@lemaiyanstravels.com"
-                  className="hover:text-primary-red transition-colors duration-300"
-                >
-                  info@lemaiyanstravels.com
-                </a>
+          {/* Desk Contact & Location */}
+          <div className="lg:col-span-3 space-y-4">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400">
+              Registered Office
+            </h4>
+            <div className="space-y-3 text-xs text-slate-300">
+              <div className="flex items-start gap-2.5">
+                <MapPin size={16} className="text-primary-crimson flex-shrink-0 mt-0.5" />
+                <div>
+                  <span className="block font-medium text-slate-200">{siteConfig.address}</span>
+                  <span className="text-slate-400">{siteConfig.poBox}</span>
+                </div>
               </div>
-              <div className="flex items-center space-x-2 text-slate-400 text-sm">
-                <Phone size={16} className="flex-shrink-0" />
-                <a
-                  href="tel:+254123456789"
-                  className="hover:text-primary-red transition-colors duration-300"
-                >
-                  +254 123 456 789
-                </a>
+
+              <div className="flex items-center gap-2.5">
+                <Clock size={16} className="text-primary-crimson flex-shrink-0" />
+                <span>{siteConfig.officeHours}</span>
               </div>
-              <div className="flex items-center space-x-2 text-slate-400 text-sm">
-                <Clock size={16} className="flex-shrink-0" />
-                <span>Mon-Fri: 8AM-6PM, Sat: 9AM-4PM</span>
-              </div>
-              <div className="pt-3">
-                <a
-                  href="https://wa.me/254123456789?text=Hi! I'm interested in your travel services."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center space-x-2 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg transition-colors duration-300 text-sm"
-                >
-                  <MessageCircle size={16} />
-                  <span>Chat on WhatsApp</span>
-                </a>
+
+              <div className="pt-2 space-y-1.5 border-t border-slate-800">
+                <div className="flex items-center gap-2">
+                  <Phone size={14} className="text-primary-crimson" />
+                  <a href={`tel:${siteConfig.phoneTel}`} className="font-semibold text-slate-100 hover:text-primary-crimson transition-colors">
+                    {siteConfig.phone}
+                  </a>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Mail size={14} className="text-primary-crimson" />
+                  <a href={`mailto:${siteConfig.email}`} className="text-slate-300 hover:text-white transition-colors">
+                    {siteConfig.email}
+                  </a>
+                </div>
               </div>
             </div>
+          </div>
+
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="mt-14 pt-8 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+          <p>© {new Date().getFullYear()} {siteConfig.name}. All rights reserved.</p>
+          <div className="flex items-center gap-6">
+            <Link href="/services" className="hover:text-slate-200 transition-colors">Services</Link>
+            <Link href="/about" className="hover:text-slate-200 transition-colors">About Us</Link>
+            <Link href="/contact" className="hover:text-slate-200 transition-colors">Contact</Link>
+            <Link href="/privacy" className="hover:text-slate-200 transition-colors">Privacy Policy</Link>
           </div>
         </div>
 
-        {/* Social Links */}
-        <div className="mt-8 pt-8 border-t border-slate-800">
-          <div className="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
-            <div className="flex items-center space-x-4">
-              {socialLinks.map((social) => {
-                const Icon = social.icon
-                return (
-                  <a
-                    key={social.name}
-                    href={social.href}
-                    className="text-slate-400 hover:text-primary-red transition-colors duration-300"
-                    aria-label={social.name}
-                  >
-                    <Icon size={20} />
-                  </a>
-                )
-              })}
-            </div>
-            <div className="text-slate-400 text-sm text-center">
-              <p>&copy; {new Date().getFullYear()} Lemaiyan&apos;s Travels. All rights reserved.</p>
-            </div>
-          </div>
-        </div>
       </div>
     </footer>
   )
 }
-
-export default Footer

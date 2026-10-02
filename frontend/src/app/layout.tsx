@@ -1,22 +1,37 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Plus_Jakarta_Sans, Syne, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/ui/Footer'
-import CookieConsent from '@/components/ui/CookieConsent'
 
-const inter = Inter({ subsets: ['latin'] })
+const sans = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  variable: '--font-sans',
+  display: 'swap',
+})
+
+const display = Syne({
+  subsets: ['latin'],
+  variable: '--font-display',
+  display: 'swap',
+})
+
+const mono = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-mono',
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   title: {
-    default: 'Lemaiyan\'s Travels - Your Trusted Travel Partner in Kenya',
-    template: '%s | Lemaiyan\'s Travels'
+    default: "Lemaiyan's Travels | Aviation & Travel Management - Eldoret, Kenya",
+    template: "%s | Lemaiyan's Travels"
   },
-  description: 'Professional travel agency in Eldoret, Kenya offering flights, hotels, visa processing, car hire, and custom tour packages. Your trusted partner for international and regional travel solutions.',
-  keywords: ['travel agency Kenya', 'flights Kenya', 'hotels Kenya', 'visa processing', 'car hire', 'tours Kenya', 'Eldoret travel'],
-  authors: [{ name: 'Lemaiyan\'s Travels' }],
-  creator: 'Lemaiyan\'s Travels',
-  publisher: 'Lemaiyan\'s Travels',
+  description: 'Physical travel desk at Nandi Arcade, Eldoret. Direct domestic and international air ticketing, corporate travel management, visa documentation assistance, and executive car hire.',
+  keywords: ['travel agency Eldoret', 'flights Kenya', 'air ticketing Eldoret', 'visa assistance Kenya', 'car hire Eldoret', 'corporate travel Kenya'],
+  authors: [{ name: "Lemaiyan's Travels" }],
+  creator: "Lemaiyan's Travels",
+  publisher: "Lemaiyan's Travels",
   formatDetection: {
     email: false,
     address: false,
@@ -26,28 +41,18 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_KE',
     url: 'https://lemaiyanstravels.co.ke',
-    title: 'Lemaiyan\'s Travels - Your Trusted Travel Partner in Kenya',
-    description: 'Professional travel agency in Eldoret, Kenya offering comprehensive travel solutions including flights, hotels, visas, and tours.',
-    siteName: 'Lemaiyan\'s Travels',
+    title: "Lemaiyan's Travels | Travel Management - Eldoret, Kenya",
+    description: 'Air ticketing, corporate flight logistics, visa documentation, and airport transfers based at Nandi Arcade, Eldoret.',
+    siteName: "Lemaiyan's Travels",
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Lemaiyan\'s Travels - Your Trusted Travel Partner in Kenya',
-    description: 'Professional travel agency in Eldoret, Kenya offering flights, hotels, visa processing, and custom tour packages.',
+    title: "Lemaiyan's Travels | Travel Management - Eldoret, Kenya",
+    description: 'Aviation ticketing, corporate travel accounts, visa processing, and airport transfers in Eldoret, Kenya.',
   },
   robots: {
     index: true,
     follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-  verification: {
-    google: 'google-site-verification-code',
   },
 }
 
@@ -58,13 +63,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={inter.className}>
+      <body className={`${sans.variable} ${display.variable} ${mono.variable} font-sans antialiased bg-[#F9F9F8] text-[#121316] selection:bg-primary-crimson selection:text-white`}>
         <Header />
         <main className="min-h-screen">
           {children}
         </main>
         <Footer />
-        <CookieConsent />
       </body>
     </html>
   )

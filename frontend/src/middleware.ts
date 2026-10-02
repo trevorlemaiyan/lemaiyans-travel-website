@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createMiddleware } from 'next-intl/middleware'
 
 // Security middleware configuration
 const securityConfig = {

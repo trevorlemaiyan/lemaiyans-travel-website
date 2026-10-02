@@ -1,47 +1,17 @@
+'use client'
+
 import { motion } from 'framer-motion'
 import { Shield, Eye, Lock, Database, UserCheck, FileText, Globe } from 'lucide-react'
+import PageHero from '@/components/ui/PageHero'
+import { siteConfig } from '@/lib/site-config'
 
-const PrivacyHero = () => {
-  return (
-    <section className="relative py-20 lg:py-32 bg-gradient-to-br from-slate-900 to-slate-800 text-white">
-      <div 
-        className="absolute inset-0 opacity-20"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
-        }}
-      ></div>
-
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8 }}
-          className="inline-flex items-center justify-center w-20 h-20 bg-primary-red/20 rounded-full mb-6"
-        >
-          <Shield className="text-primary-red" size={40} />
-        </motion.div>
-
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
-        >
-          Privacy Policy
-        </motion.h1>
-
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed"
-        >
-          Your privacy is important to us. This policy explains how we collect, use, and protect your information.
-        </motion.p>
-      </div>
-    </section>
-  )
-}
+const PrivacyHero = () => (
+  <PageHero
+    title="Privacy Policy"
+    subtitle="How we collect, use, and protect your personal information."
+    align="left"
+  />
+)
 
 const PrivacySection = ({ title, children, icon: Icon, delay = 0 }: {
   title: string
@@ -57,12 +27,12 @@ const PrivacySection = ({ title, children, icon: Icon, delay = 0 }: {
       className="mb-12"
     >
       <div className="flex items-center space-x-3 mb-6">
-        <div className="w-12 h-12 bg-primary-red/10 rounded-lg flex items-center justify-center">
-          <Icon className="text-primary-red" size={24} />
+        <div className="w-12 h-12 bg-primary-crimson/10 rounded-lg flex items-center justify-center">
+          <Icon className="text-primary-crimson" size={24} />
         </div>
-        <h2 className="text-2xl font-bold text-slate-900">{title}</h2>
+        <h2 className="text-2xl font-bold text-graphite-black">{title}</h2>
       </div>
-      <div className="prose prose-slate max-w-none text-slate-600 leading-relaxed">
+      <div className="prose prose-slate max-w-none text-graphite-light leading-relaxed">
         {children}
       </div>
     </motion.div>
@@ -79,7 +49,7 @@ export default function PrivacyPage() {
       <section className="py-16 lg:py-24 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-slate-50 rounded-xl p-8 mb-12">
-            <p className="text-slate-600">
+            <p className="text-graphite-light">
               <strong>Last updated:</strong> {lastUpdated}
             </p>
           </div>
@@ -91,7 +61,7 @@ export default function PrivacyPage() {
           >
             <p className="mb-4">We collect information to provide better services to all our users. The types of information we collect include:</p>
 
-            <h3 className="text-lg font-semibold text-slate-900 mt-6 mb-3">Personal Information</h3>
+            <h3 className="text-lg font-semibold text-graphite-black mt-6 mb-3">Personal Information</h3>
             <ul className="list-disc list-inside space-y-2 ml-4">
               <li>Name and contact details (email, phone number, address)</li>
               <li>Travel preferences and requirements</li>
@@ -99,7 +69,7 @@ export default function PrivacyPage() {
               <li>Payment information (processed securely through third-party providers)</li>
             </ul>
 
-            <h3 className="text-lg font-semibold text-slate-900 mt-6 mb-3">Technical Information</h3>
+            <h3 className="text-lg font-semibold text-graphite-black mt-6 mb-3">Technical Information</h3>
             <ul className="list-disc list-inside space-y-2 ml-4">
               <li>IP address and device information</li>
               <li>Browser type and version</li>
@@ -132,7 +102,7 @@ export default function PrivacyPage() {
           >
             <p className="mb-4">We may share your information in the following circumstances:</p>
 
-            <h3 className="text-lg font-semibold text-slate-900 mt-6 mb-3">Service Providers</h3>
+            <h3 className="text-lg font-semibold text-graphite-black mt-6 mb-3">Service Providers</h3>
             <p>We work with third-party service providers to facilitate our services, such as:</p>
             <ul className="list-disc list-inside space-y-2 ml-4">
               <li>Airlines and hotels for booking fulfillment</li>
@@ -141,7 +111,7 @@ export default function PrivacyPage() {
               <li>Analytics providers to understand website usage</li>
             </ul>
 
-            <h3 className="text-lg font-semibold text-slate-900 mt-6 mb-3">Legal Requirements</h3>
+            <h3 className="text-lg font-semibold text-graphite-black mt-6 mb-3">Legal Requirements</h3>
             <p>We may disclose your information when required by law or to protect our rights, property, or safety, or that of our users or the public.</p>
           </PrivacySection>
 

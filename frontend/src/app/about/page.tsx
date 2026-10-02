@@ -1,417 +1,221 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import { ArrowRight, Users, Target, Heart, MapPin } from 'lucide-react'
-
-const AboutHero = () => {
-  const [isVisible, setIsVisible] = useState(false)
-
-  useEffect(() => {
-    setIsVisible(true)
-  }, [])
-
-  return (
-    <section className="relative h-96 lg:h-[500px] flex items-center justify-center overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary-red/90 via-slate-900/80 to-slate-900 z-10"></div>
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: "url('data:image/svg+xml,%3Csvg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1440 600\"%3E%3Cdefs%3E%3ClinearGradient id=\"grad1\" x1=\"0%25\" y1=\"0%25\" x2=\"100%25\" y2=\"100%25\"%3E%3Cstop offset=\"0%25\" style=\"stop-color:rgb(198,18,23);stop-opacity:0.8\" /%3E%3Cstop offset=\"100%25\" style=\"stop-color:rgb(15,23,42);stop-opacity:0.9\" /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width=\"1440\" height=\"600\" fill=\"url(%23grad1)\" /%3E%3Cpath d=\"M0,400 Q360,300 720,400 T1440,400 L1440,600 L0,600 Z\" fill=\"rgba(255,255,255,0.05)\" /%3E%3C/svg%3E')",
-          }}
-        />
-      </div>
-
-      {/* Content */}
-      <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <motion.h1
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 50 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6"
-        >
-          About Lemaiyan&apos;s Travels
-        </motion.h1>
-
-        <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 30 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          className="text-xl lg:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed"
-        >
-          Connecting Kenya to the World Since 2015
-        </motion.p>
-      </div>
-    </section>
-  )
-}
-
-const CompanyStory = () => {
-  const [isVisible, setIsVisible] = useState(false)
-  const sectionRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-        }
-      },
-      { threshold: 0.1 }
-    )
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
-
-    return () => observer.disconnect()
-  }, [])
-
-  return (
-    <section ref={sectionRef} className="py-16 lg:py-24 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : -50 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          >
-            <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-6">
-              Our Journey in Travel Excellence
-            </h2>
-
-            <div className="space-y-6 text-slate-600 leading-relaxed">
-              <p>
-                Lemaiyan&apos;s Travels is a professional tours and travel agency based in Eldoret, Kenya, specializing
-                in domestic and international travel solutions. We provide seamless end-to-end travel support for
-                individuals, families, corporate clients, and groups looking for reliable, affordable, and
-                stress-free travel planning.
-              </p>
-
-              <p>
-                Inspired by the iconic Kenyan heritage represented in our Maasai-themed logo, Lemaiyan&apos;s Travels
-                blends cultural identity with modern global travel services, offering both regional and international
-                solutions with a personal touch. Our name reflects the deep-rooted Maasai tradition of travel and
-                exploration, embodying our commitment to connecting people across Kenya and beyond.
-              </p>
-
-              <p>
-                What started as a vision to provide exceptional travel services has grown into one of Eldoret&apos;s most
-                trusted travel agencies, serving thousands of clients across domestic and international destinations.
-                We&apos;ve built our reputation on professionalism, trust, and an unwavering focus on customer satisfaction.
-              </p>
-
-              <p>
-                Today, we continue to expand our services and partnerships while maintaining the personal touch
-                that makes us special. Our team of experienced travel consultants combines local expertise with
-                global knowledge to deliver tailored travel solutions for every client.
-              </p>
-            </div>
-
-            <div className="mt-8">
-              <Link
-                href="/contact"
-                className="inline-flex items-center bg-primary-red text-white px-6 py-3 rounded-lg font-semibold hover:bg-red-700 transition-all duration-300 transform hover:scale-105"
-              >
-                Meet Our Team
-                <ArrowRight className="ml-2" size={16} />
-              </Link>
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : 50 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            className="relative"
-          >
-            <div className="bg-gradient-to-br from-primary-red/10 to-red-600/10 rounded-2xl p-8 lg:p-12">
-              <div className="aspect-square bg-gradient-to-br from-primary-red to-red-600 rounded-xl flex items-center justify-center text-white">
-                <div className="text-center">
-                  <MapPin size={64} className="mx-auto mb-4" />
-                  <div className="text-4xl font-bold">Professional Travel Services</div>
-                  <div className="text-xl">Since 2015</div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-const Timeline = () => {
-  const [isVisible, setIsVisible] = useState(false)
-  const sectionRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-        }
-      },
-      { threshold: 0.1 }
-    )
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
-
-    return () => observer.disconnect()
-  }, [])
-
-  const milestones = [
-    {
-      year: '2015',
-      title: 'Company Founded',
-      description: 'Established in Eldoret with a vision to provide exceptional travel services.'
-    },
-    {
-      year: '2017',
-      title: 'First International Partnership',
-      description: 'Expanded services to include international flight bookings and hotel reservations.'
-    },
-    {
-      year: '2019',
-      title: 'Visa Services Launched',
-      description: 'Added comprehensive visa processing and travel documentation services.'
-    },
-    {
-      year: '2021',
-      title: 'Digital Transformation',
-      description: 'Enhanced online presence and implemented digital booking systems.'
-    },
-    {
-      year: '2023',
-      title: 'Expanded Fleet Services',
-      description: 'Launched comprehensive car hire and airport transfer services.'
-    },
-    {
-      year: '2024',
-      title: 'Custom Tours Development',
-      description: 'Began development of custom tour packages for domestic and international travelers.'
-    }
-  ]
-
-  return (
-    <section ref={sectionRef} className="py-16 lg:py-24 bg-slate-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 30 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4">
-            Our Journey Through Time
-          </h2>
-          <p className="text-lg text-slate-600 max-w-3xl mx-auto">
-            Key milestones that have shaped our growth and commitment to excellence in travel services.
-          </p>
-        </motion.div>
-
-        <div className="relative">
-          {/* Timeline Line */}
-          <div className="absolute left-8 lg:left-1/2 top-0 bottom-0 w-0.5 bg-primary-red/20 transform lg:-translate-x-0.5"></div>
-
-          <div className="space-y-12">
-            {milestones.map((milestone, index) => (
-              <motion.div
-                key={milestone.year}
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 50 }}
-                transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
-                className={`relative flex items-center ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'}`}
-              >
-                {/* Timeline Dot */}
-                <div className="absolute left-8 lg:left-1/2 w-4 h-4 bg-primary-red rounded-full border-4 border-white transform -translate-x-1/2 shadow-lg"></div>
-
-                {/* Content */}
-                <div className={`ml-20 lg:ml-0 lg:w-5/12 ${index % 2 === 0 ? 'lg:pr-12 lg:text-right' : 'lg:pl-12'}`}>
-                  <div className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                    <div className="text-primary-red font-bold text-lg mb-2">{milestone.year}</div>
-                    <h3 className="text-xl font-semibold text-slate-900 mb-3">{milestone.title}</h3>
-                    <p className="text-slate-600 leading-relaxed">{milestone.description}</p>
-                  </div>
-                </div>
-
-                {/* Spacer for alternate layout */}
-                <div className="hidden lg:block lg:w-5/12"></div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-const TargetAudience = () => {
-  const [isVisible, setIsVisible] = useState(false)
-  const sectionRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-        }
-      },
-      { threshold: 0.1 }
-    )
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
-
-    return () => observer.disconnect()
-  }, [])
-
-  const targetClients = [
-    'First-time travelers',
-    'Families and groups',
-    'Domestic and global tourists',
-    'Business and corporate travelers',
-    'Students and young professionals',
-    'Anyone requiring structured travel planning'
-  ]
-
-  return (
-    <section ref={sectionRef} className="py-16 lg:py-24 bg-slate-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 30 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4">
-            Our Target Clients
-          </h2>
-          <p className="text-lg text-slate-600 max-w-3xl mx-auto">
-            We proudly serve a diverse range of travelers with personalized solutions for every journey.
-          </p>
-        </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {targetClients.map((client, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 50 }}
-              transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
-              whileHover={{ y: -8 }}
-              className="bg-white rounded-xl p-6 hover:shadow-xl transition-all duration-300"
-            >
-              <div className="flex items-center space-x-3">
-                <div className="w-12 h-12 bg-primary-red/10 rounded-lg flex items-center justify-center">
-                  <Users className="text-primary-red" size={24} />
-                </div>
-                <h3 className="text-lg font-semibold text-slate-900">{client}</h3>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-const MissionValues = () => {
-  const [isVisible, setIsVisible] = useState(false)
-  const sectionRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-        }
-      },
-      { threshold: 0.1 }
-    )
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
-
-    return () => observer.disconnect()
-  }, [])
-
-  const values = [
-    {
-      icon: Target,
-      title: 'Our Mission',
-      description: 'To provide reliable, affordable, and stress-free travel solutions that connect people to destinations across Kenya and the world.'
-    },
-    {
-      icon: Heart,
-      title: 'Core Values',
-      description: 'Professionalism: Accurate, timely, and dependable service delivery. Trust: Honest support with no hidden fees. Customer Care: Personalized attention for each traveler. Efficiency: Fast response times and seamless communication. Heritage: Celebrating Kenyan culture in a modern travel context.'
-    },
-    {
-      icon: Users,
-      title: 'Our Vision',
-      description: 'To become Kenya\'s most trusted travel partner—combining world-class service, cultural identity, and exceptional client care to elevate every traveler\'s journey.'
-    }
-  ]
-
-  return (
-    <section ref={sectionRef} className="py-16 lg:py-24 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 30 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4">
-            Mission & Values
-          </h2>
-          <p className="text-lg text-slate-600 max-w-3xl mx-auto">
-            The principles that guide our operations and define our commitment to excellence.
-          </p>
-        </motion.div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {values.map((value, index) => {
-            const Icon = value.icon
-            return (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 50 }}
-                transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
-                whileHover={{ y: -8 }}
-                className="bg-slate-50 rounded-xl p-8 hover:shadow-xl transition-all duration-300"
-              >
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-primary-red/10 rounded-xl mb-6">
-                  <Icon className="text-primary-red" size={32} />
-                </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-4">{value.title}</h3>
-                <p className="text-slate-600 leading-relaxed">{value.description}</p>
-              </motion.div>
-            )
-          })}
-        </div>
-      </div>
-    </section>
-  )
-}
+import Image from 'next/image'
+import { ArrowRight, CheckCircle2, ShieldCheck, Award, Heart, Compass, Target, Globe } from 'lucide-react'
+import PageHero from '@/components/ui/PageHero'
+import { siteConfig } from '@/lib/site-config'
 
 export default function AboutPage() {
+  const values = [
+    {
+      title: 'Aviation at the Core',
+      description: siteConfig.motto,
+    },
+    {
+      title: 'Customer-Centric Gratification',
+      description: 'Our customers are at the heart of everything we do; their gratification and seamless travel experience is our greatest reward.',
+    },
+    {
+      title: 'Uncompromising Safety',
+      description: 'We give utmost priority to the safety of our clients and their property in every area of our business, without exception.',
+    },
+    {
+      title: 'Agility & Proactive Support',
+      description: 'We relentlessly monitor changing global situations and take proactive measures to ensure our clients’ travel schedules are never impacted.',
+    },
+    {
+      title: 'Cost-Effective Solutions',
+      description: 'We respect our clients’ need for an optimal solution that balances high quality, strict efficiency, and budget expectations.',
+    },
+    {
+      title: 'Excellence Through Dedication',
+      description: 'Excellence is achieved through systematic, persistent effort. Our passion is manifested in our zeal to constantly challenge ourselves.',
+    },
+  ]
+
   return (
     <>
-      <AboutHero />
-      <CompanyStory />
-      <Timeline />
-      <TargetAudience />
-      <MissionValues />
+      <PageHero
+        title="About Lemaiyans Travels Limited"
+        subtitle={`Since its inception in ${siteConfig.founded}, Lemaiyans Travels Limited has made its mark as a provider of reliable, strategic travel and accommodation services to local and international clientele worldwide.`}
+        align="left"
+      />
+
+      {/* Narrative Section with Visual */}
+      <section className="py-20 lg:py-28 bg-white border-b border-slate-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+            
+            {/* Story Text */}
+            <div className="lg:col-span-7 space-y-6">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-50 text-primary-crimson text-xs font-semibold">
+                <span>Company Background</span>
+              </div>
+
+              <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight leading-tight">
+                Dependability, Integrity &amp; Strategic Travel Solutions
+              </h2>
+
+              <div className="space-y-4 text-slate-600 text-sm sm:text-base leading-relaxed">
+                <p>
+                  <strong>Lemaiyans Travels Limited</strong> was established in {siteConfig.founded} in Eldoret, Kenya, to deliver superior, stress-free travel management. Based in Eldoret, Kenya, we serve individual travellers, business executives, educational institutions, NGOs, and corporate entities traveling across Kenya and to every corner of the world.
+                </p>
+                <p>
+                  We value our clients and respect their need for an optimal solution that is both effective and economical. Dependability and cost-effectiveness while adhering to stringent quality norms are the hallmark of our business. Our consultants are expert professionals who study each unique requirement and recommend custom solutions so that we meet your expectations of quality, efficiency, and budget.
+                </p>
+              </div>
+
+              {/* Accreditations Row */}
+              <div className="pt-4 grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+                <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/80 space-y-1">
+                  <span className="block text-primary-crimson font-bold text-sm">IATA</span>
+                  <span className="text-[11px] text-slate-500 font-medium">Accredited Agent</span>
+                </div>
+                <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/80 space-y-1">
+                  <span className="block text-primary-crimson font-bold text-sm">KATA</span>
+                  <span className="text-[11px] text-slate-500 font-medium">Certified Member</span>
+                </div>
+                <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/80 space-y-1">
+                  <span className="block text-primary-crimson font-bold text-sm">TRA</span>
+                  <span className="text-[11px] text-slate-500 font-medium">Class C Licensed</span>
+                </div>
+                <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/80 space-y-1">
+                  <span className="block text-primary-crimson font-bold text-sm">AGPO</span>
+                  <span className="text-[11px] text-slate-500 font-medium">Women-Owned Entity</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Visual Column */}
+            <div className="lg:col-span-5 relative">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/5] w-full">
+                <Image
+                  src="https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=2000&q=90"
+                  alt="Aviation wing and sky - Lemaiyans Travels"
+                  fill
+                  quality={90}
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 45vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
+                <div className="absolute bottom-6 left-6 right-6 text-white space-y-1">
+                  <p className="font-display text-lg font-bold">
+                    &ldquo;{siteConfig.motto}&rdquo;
+                  </p>
+                  <p className="text-xs text-slate-300">
+                    Lemaiyans Travels Limited · Core Foundation
+                  </p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      {/* Vision & Mission Grid */}
+      <section className="py-20 lg:py-28 bg-[#FAF9F6] border-b border-slate-200/60">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+            
+            {/* Vision Card */}
+            <div className="executive-card p-8 sm:p-10 space-y-4">
+              <div className="w-12 h-12 rounded-xl bg-rose-50 text-primary-crimson flex items-center justify-center">
+                <Target size={24} />
+              </div>
+              <h3 className="font-display text-2xl font-bold text-slate-900">
+                Our Vision
+              </h3>
+              <p className="text-sm text-slate-600 leading-relaxed">
+                We are dedicated to building strategic, long-term partnerships with our clients by closely liaising with them to provide tailor-made solutions that meet their specific needs.
+              </p>
+              <p className="text-sm text-slate-600 leading-relaxed">
+                We are fully committed to the service and satisfaction of our clients, maintaining open channels of communication to address concerns at every stage of service, from proposing and planning right up to the last mile.
+              </p>
+            </div>
+
+            {/* Mission Card */}
+            <div className="executive-card p-8 sm:p-10 space-y-4">
+              <div className="w-12 h-12 rounded-xl bg-rose-50 text-primary-crimson flex items-center justify-center">
+                <Compass size={24} />
+              </div>
+              <h3 className="font-display text-2xl font-bold text-slate-900">
+                Our Mission
+              </h3>
+              <p className="text-sm text-slate-600 leading-relaxed">
+                To develop creative, reliable, and economical solutions that offer our clients flexibility and unquestionable value.
+              </p>
+              <p className="text-sm text-slate-600 leading-relaxed">
+                We are committed to the success and growth of our clients’ business through effective business relationships built on a solid foundation of trust and respect.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      {/* Values & Culture */}
+      <section className="py-20 lg:py-28 bg-white border-b border-slate-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="max-w-3xl mb-16 space-y-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold">
+              <span>What We Value</span>
+            </div>
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight">
+              Our Core Values &amp; Company Culture
+            </h2>
+            <p className="text-base text-slate-600 leading-relaxed">
+              Our company culture reflects the values of our founders and defines how we translate our mission and vision into reality for every client.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            {values.map((v) => (
+              <div
+                key={v.title}
+                className="executive-card p-7 sm:p-8 space-y-3 flex flex-col justify-between"
+              >
+                <div>
+                  <h4 className="font-display text-lg font-bold text-slate-900 mb-2">
+                    {v.title}
+                  </h4>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                    {v.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </section>
+
+      {/* Consultation Action */}
+      <section className="py-16 bg-[#131722] text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="space-y-1">
+            <h3 className="font-display text-xl sm:text-2xl font-bold">
+              Ready to Partner with Lemaiyans Travels?
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-400">
+              Visit our offices at Nandi Arcade (1st Floor, Eldoret) or get in touch with our travel team online.
+            </p>
+          </div>
+          <Link
+            href="/contact"
+            className="inline-flex items-center gap-2 bg-primary-crimson hover:bg-primary-burgundy text-white px-7 py-3.5 rounded-xl text-xs font-semibold shadow-sm transition-colors"
+          >
+            <span>Talk to Us Today</span>
+            <ArrowRight size={14} />
+          </Link>
+        </div>
+      </section>
     </>
   )
 }

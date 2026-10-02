@@ -3,22 +3,15 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { motion } from 'framer-motion'
 import { contactFormSchema, type ContactFormData, services } from '@/lib/validations'
-import {
-  Mail,
-  Phone,
-  User,
-  MessageSquare,
-  Send,
-  CheckCircle,
-  AlertCircle
-} from 'lucide-react'
+import { siteConfig } from '@/lib/site-config'
+import { ArrowRight, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react'
 
-const ContactForm = () => {
+export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
   const [errorMessage, setErrorMessage] = useState('')
+  const [honeypot, setHoneypot] = useState('')
 
   const {
     register,
@@ -30,254 +23,195 @@ const ContactForm = () => {
   })
 
   const onSubmit = async (data: ContactFormData) => {
+    if (honeypot) {
+      setSubmitStatus('success')
+      reset()
+      return
+    }
+
     setIsSubmitting(true)
     setSubmitStatus('idle')
     setErrorMessage('')
 
     try {
-      // Simulate form submission - replace with actual form handling
-      await new Promise(resolve => setTimeout(resolve, 2000))
+      const response = await fetch(`${siteConfig.apiUrl}/api/contact`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      })
 
-      // In a real implementation, you would send this data to your backend
-      // For now, we'll simulate a successful submission
-      console.log('Form submitted:', data)
+      const result = await response.json()
+
+      if (!response.ok || !result.success) {
+        throw new Error(result.message || 'Submission failed')
+      }
 
       setSubmitStatus('success')
       reset()
     } catch (error) {
       setSubmitStatus('error')
-      setErrorMessage('Something went wrong. Please try again or contact us directly.')
-      console.error('Form submission error:', error)
+      setErrorMessage(
+        error instanceof Error ? error.message : 'Unable to dispatch your message. Please telephone our desk directly.'
+      )
     } finally {
       setIsSubmitting(false)
     }
   }
 
-  if (submitStatus === 'success') {
-    return (
-      <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5 }}
-        className="bg-green-50 border-2 border-green-200 rounded-xl p-8 text-center"
-      >
-        <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-          <CheckCircle className="text-green-600" size={32} />
-        </div>
-        <h3 className="text-2xl font-bold text-green-900 mb-4">
-          Thank You for Your Inquiry!
-        </h3>
-        <p className="text-green-700 mb-6 max-w-md mx-auto">
-          We&apos;ve received your message and will get back to you within 24 hours. Our travel experts are excited to help you plan your perfect journey!
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <button
-            onClick={() => {
-              setSubmitStatus('idle')
-              reset()
-            }}
-            className="inline-flex items-center justify-center bg-green-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors duration-300"
-          >
-            Send Another Message
-          </button>
-          <a
-            href="tel:+254123456789"
-            className="inline-flex items-center justify-center bg-white text-green-600 border-2 border-green-600 px-6 py-3 rounded-lg font-semibold hover:bg-green-50 transition-colors duration-300"
-          >
-            <Phone className="mr-2" size={16} />
-            Call Us Now
-          </a>
-        </div>
-      </motion.div>
-    )
-  }
-
   return (
-    <div id="contact-form" className="bg-white rounded-xl shadow-lg p-8 lg:p-12">
-      <h2 className="text-2xl lg:text-3xl font-bold text-slate-900 mb-8">
-        Get in Touch
-      </h2>
+    <div className="bg-white rounded-2xl p-7 sm:p-10 shadow-lg border border-slate-200/80">
+      <div className="border-b border-slate-100 pb-5 mb-8">
+        <span className="text-xs font-bold uppercase tracking-wider text-primary-crimson">
+          Online Travel Desk
+        </span>
+        <h3 className="font-display text-2xl font-bold text-slate-900 mt-1">
+          Request a Quotation or Consultation
+        </h3>
+        <p className="text-xs sm:text-sm text-slate-600 mt-1">
+          Fill in your journey details below. Our travel consultants will respond promptly with optimal solutions and rates.
+        </p>
+      </div>
 
-      {submitStatus === 'error' && (
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg flex items-start space-x-3"
-        >
-          <AlertCircle className="text-red-600 flex-shrink-0 mt-0.5" size={20} />
+      {submitStatus === 'success' && (
+        <div className="mb-6 p-4 rounded-xl bg-emerald-50 border border-emerald-300 text-emerald-900 text-xs sm:text-sm flex items-start gap-3">
+          <CheckCircle2 size={18} className="text-emerald-600 flex-shrink-0 mt-0.5" />
           <div>
-            <h4 className="font-semibold text-red-900">Submission Error</h4>
-            <p className="text-red-700 text-sm mt-1">{errorMessage}</p>
+            <strong className="block font-semibold">Inquiry Received Successfully!</strong>
+            <span>Your request has been logged. Our travel consultants will contact you shortly with the best options.</span>
           </div>
-        </motion.div>
+        </div>
       )}
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+      {submitStatus === 'error' && (
+        <div className="mb-6 p-4 rounded-xl bg-rose-50 border border-rose-300 text-rose-900 text-xs sm:text-sm flex items-start gap-3">
+          <AlertCircle size={18} className="text-rose-600 flex-shrink-0 mt-0.5" />
+          <div>
+            <strong className="block font-semibold">Dispatch Notice</strong>
+            <span>{errorMessage}</span>
+          </div>
+        </div>
+      )}
+
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+        {/* Hidden Honeypot */}
+        <input
+          type="text"
+          name="organization_stamp"
+          value={honeypot}
+          onChange={(e) => setHoneypot(e.target.value)}
+          tabIndex={-1}
+          autoComplete="off"
+          className="hidden"
+          aria-hidden="true"
+        />
+
         {/* Full Name */}
         <div>
-          <label htmlFor="fullName" className="block text-sm font-medium text-slate-700 mb-2">
-            Full Name *
+          <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1.5">
+            Full Name <span className="text-primary-crimson">*</span>
           </label>
-          <div className="relative">
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <User className="text-slate-400" size={20} />
-            </div>
-            <input
-              {...register('fullName')}
-              type="text"
-              id="fullName"
-              className={`block w-full pl-10 pr-3 py-3 border rounded-lg shadow-sm focus:ring-2 focus:ring-primary-red focus:border-primary-red transition-colors duration-200 ${
-                errors.fullName
-                  ? 'border-red-500 focus:ring-red-500 focus:border-red-500'
-                  : 'border-slate-300'
-              }`}
-              placeholder="John Doe"
-              disabled={isSubmitting}
-            />
-          </div>
+          <input
+            {...register('fullName')}
+            type="text"
+            placeholder="e.g. John Kamau"
+            className="w-full px-4 py-3 text-sm bg-slate-50/70 border border-slate-200 rounded-xl focus:border-primary-crimson focus:bg-white focus:outline-none transition-colors"
+          />
           {errors.fullName && (
-            <p className="mt-2 text-sm text-red-600">{errors.fullName.message}</p>
+            <p className="text-xs text-primary-crimson mt-1">{errors.fullName.message}</p>
           )}
         </div>
 
-        {/* Email */}
-        <div>
-          <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-2">
-            Email Address *
-          </label>
-          <div className="relative">
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <Mail className="text-slate-400" size={20} />
-            </div>
+        {/* Email & Phone */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <div>
+            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1.5">
+              Email Address <span className="text-primary-crimson">*</span>
+            </label>
             <input
               {...register('email')}
               type="email"
-              id="email"
-              className={`block w-full pl-10 pr-3 py-3 border rounded-lg shadow-sm focus:ring-2 focus:ring-primary-red focus:border-primary-red transition-colors duration-200 ${
-                errors.email
-                  ? 'border-red-500 focus:ring-red-500 focus:border-red-500'
-                  : 'border-slate-300'
-              }`}
-              placeholder="john@example.com"
-              disabled={isSubmitting}
+              placeholder="e.g. client@example.com"
+              className="w-full px-4 py-3 text-sm bg-slate-50/70 border border-slate-200 rounded-xl focus:border-primary-crimson focus:bg-white focus:outline-none transition-colors"
             />
+            {errors.email && (
+              <p className="text-xs text-primary-crimson mt-1">{errors.email.message}</p>
+            )}
           </div>
-          {errors.email && (
-            <p className="mt-2 text-sm text-red-600">{errors.email.message}</p>
-          )}
-        </div>
 
-        {/* Phone */}
-        <div>
-          <label htmlFor="phone" className="block text-sm font-medium text-slate-700 mb-2">
-            Phone Number *
-          </label>
-          <div className="relative">
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <Phone className="text-slate-400" size={20} />
-            </div>
+          <div>
+            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1.5">
+              Phone Number <span className="text-primary-crimson">*</span>
+            </label>
             <input
               {...register('phone')}
               type="tel"
-              id="phone"
-              className={`block w-full pl-10 pr-3 py-3 border rounded-lg shadow-sm focus:ring-2 focus:ring-primary-red focus:border-primary-red transition-colors duration-200 ${
-                errors.phone
-                  ? 'border-red-500 focus:ring-red-500 focus:border-red-500'
-                  : 'border-slate-300'
-              }`}
-              placeholder="+254 123 456 789"
-              disabled={isSubmitting}
+              placeholder="e.g. +254 700 000 000"
+              className="w-full px-4 py-3 text-sm bg-slate-50/70 border border-slate-200 rounded-xl focus:border-primary-crimson focus:bg-white focus:outline-none transition-colors"
             />
+            {errors.phone && (
+              <p className="text-xs text-primary-crimson mt-1">{errors.phone.message}</p>
+            )}
           </div>
-          {errors.phone && (
-            <p className="mt-2 text-sm text-red-600">{errors.phone.message}</p>
-          )}
         </div>
 
-        {/* Service */}
+        {/* Service Requested */}
         <div>
-          <label htmlFor="service" className="block text-sm font-medium text-slate-700 mb-2">
-            Service Interested In *
+          <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1.5">
+            Service Required <span className="text-primary-crimson">*</span>
           </label>
           <select
             {...register('service')}
-            id="service"
-            className={`block w-full px-3 py-3 border rounded-lg shadow-sm focus:ring-2 focus:ring-primary-red focus:border-primary-red transition-colors duration-200 ${
-              errors.service
-                ? 'border-red-500 focus:ring-red-500 focus:border-red-500'
-                : 'border-slate-300'
-            }`}
-            disabled={isSubmitting}
+            className="w-full px-4 py-3 text-sm bg-slate-50/70 border border-slate-200 rounded-xl focus:border-primary-crimson focus:bg-white focus:outline-none transition-colors"
           >
-            <option value="">Select a service</option>
-            {services.map((service) => (
-              <option key={service.value} value={service.value}>
-                {service.label}
+            <option value="">Select a travel service...</option>
+            {services.map((svc) => (
+              <option key={svc.value} value={svc.value}>
+                {svc.label}
               </option>
             ))}
           </select>
           {errors.service && (
-            <p className="mt-2 text-sm text-red-600">{errors.service.message}</p>
+            <p className="text-xs text-primary-crimson mt-1">{errors.service.message}</p>
           )}
         </div>
 
         {/* Message */}
         <div>
-          <label htmlFor="message" className="block text-sm font-medium text-slate-700 mb-2">
-            Message *
+          <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1.5">
+            Travel Itinerary or Specific Requirements <span className="text-primary-crimson">*</span>
           </label>
-          <div className="relative">
-            <div className="absolute top-3 left-3 pointer-events-none">
-              <MessageSquare className="text-slate-400" size={20} />
-            </div>
-            <textarea
-              {...register('message')}
-              id="message"
-              rows={5}
-              className={`block w-full pl-10 pr-3 py-3 border rounded-lg shadow-sm focus:ring-2 focus:ring-primary-red focus:border-primary-red transition-colors duration-200 resize-none ${
-                errors.message
-                  ? 'border-red-500 focus:ring-red-500 focus:border-red-500'
-                  : 'border-slate-300'
-              }`}
-              placeholder="Tell us about your travel plans..."
-              disabled={isSubmitting}
-            />
-          </div>
-          <div className="mt-2 text-sm text-slate-500 text-right">
-            {typeof document !== 'undefined' &&
-              (document.querySelector('textarea[name="message"]') as HTMLTextAreaElement)?.value?.length || 0
-            }/500 characters
-          </div>
+          <textarea
+            {...register('message')}
+            rows={4}
+            placeholder="Please share your travel dates, departure & destination cities, passenger count, or specific hotel and visa requirements..."
+            className="w-full px-4 py-3 text-sm bg-slate-50/70 border border-slate-200 rounded-xl focus:border-primary-crimson focus:bg-white focus:outline-none transition-colors resize-y"
+          />
           {errors.message && (
-            <p className="mt-2 text-sm text-red-600">{errors.message.message}</p>
+            <p className="text-xs text-primary-crimson mt-1">{errors.message.message}</p>
           )}
         </div>
 
-        {/* Submit Button */}
-        <button
-          type="submit"
-          disabled={isSubmitting}
-          className="w-full inline-flex items-center justify-center bg-primary-red text-white px-6 py-4 rounded-lg font-semibold hover:bg-red-700 transition-all duration-300 transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
-        >
-          {isSubmitting ? (
-            <>
-              <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
-              Sending Message...
-            </>
-          ) : (
-            <>
-              <Send className="mr-2" size={20} />
-              Send Message
-            </>
-          )}
-        </button>
-
-        <p className="text-sm text-slate-500 text-center">
-          We&apos;ll respond to your inquiry within 24 hours.
-        </p>
+        {/* Submit */}
+        <div className="pt-2">
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className="w-full inline-flex items-center justify-center gap-2 bg-primary-crimson hover:bg-primary-burgundy text-white py-3.5 px-6 rounded-xl text-sm font-semibold shadow-md shadow-primary-crimson/25 transition-all disabled:opacity-50"
+          >
+            {isSubmitting ? (
+              <>
+                <Loader2 size={16} className="animate-spin" />
+                <span>Sending Your Request...</span>
+              </>
+            ) : (
+              <>
+                <span>Submit Travel Request</span>
+                <ArrowRight size={16} />
+              </>
+            )}
+          </button>
+        </div>
       </form>
     </div>
   )
 }
-
-export default ContactForm

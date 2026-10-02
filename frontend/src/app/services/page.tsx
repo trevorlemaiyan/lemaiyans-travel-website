@@ -1,364 +1,252 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { useEffect, useRef, useState } from 'react'
-import { Plane, Hotel, FileText, Car, Map, ArrowRight, Clock, Shield, Globe, Users, Star, CheckCircle } from 'lucide-react'
+import Link from 'next/link'
+import Image from 'next/image'
+import { Plane, Building, FileCheck2, Car, ArrowRight, Check, Phone, ShieldCheck, Globe } from 'lucide-react'
+import PageHero from '@/components/ui/PageHero'
+import { siteConfig } from '@/lib/site-config'
 
-const ServicesHero = () => {
-  const [isVisible, setIsVisible] = useState(false)
-
-  useEffect(() => {
-    setIsVisible(true)
-  }, [])
-
-  return (
-    <section className="relative h-96 lg:h-[500px] flex items-center justify-center overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary-red/90 via-slate-900/80 to-slate-900 z-10"></div>
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: "url('data:image/svg+xml,%3Csvg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1440 600\"%3E%3Cdefs%3E%3ClinearGradient id=\"grad1\" x1=\"0%25\" y1=\"0%25\" x2=\"100%25\" y2=\"100%25\"%3E%3Cstop offset=\"0%25\" style=\"stop-color:rgb(198,18,23);stop-opacity:0.8\" /%3E%3Cstop offset=\"100%25\" style=\"stop-color:rgb(15,23,42);stop-opacity:0.9\" /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width=\"1440\" height=\"600\" fill=\"url(%23grad1)\" /%3E%3Cpath d=\"M0,400 Q360,300 720,400 T1440,400 L1440,600 L0,600 Z\" fill=\"rgba(255,255,255,0.05)\" /%3E%3C/svg%3E')",
-          }}
-        />
-      </div>
-
-      {/* Content */}
-      <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <motion.h1
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 50 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6"
-        >
-          Our Travel Solutions
-        </motion.h1>
-
-        <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 30 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          className="text-xl lg:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed"
-        >
-          Comprehensive Services for All Your Travel Needs
-        </motion.p>
-      </div>
-    </section>
-  )
-}
-
-const ServiceSection = ({
-  icon,
-  title,
-  description,
-  features,
-  process,
-  id
-}: {
-  icon: any
-  title: string
-  description: string
-  features: string[]
-  process: string[]
-  id: string
-}) => {
-  const [isVisible, setIsVisible] = useState(false)
-  const sectionRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-        }
-      },
-      { threshold: 0.1 }
-    )
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
-
-    return () => observer.disconnect()
-  }, [])
-
-  const Icon = icon
-
-  return (
-    <section ref={sectionRef} id={id} className="py-16 scroll-mt-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center ${id === 'car-hire' ? 'lg:grid-flow-row-dense' : ''}`}>
-          <motion.div
-            initial={{ opacity: 0, x: id === 'car-hire' ? 50 : -50 }}
-            animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : (id === 'car-hire' ? 50 : -50) }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className={id === 'car-hire' ? 'lg:order-2' : ''}
-          >
-            <div className="flex items-center space-x-4 mb-6">
-              <div className="w-16 h-16 bg-gradient-to-br from-primary-red to-red-600 rounded-xl flex items-center justify-center text-white">
-                <Icon size={32} />
-              </div>
-              <h2 className="text-3xl lg:text-4xl font-bold text-slate-900">{title}</h2>
-            </div>
-
-            <p className="text-lg text-slate-600 leading-relaxed mb-8">
-              {description}
-            </p>
-
-            {/* Features */}
-            <div className="mb-8">
-              <h3 className="text-xl font-semibold text-slate-900 mb-4">Key Features & Benefits</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {features.map((feature, index) => (
-                  <div key={index} className="flex items-center space-x-3">
-                    <CheckCircle className="text-primary-red flex-shrink-0" size={20} />
-                    <span className="text-slate-600">{feature}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Process */}
-            <div className="mb-8">
-              <h3 className="text-xl font-semibold text-slate-900 mb-4">How It Works</h3>
-              <div className="space-y-3">
-                {process.map((step, index) => (
-                  <div key={index} className="flex items-start space-x-3">
-                    <div className="w-8 h-8 bg-primary-red text-white rounded-full flex items-center justify-center flex-shrink-0 font-semibold">
-                      {index + 1}
-                    </div>
-                    <span className="text-slate-600">{step}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <a
-              href="/contact"
-              className="inline-flex items-center bg-primary-red text-white px-6 py-3 rounded-lg font-semibold hover:bg-red-700 transition-all duration-300 transform hover:scale-105"
-            >
-              Inquire Now
-              <ArrowRight className="ml-2" size={16} />
-            </a>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: id === 'car-hire' ? -50 : 50 }}
-            animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : (id === 'car-hire' ? -50 : 50) }}
-            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            className={id === 'car-hire' ? 'lg:order-1' : ''}
-          >
-            <div className="bg-gradient-to-br from-primary-red/10 to-red-600/10 rounded-2xl p-8 lg:p-12">
-              <div className="aspect-square bg-gradient-to-br from-primary-red to-red-600 rounded-xl flex items-center justify-center text-white">
-                <Icon size={80} />
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-const services = [
+const detailedServices = [
   {
     id: 'air-ticketing',
+    title: 'Air Ticketing & Reservations',
+    badge: 'IATA ACCREDITED TICKETING',
+    tagline: 'Reliable domestic and international passenger flight bookings across all major scheduled carriers worldwide.',
+    image: 'https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&w=2000&q=90',
     icon: Plane,
-    title: 'Air Ticketing',
-    description: 'We handle flights for local and regional travel, global destinations, one-way, round-trip, and multi-city bookings. Clients enjoy professional guidance, best available fares, flexible itineraries, and 24/7 support for any issues.',
-    features: [
-      'Local and Regional Travel',
-      'Global Destinations',
-      'One-way, Round-trip, Multi-city Bookings',
-      'Best Available Fares',
-      'Flexible Itineraries',
-      '24/7 Support for Any Issues'
+    overview: 'As an officially accredited IATA agent, Lemaiyans Travels Limited connects you directly to global airline reservation inventories. Whether booking business class flights to London, regional transit across Africa, or domestic flights within Kenya, our consultants guarantee verified PNRs, transparent fare breakdowns, and proactive itinerary management.',
+    scope: [
+      'Scheduled domestic flights: Kenya Airways, Jambojet, Fly540, Skyward Express, and regional charter flights',
+      'Global international routes: Emirates, Qatar Airways, Ethiopian Airlines, Lufthansa, KLM, Turkish Airlines, British Airways, and partner alliances',
+      'Full-service ticketing: advanced seat selection, special meal requests, frequent flyer accruals, and extra baggage coordination',
+      'Flight rebooking, schedule alterations, fast-track routing adjustments, and cancellation refunds'
     ],
-    process: [
-      'Share your travel details and preferences',
-      'Receive multiple flight options within hours',
-      'Select and confirm your preferred flights',
-      'Receive e-tickets and travel documents',
-      'Enjoy pre-flight support and assistance'
+    workflow: [
+      'Requirement Review: Provide destination, travel dates, passenger passport particulars, and preferred airline class.',
+      'Custom Itinerary Options: Our experts formulate 2–3 optimal schedules balancing convenience, connection times, and fare economy.',
+      'Confirmation & Direct Issuance: Instant e-ticket delivery with verifiable airline PNR codes and tax-compliant eTIMS invoices.'
     ]
   },
   {
     id: 'hotel-bookings',
-    icon: Hotel,
-    title: 'Hotel Bookings & Reservations',
-    description: 'We help clients book local lodgings and Airbnb stays, luxury hotels, and international accommodations. Our team ensures secure, reliable reservations at competitive rates.',
-    features: [
-      'Local Lodgings and Airbnb Stays',
-      'Luxury Hotels',
-      'International Accommodations',
-      'Competitive Rates',
-      'Secure Reservations',
-      'Reliable Service'
+    title: 'Worldwide Hotel & Accommodation',
+    badge: 'GLOBAL HOSPITALITY NETWORK',
+    tagline: 'Strategic accommodation solutions spanning corporate hotels, luxury beachfront resorts, and premier safari lodges.',
+    image: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=2000&q=90',
+    icon: Building,
+    overview: 'From city-center corporate business suites to secluded wilderness retreats, we secure vetted accommodations that meet your exact standards of safety, comfort, and financial efficiency. We liaise directly with property managers to secure value-added perks like airport shuttles, complimentary breakfast, and flexible cancellation policies.',
+    scope: [
+      'Corporate travel stays: business amenities, high-speed connectivity, conference hall facilities, and flexible check-in',
+      'International hotel bookings across Europe, Asia, the Americas, Middle East, and Africa',
+      'Resorts and lodge reservations for vacationers and organizational retreats',
+      'Official booking confirmation vouchers tailored to embassy visa requirements'
     ],
-    process: [
-      'Specify destination, dates, and preferences',
-      'Receive curated hotel recommendations',
-      'Compare options and select accommodation',
-      'Complete booking with secure payment',
-      'Receive confirmation and booking details'
+    workflow: [
+      'Preferences Gathering: Specify your destination city, budget tier, room configurations, and required amenities.',
+      'Vetted Selection: We present verified lodging options with negotiated corporate and agent rates.',
+      'Voucher Delivery: Immediate issuance of confirmed accommodation vouchers with check-in instructions.'
     ]
   },
   {
-    id: 'visa-processing',
-    icon: FileText,
-    title: 'Visa Processing & Travel Documentation',
-    description: 'We support travelers with visa application assistance, required documentation guidance, and travel advisory for different countries. Our goal is to simplify the visa process and minimize traveler stress.',
-    features: [
-      'Visa Application Assistance',
-      'Required Documentation Guidance',
-      'Travel Advisory for Different Countries',
-      'Simplified Visa Process',
-      'Stress-Free Experience',
-      'Expert Support'
+    id: 'visa-assistance',
+    title: 'Visa Application & Advisory',
+    badge: 'CONSULAR DOCUMENTATION',
+    tagline: 'Comprehensive document auditing and guidance to maximize approval confidence for international travel.',
+    image: 'https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&w=2000&q=90',
+    icon: FileCheck2,
+    overview: 'Navigating evolving consular requirements demands precision. Our visa advisory team performs exhaustive pre-submission audits of your financial statements, invitation letters, travel health insurance policies, and flight itineraries to avoid avoidable processing delays or refusals.',
+    scope: [
+      'Schengen Area visas (France, Germany, Netherlands, Italy, Spain, etc.) for business and tourism',
+      'United Kingdom Standard Visitor, business conference, and academic travel visas',
+      'United States B1/B2 tourist and business visa application filing and DS-160 processing',
+      'Dubai & UAE tourist and transit e-visas with swift turnaround times',
+      'Regional travel: East Africa Tourist Visas and cross-border transit permits'
     ],
-    process: [
-      'Consultation on visa requirements',
-      'Document collection and review',
-      'Application preparation and submission',
-      'Follow-up with embassy/consulate',
-      'Collection and delivery of approved visa'
+    workflow: [
+      'Document Audit: We cross-reference your documentation against current consular checklists.',
+      'Form Submission: Precise online portal application filing and biometric appointment reservation.',
+      'Dossier Preparation: Assembling certified flight reservations, hotel vouchers, and financial proofs into an embassy-ready pack.'
     ]
   },
   {
     id: 'car-hire',
+    title: 'Car Hire & Airport Transfers (Any Airport)',
+    badge: 'GLOBAL GROUND TRANSIT',
+    tagline: 'Punctual, professional meet-and-greet airport transfers and executive vehicle hire at any airport worldwide.',
+    image: 'https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=2000&q=90',
     icon: Car,
-    title: 'Car Hire & Airport Transfers',
-    description: 'Available services include airport transfers, daily or weekly rentals, chauffeur-driven vehicle options, and tourist transport. We partner with trusted local providers to ensure safety and reliability.',
-    features: [
-      'Airport Transfers',
-      'Daily or Weekly Rentals',
-      'Chauffeur-Driven Vehicle Options',
-      'Tourist Transport',
-      'Trusted Local Providers',
-      'Safety and Reliability Guaranteed'
+    overview: 'Whether arriving in Nairobi (JKIA), Eldoret (EDL), Mombasa (MIA), Kisumu (KIA), or any international gateway airport abroad, our airport transfer service ensures a seamless transition to your final destination. We manage a fleet of meticulously maintained, fully insured vehicles operated by courteous professional chauffeurs.',
+    scope: [
+      'Meet-and-greet airport pickups and drop-offs at ANY commercial airport locally or internationally',
+      'Chauffeur-driven executive sedans for corporate executives and VIP dignitaries',
+      'Rugged 4x4 Toyota Land Cruisers and Prados suited for inter-county travel and rough terrain',
+      'Executive passenger minivans (Toyota HiAce/Noah) for corporate delegations and group travel'
     ],
-    process: [
-      'Select vehicle type and rental period',
-      'Provide necessary documentation',
-      'Confirm booking and payment',
-      'Vehicle pickup or delivery arrangement',
-      'Enjoy your journey with support available'
+    workflow: [
+      'Flight Tracking: Provide flight number; our dispatchers monitor real-time arrival to account for any flight delays.',
+      'Meet & Greet: Dedicated chauffeur stations at the arrivals terminal with distinct passenger identification.',
+      'Safe Transit: Direct, comfortable transportation to your hotel, office, or residence.'
     ]
+  },
+  /* NOTE: Tour Packages kept dormant / hidden in codebase as requested
+  {
+    id: 'tour-packages',
+    title: 'Curated Tour Packages',
+    badge: 'EXPEDITIONS & LEISURE',
+    tagline: 'Unforgettable wildlife safaris, coastal holidays, and bespoke holiday experiences.',
+    image: 'https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=1000&q=80',
+    ...
   }
+  */
 ]
-
-const ToursSection = () => {
-  const [isVisible, setIsVisible] = useState(false)
-  const sectionRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-        }
-      },
-      { threshold: 0.1 }
-    )
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
-
-    return () => observer.disconnect()
-  }, [])
-
-  return (
-    <section ref={sectionRef} id="tours" className="py-16 lg:py-24 bg-slate-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 30 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4">
-            Tours & Custom Packages
-          </h2>
-          <div className="inline-flex items-center bg-yellow-100 text-yellow-800 px-4 py-2 rounded-full font-semibold mb-6">
-            <Star className="mr-2" size={20} />
-            Coming Soon
-          </div>
-          <p className="text-lg text-slate-600 max-w-3xl mx-auto">
-            We will soon offer curated travel packages including Kenyan safari packages, weekend getaways,
-            coast and beach holidays, and international tour packages. Until the dedicated booking system launches,
-            clients can inquire via the Contact Us form for tailor-made tours.
-          </p>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 30 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          className="bg-white rounded-2xl shadow-xl p-8 lg:p-12"
-        >
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h3 className="text-2xl font-bold text-slate-900 mb-6">What&apos;s Coming</h3>
-
-              <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <Map className="text-primary-red flex-shrink-0 mt-1" size={24} />
-                  <div>
-                    <h4 className="font-semibold text-slate-900 mb-2">Safari Adventures</h4>
-                    <p className="text-slate-600">Experience Kenya&apos;s world-renowned wildlife reserves and national parks.</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-4">
-                  <Globe className="text-primary-red flex-shrink-0 mt-1" size={24} />
-                  <div>
-                    <h4 className="font-semibold text-slate-900 mb-2">Cultural Tours</h4>
-                    <p className="text-slate-600">Immerse yourself in Kenya&apos;s rich cultural heritage and traditions.</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-4">
-                  <Users className="text-primary-red flex-shrink-0 mt-1" size={24} />
-                  <div>
-                    <h4 className="font-semibold text-slate-900 mb-2">Custom Itineraries</h4>
-                    <p className="text-slate-600">Personalized travel experiences tailored to your preferences and schedule.</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-8">
-                <a
-                  href="/tours"
-                  className="inline-flex items-center bg-primary-red text-white px-6 py-3 rounded-lg font-semibold hover:bg-red-700 transition-all duration-300 transform hover:scale-105"
-                >
-                  Join Waitlist
-                  <ArrowRight className="ml-2" size={16} />
-                </a>
-              </div>
-            </div>
-
-            <div className="bg-gradient-to-br from-yellow-100 to-orange-100 rounded-xl p-8 text-center">
-              <div className="text-6xl mb-4">🦁</div>
-              <h4 className="text-xl font-bold text-slate-900 mb-2">Exciting Adventures Await!</h4>
-              <p className="text-slate-600">Be the first to know when our tour packages launch.</p>
-            </div>
-          </div>
-        </motion.div>
-      </div>
-    </section>
-  )
-}
 
 export default function ServicesPage() {
   return (
     <>
-      <ServicesHero />
-      {services.map((service, index) => (
-        <ServiceSection key={service.id} {...service} />
-      ))}
-      <ToursSection />
+      <PageHero
+        title="Our Travel & Aviation Services"
+        subtitle="Provider of reliable, superior strategic travel and accommodation services to local and international clientele worldwide."
+        align="left"
+      />
+
+      {/* Navigation Quick Strip */}
+      <div className="bg-white border-b border-slate-200/80 sticky top-18 lg:top-22 z-30 shadow-sm overflow-x-auto">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-6 py-3.5 text-xs font-semibold text-slate-700 whitespace-nowrap">
+          <span className="text-slate-400 font-mono text-[11px] uppercase tracking-wider">Services:</span>
+          {detailedServices.map((svc) => (
+            <a
+              key={svc.id}
+              href={`#${svc.id}`}
+              className="hover:text-primary-crimson transition-colors"
+            >
+              {svc.title}
+            </a>
+          ))}
+        </div>
+      </div>
+
+      {/* Main Service Sections */}
+      <div className="divide-y divide-slate-100 bg-[#FAF9F6]">
+        {detailedServices.map((svc, index) => {
+          const isEven = index % 2 === 1
+          const Icon = svc.icon
+
+          return (
+            <section key={svc.id} id={svc.id} className="py-20 lg:py-28 scroll-mt-36">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div className={`grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center ${isEven ? 'lg:grid-flow-dense' : ''}`}>
+                  
+                  {/* Visual Column */}
+                  <div className={`lg:col-span-5 ${isEven ? 'lg:col-start-8' : ''}`}>
+                    <div className="relative rounded-2xl overflow-hidden shadow-xl border border-slate-200 aspect-[4/3] w-full">
+                      <Image
+                        src={svc.image}
+                        alt={svc.title}
+                        fill
+                        quality={90}
+                        className="object-cover"
+                        sizes="(max-width: 1024px) 100vw, 45vw"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                      
+                      <div className="absolute top-4 left-4 p-3 rounded-xl bg-white/95 backdrop-blur-md shadow-md text-primary-crimson">
+                        <Icon size={22} />
+                      </div>
+
+                      <div className="absolute bottom-4 left-5 right-5 text-white">
+                        <span className="text-[11px] font-mono tracking-wider uppercase text-rose-300">
+                          {svc.badge}
+                        </span>
+                        <h3 className="font-display text-xl font-bold mt-0.5">
+                          {svc.title}
+                        </h3>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Content Column */}
+                  <div className={`lg:col-span-7 space-y-6 ${isEven ? 'lg:col-start-1' : ''}`}>
+                    <div className="space-y-2">
+                      <span className="text-xs font-bold uppercase tracking-wider text-primary-crimson">
+                        {svc.badge}
+                      </span>
+                      <h2 className="font-display text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight leading-tight">
+                        {svc.title}
+                      </h2>
+                      <p className="text-base text-slate-700 font-medium leading-relaxed">
+                        {svc.tagline}
+                      </p>
+                    </div>
+
+                    <p className="text-sm text-slate-600 leading-relaxed">
+                      {svc.overview}
+                    </p>
+
+                    {/* Scope Card */}
+                    <div className="p-6 rounded-xl bg-white border border-slate-200/80 shadow-sm space-y-3">
+                      <h4 className="text-xs font-bold uppercase tracking-wider text-slate-800">
+                        Scope of Capabilities
+                      </h4>
+                      <ul className="space-y-2.5">
+                        {svc.scope.map((item, i) => (
+                          <li key={i} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                            <Check size={16} className="text-emerald-600 flex-shrink-0 mt-0.5" />
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* Action */}
+                    <div className="pt-2">
+                      <Link
+                        href={`/contact?service=${svc.id}`}
+                        className="inline-flex items-center gap-2 bg-slate-900 hover:bg-primary-crimson text-white px-6 py-3 rounded-xl text-xs font-semibold shadow-sm transition-colors"
+                      >
+                        <span>Inquire About {svc.title}</span>
+                        <ArrowRight size={14} />
+                      </Link>
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+            </section>
+          )
+        })}
+      </div>
+
+      {/* Consultation Bar */}
+      <section className="py-16 bg-white border-t border-slate-200/80">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="space-y-1">
+            <h3 className="font-display text-xl sm:text-2xl font-bold text-slate-900">
+              Have a Custom Corporate or Individual Requirement?
+            </h3>
+            <p className="text-sm text-slate-600">
+              Speak directly with our consultants for tailored travel solutions that meet your exact timeline and budget.
+            </p>
+          </div>
+          <div className="flex items-center gap-4">
+            <a
+              href={`tel:${siteConfig.phoneTel}`}
+              className="inline-flex items-center gap-2 border border-slate-300 hover:border-slate-800 text-slate-800 px-5 py-3 rounded-xl text-xs font-semibold transition-colors"
+            >
+              <Phone size={14} className="text-primary-crimson" />
+              <span>{siteConfig.phone}</span>
+            </a>
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 bg-primary-crimson hover:bg-primary-burgundy text-white px-6 py-3 rounded-xl text-xs font-semibold shadow-sm transition-colors"
+            >
+              <span>Contact Us</span>
+              <ArrowRight size={14} />
+            </Link>
+          </div>
+        </div>
+      </section>
     </>
   )
 }

@@ -46,7 +46,7 @@ const CookieConsent = () => {
               We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.
               <a
                 href="/privacy"
-                className="text-primary-red hover:underline ml-1"
+                className="text-primary-crimson hover:underline ml-1"
               >
                 Learn more
               </a>
@@ -61,7 +61,7 @@ const CookieConsent = () => {
             </button>
             <button
               onClick={handleAccept}
-              className="px-4 py-2 text-sm bg-primary-red hover:bg-red-700 rounded-lg transition-colors duration-300"
+              className="px-4 py-2 text-sm bg-primary-crimson hover:bg-primary-burgundy rounded-lg transition-colors duration-300"
             >
               Accept All
             </button>
