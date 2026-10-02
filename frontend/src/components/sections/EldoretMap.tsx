@@ -9,11 +9,11 @@ interface EldoretMapProps {
 }
 
 export default function EldoretMap({ showTitle = true, compact = false }: EldoretMapProps) {
-  const lat = 0.5182
-  const lon = 35.2818
-  const osmEmbedUrl = `https://www.openstreetmap.org/export/embed.html?bbox=35.2730%2C0.5110%2C35.2910%2C0.5240&layer=mapnik&marker=${lat}%2C${lon}`
-  const osmDirectionsUrl = `https://www.openstreetmap.org/?mlat=${lat}&mlon=${lon}#map=16/${lat}/${lon}`
-  const googleDirectionsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent('Nandi Arcade Building, Oloo Street, Eldoret, Kenya')}`
+  const lat = siteConfig.coordinates.lat
+  const lon = siteConfig.coordinates.lng
+  const osmEmbedUrl = `https://www.openstreetmap.org/export/embed.html?bbox=35.2680%2C0.5135%2C35.2816%2C0.5251&layer=mapnik&marker=${lat}%2C${lon}`
+  const osmDirectionsUrl = `https://www.openstreetmap.org/?mlat=${lat}&mlon=${lon}#map=17/${lat}/${lon}`
+  const googleDirectionsUrl = `https://www.google.com/maps/search/?api=1&query=${lat},${lon}`
 
   return (
     <section className={compact ? 'w-full' : 'py-20 lg:py-28 bg-[#FAF9F6] border-t border-slate-200/60'}>

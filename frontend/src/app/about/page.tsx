@@ -90,18 +90,22 @@ export default function AboutPage() {
 
             {/* Visual Column */}
             <div className="lg:col-span-5 relative">
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/5] w-full">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/3] sm:aspect-[4/3.5] lg:aspect-[4/4.2] w-full bg-slate-900 border border-slate-200/80">
                 <Image
-                  src="https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=2000&q=90"
-                  alt="Aviation wing and sky - Lemaiyans Travels"
+                  src="/images/about/company-travel-landmarks.jpg"
+                  alt="Lemaiyans Travels Limited - Global Destinations and World Travel"
                   fill
-                  quality={90}
-                  className="object-cover"
+                  priority
+                  quality={95}
+                  className="object-cover object-center"
                   sizes="(max-width: 1024px) 100vw, 45vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
-                <div className="absolute bottom-6 left-6 right-6 text-white space-y-1">
-                  <p className="font-display text-lg font-bold">
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent" />
+                <div className="absolute bottom-6 left-6 right-6 text-white space-y-1.5">
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-rose-300">
+                    Official Company Identity
+                  </span>
+                  <p className="font-display text-base sm:text-lg font-bold leading-snug">
                     &ldquo;{siteConfig.motto}&rdquo;
                   </p>
                   <p className="text-xs text-slate-300">

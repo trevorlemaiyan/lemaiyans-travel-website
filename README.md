@@ -49,7 +49,7 @@ Lemaiyans_travels/
   - **Corporate Travel Accounts**: Itemized statements, monthly credit facilities, and travel policy compliance.
   - **Visa Advisory & Paperwork Pre-Audits**: Schengen Area, United Kingdom, United States, and UAE/Dubai tourist visas.
   - **Executive Car Hire & Airport Transfers**: Punctual meet-and-greet airport pickups and transfers at any airport in Kenya and worldwide, with chauffeur-driven executive sedans, 4x4 Land Cruisers, and passenger vans.
-- **100% Free Interactive Map**: Embedded **OpenStreetMap** centered on Nandi Arcade in Eldoret CBD (`0.5182° N, 35.2818° E`) with zero API key or billing dependencies.
+- **100% Free Interactive Map**: Embedded **OpenStreetMap** centered on Nandi Arcade in Eldoret CBD (`0.5193° N, 35.2748° E`) with zero API key or billing dependencies.
 - **Unified API Route Handlers**:
   - `POST /api/contact`: Form input sanitization, honeypot bot trap, Zod validation, and styled HTML email dispatch via Nodemailer.
   - `GET /api/health`: Instant health check and uptime monitor.
@@ -141,7 +141,7 @@ Because the project is unified under **Option A**, deployment to **Vercel** requ
 ## 📍 Physical Travel Desk
 
 - **Address**: Nandi Arcade Building, First Floor, Eldoret, Kenya
-- **Coordinates**: `0.5182° N, 35.2818° E`
+- **Coordinates**: `0.5193° N, 35.2748° E`
 - **Phone**: `+254 704 772 826`
 - **Email**: `lemaiyans@gmail.com`
 - **Desk Hours**: Mon – Fri: 8:00 AM – 5:30 PM | Sat: 8:30 AM – 1:00 PM

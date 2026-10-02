@@ -11,8 +11,8 @@ export const siteConfig = {
   address: "Nandi Arcade Building, First Floor, Oloo Street, Eldoret, Kenya",
   locationShort: "Eldoret, Kenya (Serving Clients Worldwide)",
   coordinates: {
-    lat: 0.5182,
-    lng: 35.2818,
+    lat: 0.5193,
+    lng: 35.2748,
   },
   officeHours: "Monday – Friday: 8:00 AM – 5:30 PM | Saturday: 8:30 AM – 1:00 PM",
   accreditations: {
