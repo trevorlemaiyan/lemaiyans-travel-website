@@ -62,8 +62,8 @@ export default function Certifications() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="max-w-3xl mb-16 space-y-4">
-          <div className="flex items-center gap-2 text-emerald-800 text-xs font-bold uppercase tracking-wider">
-            <HiCheckBadge size={16} className="text-emerald-600" />
+          <div className="flex items-center gap-2 text-primary-crimson text-xs font-bold uppercase tracking-wider">
+            <HiCheckBadge size={16} className="text-primary-crimson" />
             <span>Agency Credentials</span>
           </div>
           <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight">

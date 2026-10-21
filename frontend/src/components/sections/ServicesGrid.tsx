@@ -107,7 +107,7 @@ export default function ServicesGrid() {
                     <ul className="space-y-2.5">
                       {svc.details.map((point, idx) => (
                         <li key={idx} className="flex items-start gap-2.5 text-xs text-slate-700 leading-normal">
-                          <Check size={14} className="text-emerald-600 flex-shrink-0 mt-0.5" />
+                          <Check size={14} className="text-primary-crimson flex-shrink-0 mt-0.5" />
                           <span>{point}</span>
                         </li>
                       ))}

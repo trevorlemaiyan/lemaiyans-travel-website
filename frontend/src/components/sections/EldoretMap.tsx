@@ -46,7 +46,7 @@ export default function EldoretMap({ showTitle = true, compact = false }: Eldore
             />
             {/* Coordinate pill */}
             <div className="absolute top-4 left-4 bg-slate-900/90 text-white px-3.5 py-1.5 rounded-full text-xs font-medium flex items-center gap-2 backdrop-blur-md shadow-md">
-              <span className="w-2 h-2 rounded-full bg-emerald-400" />
+              <span className="w-2 h-2 rounded-full bg-primary-crimson" />
               <span>Nandi Arcade · Oloo Street</span>
             </div>
           </div>

@@ -1,179 +1,111 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import { Menu, X, ArrowUpRight, Phone, Instagram, Facebook } from 'lucide-react'
+import { Menu, X, ArrowUpRight } from 'lucide-react'
+import { usePathname } from 'next/navigation'
 import Logo from '@/components/ui/Logo'
-import { siteConfig } from '@/lib/site-config'
+
+const navigation = [
+  { name: 'Home', href: '/' },
+  { name: 'Services', href: '/services' },
+  { name: 'Tours', href: '/tours' },
+  { name: 'About', href: '/about' },
+  { name: 'Contact', href: '/contact' },
+]
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isScrolled, setIsScrolled] = useState(false)
+  const pathname = usePathname()
+  const navRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 20)
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setIsMenuOpen(false)
+    }
+    const handlePointerDown = (event: PointerEvent) => {
+      if (event.target instanceof Node && !navRef.current?.contains(event.target)) {
+        setIsMenuOpen(false)
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    document.addEventListener('pointerdown', handlePointerDown)
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown)
+      document.removeEventListener('pointerdown', handlePointerDown)
+    }
   }, [])
 
   useEffect(() => {
     document.body.style.overflow = isMenuOpen ? 'hidden' : ''
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setIsMenuOpen(false)
-    }
-    if (isMenuOpen) {
-      window.addEventListener('keydown', handleKeyDown)
-    }
-    return () => {
-      document.body.style.overflow = ''
-      window.removeEventListener('keydown', handleKeyDown)
-    }
+    return () => { document.body.style.overflow = '' }
   }, [isMenuOpen])
 
-  const navigation = [
-    { name: 'Home', href: '/' },
-    { name: 'Services', href: '/services' },
-    { name: 'Tours', href: '/tours' },
-    { name: 'About Us', href: '/about' },
-    { name: 'Contact', href: '/contact' },
-  ]
-
-  const linkColor = isScrolled
-    ? 'text-slate-800 hover:text-primary-crimson'
-    : 'text-slate-100 hover:text-white'
+  const isActive = (href: string) => href === '/' ? pathname === '/' : pathname.startsWith(href)
 
   return (
-    <header
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-sm'
-          : 'bg-gradient-to-b from-black/80 via-black/40 to-transparent'
-      }`}
-    >
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-[72px] lg:h-[88px]">
-          
-          <div className="flex items-center gap-4 sm:gap-6">
-            <Logo showText dark={isScrolled} />
-            <div className="hidden xl:flex items-center gap-2 pl-4 border-l border-slate-300/40 text-xs">
-              <span className={`font-medium ${isScrolled ? 'text-slate-600' : 'text-slate-300'}`}>
-                IATA Accredited · KATA Member
-              </span>
-            </div>
-          </div>
-
-          <div className="hidden lg:flex items-center gap-8">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className={`font-medium text-sm tracking-normal transition-colors ${linkColor}`}
-              >
-                {item.name}
-              </Link>
-            ))}
-
-            <div className="flex items-center gap-3 pl-4 border-l border-slate-300/30">
-              <a
-                href={`tel:${siteConfig.phoneTel}`}
-                className={`hidden md:flex items-center gap-2 text-xs font-medium px-3 py-2 rounded-lg transition-colors ${
-                  isScrolled ? 'text-slate-700 hover:text-primary-crimson' : 'text-slate-200 hover:text-white'
-                }`}
-              >
-                <Phone size={14} className={isScrolled ? 'text-primary-crimson' : 'text-rose-400'} />
-                <span>{siteConfig.phone}</span>
-              </a>
-
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-1.5 text-xs font-semibold px-4 py-2.5 rounded-lg shadow-sm bg-primary-crimson hover:bg-primary-burgundy text-white transition-all transform hover:-translate-y-0.5"
-              >
-                <span>Request Quotation</span>
-                <ArrowUpRight size={14} />
-              </Link>
-            </div>
-          </div>
-
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className={`lg:hidden p-2 rounded-lg transition-colors ${
-              isScrolled ? 'text-slate-900 hover:bg-slate-100' : 'text-white hover:bg-white/10'
-            }`}
-            aria-label="Toggle navigation menu"
-            aria-expanded={isMenuOpen}
-            aria-controls="mobile-navigation-drawer"
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
-      </nav>
-
-      <div
-        className={`lg:hidden fixed inset-0 top-[72px] bg-black/60 backdrop-blur-sm transition-opacity duration-200 ${
-          isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
-        }`}
-        onClick={() => setIsMenuOpen(false)}
-      />
-      <div
-        id="mobile-navigation-drawer"
-        aria-hidden={!isMenuOpen}
-        hidden={!isMenuOpen}
-        className={`lg:hidden absolute top-full left-0 right-0 bg-white border-b border-slate-200 shadow-xl transition-all duration-200 origin-top ${
-          isMenuOpen ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-95 pointer-events-none'
-        }`}
+    <header className="fixed inset-x-0 top-0 z-50 px-4 pt-3 sm:pt-4">
+      <nav
+        ref={navRef}
+        aria-label="Main navigation"
+        className="relative mx-auto flex h-[68px] max-w-6xl items-center justify-between rounded-full border border-white/10 bg-[#151922]/95 px-3 shadow-xl shadow-slate-950/10 backdrop-blur-xl sm:px-5"
       >
-        <div className="px-5 py-6 space-y-3">
+        <Logo showText className="shrink-0" />
+
+        <div className="hidden flex-1 items-center justify-center gap-1 desktop:flex xl:gap-2">
           {navigation.map((item) => (
             <Link
               key={item.name}
               href={item.href}
-              onClick={() => setIsMenuOpen(false)}
-              className="block px-3 py-2.5 text-base font-semibold text-slate-800 hover:bg-slate-50 hover:text-primary-crimson rounded-lg transition-colors"
+              aria-current={isActive(item.href) ? 'page' : undefined}
+              className={`nav-link rounded-full px-3 py-2 text-sm text-white/75 hover:bg-white/10 hover:text-white xl:px-3.5 ${isActive(item.href) ? 'bg-white/10 !text-white' : ''}`}
             >
               {item.name}
             </Link>
           ))}
-          <div className="pt-4 border-t border-slate-200 space-y-2">
-            <a
-              href={`tel:${siteConfig.phoneTel}`}
-              className="flex items-center justify-center gap-2 w-full py-3 text-sm font-semibold text-slate-800 bg-slate-100 rounded-lg hover:bg-slate-200 transition-colors"
-            >
-              <Phone size={15} className="text-primary-crimson" />
-              <span>Call Desk: {siteConfig.phone}</span>
-            </a>
-            <Link
-              href="/contact"
-              onClick={() => setIsMenuOpen(false)}
-              className="block w-full text-center bg-primary-crimson text-white py-3 rounded-lg text-sm font-semibold hover:bg-primary-burgundy transition-colors shadow-sm"
-            >
-              Request a Travel Quotation
-            </Link>
+        </div>
 
-            <div className="pt-3 border-t border-slate-100 flex items-center justify-center gap-3">
-              <a
-                href={siteConfig.socials.instagram.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-slate-50 hover:bg-rose-50 text-slate-700 hover:text-primary-crimson text-xs font-medium transition-colors"
-                aria-label="Instagram"
+        <div className="hidden shrink-0 items-center desktop:flex">
+          <Link href="/contact" className="inline-flex min-h-11 items-center gap-2 rounded-full bg-primary-crimson px-5 text-sm font-semibold tracking-tight text-white transition-colors hover:bg-primary-burgundy focus-visible:outline-white">
+            Plan a trip <ArrowUpRight size={15} aria-hidden="true" />
+          </Link>
+        </div>
+
+        <button
+          type="button"
+          onClick={() => setIsMenuOpen((open) => !open)}
+          className="inline-flex h-11 w-11 items-center justify-center rounded-full text-white transition-colors hover:bg-white/10 focus-visible:outline-white desktop:hidden"
+          aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+          aria-expanded={isMenuOpen}
+          aria-controls="mobile-navigation"
+        >
+          {isMenuOpen ? <X size={21} /> : <Menu size={21} />}
+        </button>
+
+        <div
+          id="mobile-navigation"
+          hidden={!isMenuOpen}
+          className="absolute inset-x-2 top-[calc(100%+10px)] rounded-[1.5rem] border border-white/10 bg-[#151922] p-3 shadow-2xl shadow-slate-950/20 desktop:hidden"
+        >
+          <div className="grid gap-1">
+            {navigation.map((item) => (
+              <Link
+                key={item.name}
+                href={item.href}
+                onClick={() => setIsMenuOpen(false)}
+                aria-current={isActive(item.href) ? 'page' : undefined}
+                className={`rounded-xl px-4 py-3 text-[15px] font-medium text-white/75 transition-colors hover:bg-white/10 hover:text-white ${isActive(item.href) ? 'bg-white/10 !text-white' : ''}`}
               >
-                <Instagram size={14} className="text-primary-crimson" />
-                <span>Instagram</span>
-              </a>
-              <a
-                href={siteConfig.socials.facebook.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-slate-50 hover:bg-blue-50 text-slate-700 hover:text-blue-700 text-xs font-medium transition-colors"
-                aria-label="Facebook"
-              >
-                <Facebook size={14} className="text-blue-600" />
-                <span>Facebook</span>
-              </a>
-            </div>
+                {item.name}
+              </Link>
+            ))}
+            <Link href="/contact" onClick={() => setIsMenuOpen(false)} className="mt-2 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-primary-crimson px-5 text-sm font-semibold text-white transition-colors hover:bg-primary-burgundy">
+              Plan a trip <ArrowUpRight size={15} aria-hidden="true" />
+            </Link>
           </div>
         </div>
-      </div>
+      </nav>
     </header>
   )
 }

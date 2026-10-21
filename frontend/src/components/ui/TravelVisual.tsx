@@ -16,11 +16,11 @@ interface TravelVisualProps {
 }
 
 const variants: Record<VisualVariant, { background: string; accent: string; route: string }> = {
-  flight: { background: 'from-[#26394b] via-[#1c2937] to-[#121923]', accent: 'text-sky-200', route: '#8ec5dc' },
-  stay: { background: 'from-[#41534b] via-[#283a34] to-[#17221f]', accent: 'text-amber-200', route: '#d8bd85' },
-  visa: { background: 'from-[#4d4540] via-[#302b2b] to-[#191a20]', accent: 'text-orange-200', route: '#dcae8d' },
-  ground: { background: 'from-[#343b4b] via-[#242b38] to-[#171b25]', accent: 'text-rose-200', route: '#d59ba2' },
-  default: { background: 'from-[#26394b] via-[#1c2937] to-[#121923]', accent: 'text-rose-200', route: '#c8878b' },
+  flight: { background: 'from-[#283242] via-[#1c2430] to-[#121720]', accent: 'text-rose-200', route: '#c98288' },
+  stay: { background: 'from-[#3b3035] via-[#28252d] to-[#151922]', accent: 'text-rose-200', route: '#c98288' },
+  visa: { background: 'from-[#37313b] via-[#282631] to-[#151922]', accent: 'text-rose-200', route: '#c98288' },
+  ground: { background: 'from-[#343541] via-[#252a35] to-[#151922]', accent: 'text-rose-200', route: '#c98288' },
+  default: { background: 'from-[#283242] via-[#1c2430] to-[#121720]', accent: 'text-rose-200', route: '#c98288' },
 }
 
 export default function TravelVisual({

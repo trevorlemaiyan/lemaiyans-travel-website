@@ -12,8 +12,14 @@
   --warm-bg: #FAF9F6;
   --card-white: #FFFFFF;
   --soft-border: #E8E7E3;
-  --font-sans: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-display: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-sans: 'Figtree', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  --font-display: var(--font-sans);
+  --fw-light: 388;
+  --fw-regular: 470;
+  --fw-medium: 500;
+  --fw-semibold: 511;
+  --fw-bold: 577;
+  --fw-black: 783;
 }
 
 * {
@@ -28,14 +34,27 @@ body {
   overflow-x: hidden;
   font-family: var(--font-sans);
   scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: geometricPrecision;
 }
 
 body {
   color: #1F2532;
   background-color: var(--warm-bg);
   font-family: var(--font-sans);
-  letter-spacing: -0.01em;
+  letter-spacing: -0.018em;
+  font-weight: var(--fw-regular);
 }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  letter-spacing: -0.045em;
+}
+
+h1 { line-height: 1.06; }
+h2 { line-height: 1.1; }
+h3, h4, h5, h6 { line-height: 1.18; }
 
 a {
   color: inherit;
@@ -63,16 +82,16 @@ button {
 /* Elegant Executive Cards */
 .executive-card {
   background-color: #FFFFFF;
-  border: 1px solid #EBEAE5;
-  border-radius: 1rem;
-  box-shadow: 0 2px 12px -2px rgba(21, 25, 34, 0.04);
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid var(--soft-border);
+  border-radius: 1.375rem;
+  box-shadow: 0 4px 18px -8px rgba(21, 25, 34, 0.12);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, translate 0.25s ease;
 }
 
 .executive-card:hover {
-  border-color: #D1D5DB;
-  box-shadow: 0 10px 25px -5px rgba(21, 25, 34, 0.08);
-  transform: translateY(-2px);
+  border-color: rgba(155, 29, 32, 0.24);
+  box-shadow: 0 18px 36px -18px rgba(21, 25, 34, 0.28);
+  translate: 0 -3px;
 }
 
 /* Refined Dark Panels */
@@ -107,25 +126,16 @@ button {
 /* Navigation Links */
 .nav-link {
   position: relative;
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
   font-weight: 500;
+  letter-spacing: -0.008em;
   transition: color 0.2s ease;
 }
 
-.nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background-color: var(--primary-crimson);
-  transition: width 0.2s ease;
-  border-radius: 1px;
-}
-
-.nav-link:hover::after {
-  width: 100%;
+a[href][class*="bg-primary-crimson"],
+button[class*="bg-primary-crimson"] {
+  min-height: 44px;
+  border-radius: 9999px;
 }
 
 /* Smooth Scrollbar */
@@ -144,4 +154,18 @@ button {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--primary-crimson);
+}
+
+::selection {
+  color: #fff;
+  background: var(--primary-crimson);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

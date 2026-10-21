@@ -100,7 +100,7 @@ export default function ServicesPage() {
       />
 
       {/* Navigation Quick Strip */}
-      <div className="bg-white border-b border-slate-200/80 sticky top-[72px] lg:top-[88px] z-30 shadow-sm">
+      <div className="sticky top-[88px] z-30 border-b border-slate-200/80 bg-white/95 shadow-sm backdrop-blur-md lg:top-[92px]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap items-center gap-x-6 gap-y-2 py-3.5 text-xs font-semibold text-slate-700">
           <span className="text-slate-500 font-mono-tech text-[11px] uppercase tracking-wider">Services:</span>
           {detailedServices.map((svc) => (
@@ -165,7 +165,7 @@ export default function ServicesPage() {
                       <ul className="space-y-2.5">
                         {svc.scope.map((item, i) => (
                           <li key={i} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-600 leading-relaxed">
-                            <Check size={16} className="text-emerald-600 flex-shrink-0 mt-0.5" />
+                            <Check size={16} className="text-primary-crimson flex-shrink-0 mt-0.5" />
                             <span>{item}</span>
                           </li>
                         ))}
@@ -176,7 +176,7 @@ export default function ServicesPage() {
                     <div className="pt-2">
                       <Link
                         href={`/contact?service=${svc.id}`}
-                        className="inline-flex items-center gap-2 bg-slate-900 hover:bg-primary-crimson text-white px-6 py-3 rounded-xl text-xs font-semibold shadow-sm transition-colors"
+                        className="inline-flex min-h-11 items-center gap-2 rounded-full bg-slate-900 px-6 py-3 text-xs font-semibold text-white shadow-sm transition-colors hover:bg-primary-crimson"
                       >
                         <span>Inquire About {svc.title}</span>
                         <ArrowRight size={14} />
@@ -206,14 +206,14 @@ export default function ServicesPage() {
           <div className="flex items-center gap-4">
             <a
               href={`tel:${siteConfig.phoneTel}`}
-              className="inline-flex items-center gap-2 border border-slate-300 hover:border-slate-800 text-slate-800 px-5 py-3 rounded-xl text-xs font-semibold transition-colors"
+              className="inline-flex min-h-11 items-center gap-2 rounded-full border border-slate-300 px-5 py-3 text-xs font-semibold text-slate-800 transition-colors hover:border-slate-800"
             >
               <Phone size={14} className="text-primary-crimson" />
               <span>{siteConfig.phone}</span>
             </a>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 bg-primary-crimson hover:bg-primary-burgundy text-white px-6 py-3 rounded-xl text-xs font-semibold shadow-sm transition-colors"
+              className="inline-flex min-h-11 items-center gap-2 rounded-full bg-primary-crimson px-6 py-3 text-xs font-semibold text-white shadow-sm transition-colors hover:bg-primary-burgundy"
             >
               <span>Contact Us</span>
               <ArrowRight size={14} />

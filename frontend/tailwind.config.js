@@ -7,6 +7,17 @@ module.exports = {
   ],
   theme: {
     extend: {
+      screens: {
+        desktop: '940px',
+      },
+      fontWeight: {
+        light: 'var(--fw-light)',
+        normal: 'var(--fw-regular)',
+        medium: 'var(--fw-medium)',
+        semibold: 'var(--fw-semibold)',
+        bold: 'var(--fw-bold)',
+        black: 'var(--fw-black)',
+      },
       colors: {
         primary: {
           crimson: '#9B1D20',
@@ -27,8 +38,8 @@ module.exports = {
         'light-grey': '#D9D9D9',
       },
       fontFamily: {
-        sans: ['var(--font-sans)', 'Inter', 'system-ui', '-apple-system', 'sans-serif'],
-        display: ['var(--font-display)', 'Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        sans: ['var(--font-sans)'],
+        display: ['var(--font-display)'],
         mono: ['var(--font-mono)', 'monospace'],
       },
     },

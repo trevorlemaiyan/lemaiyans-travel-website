@@ -68,7 +68,7 @@ export default function WhyChooseUs() {
               </p>
             </div>
             <div className="pt-6 mt-6 border-t border-slate-100 flex items-center gap-3 text-xs font-semibold text-slate-700">
-              <span className="w-2 h-2 rounded-full bg-emerald-500" />
+              <span className="w-2 h-2 rounded-full bg-primary-crimson" />
               <span>Scheduled airline booking options</span>
             </div>
           </div>
