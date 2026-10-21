@@ -11,9 +11,6 @@ interface EldoretMapProps {
 export default function EldoretMap({ showTitle = true, compact = false }: EldoretMapProps) {
   const lat = siteConfig.coordinates.lat
   const lon = siteConfig.coordinates.lng
-  const bbox = `${(lon - 0.009).toFixed(6)}%2C${(lat - 0.006).toFixed(6)}%2C${(lon + 0.009).toFixed(6)}%2C${(lat + 0.006).toFixed(6)}`
-  const osmEmbedUrl = `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik&marker=${lat}%2C${lon}`
-  const osmDirectionsUrl = `https://www.openstreetmap.org/?mlat=${lat}&mlon=${lon}#map=17/${lat}/${lon}`
   const googleDirectionsUrl = `https://www.google.com/maps/search/?api=1&query=${lat},${lon}`
 
   return (
@@ -36,21 +33,41 @@ export default function EldoretMap({ showTitle = true, compact = false }: Eldore
 
         {/* Refined Map & Address Card Container */}
         <div className="grid grid-cols-1 lg:grid-cols-12 rounded-2xl overflow-hidden shadow-lg border border-slate-200/80 bg-white">
-          {/* Map Frame */}
-          <div className="lg:col-span-7 relative min-h-[380px] lg:min-h-[460px] bg-slate-100">
-            <iframe
-              title="Lemaiyans Travels Headquarters - Nandi Arcade, Eldoret"
-              src={osmEmbedUrl}
-              className="w-full h-full min-h-[380px] lg:min-h-[460px] border-0"
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
-            {/* Coordinate pill */}
-            <div className="absolute top-4 left-4 bg-slate-900/90 text-white px-3.5 py-1.5 rounded-full text-xs font-medium flex items-center gap-2 backdrop-blur-md shadow-md">
-              <span className="w-2 h-2 rounded-full bg-primary-crimson" />
-              <span>Nandi Arcade · Oloo Street</span>
+          {/* Direct Google Maps pin with visible coordinates for manual entry */}
+          <a
+            href={googleDirectionsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Open the office pin in Google Maps at ${siteConfig.coordinates.dms}`}
+            className="group relative flex min-h-[380px] flex-col justify-between overflow-hidden bg-[#F3F1EC] p-6 text-[#151922] focus-visible:outline-primary-crimson lg:col-span-7 lg:min-h-[460px] lg:p-8"
+          >
+            <div aria-hidden="true" className="pointer-events-none absolute inset-0 opacity-70 [background-image:radial-gradient(#151922_0.7px,transparent_0.7px)] [background-size:20px_20px]" />
+            <div aria-hidden="true" className="pointer-events-none absolute -right-20 -top-24 h-80 w-80 rounded-full border border-[#151922]/[0.08]" />
+            <div aria-hidden="true" className="pointer-events-none absolute -right-4 -top-8 h-56 w-56 rounded-full border border-[#151922]/[0.08]" />
+
+            <div className="relative z-10 inline-flex w-fit items-center gap-2 rounded-full border border-[#E8E7E3] bg-white/90 px-3.5 py-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-700 shadow-sm">
+              <span aria-hidden="true" className="h-2 w-2 rounded-full bg-primary-crimson" />
+              Google Maps pin
             </div>
-          </div>
+
+            <div className="relative z-10 flex flex-1 flex-col items-center justify-center py-10 text-center">
+              <div className="grid h-20 w-20 place-items-center rounded-full border border-primary-crimson/15 bg-white shadow-[0_18px_42px_-22px_rgba(125,23,26,0.5)] transition-transform duration-300 group-hover:-translate-y-1">
+                <MapPin size={38} strokeWidth={1.6} className="text-primary-crimson" aria-hidden="true" />
+              </div>
+              <p className="mt-5 font-display text-2xl font-semibold tracking-[-0.045em]">Nandi Arcade Building</p>
+              <p className="mt-1 text-sm text-slate-600">First Floor, Oloo Street</p>
+            </div>
+
+            <div className="relative z-10 flex flex-col gap-2 border-t border-[#151922]/10 pt-4 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <span className="block text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-500">Exact coordinates</span>
+                <span className="mt-1 block text-sm font-semibold tabular-nums text-[#151922]">{siteConfig.coordinates.dms}</span>
+              </div>
+              <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary-crimson">
+                Open pinned location <ExternalLink size={13} aria-hidden="true" />
+              </span>
+            </div>
+          </a>
 
           {/* Details Column */}
           <div className="lg:col-span-5 p-8 lg:p-10 flex flex-col justify-between bg-white border-t lg:border-t-0 lg:border-l border-slate-200/80">
@@ -106,7 +123,7 @@ export default function EldoretMap({ showTitle = true, compact = false }: Eldore
               </div>
             </div>
 
-            <div className="pt-6 mt-6 border-t border-slate-100 space-y-3">
+            <div className="pt-6 mt-6 border-t border-slate-100">
               <a
                 href={googleDirectionsUrl}
                 target="_blank"
@@ -118,15 +135,6 @@ export default function EldoretMap({ showTitle = true, compact = false }: Eldore
                 <ExternalLink size={13} className="text-slate-400" />
               </a>
 
-              <a
-                href={osmDirectionsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full inline-flex items-center justify-center gap-2 border border-slate-200 hover:border-slate-400 text-slate-700 py-2.5 px-4 rounded-xl text-xs font-medium transition-colors"
-              >
-                <span>View on OpenStreetMap</span>
-                <ExternalLink size={13} className="text-slate-400" />
-              </a>
             </div>
           </div>
         </div>

@@ -13,6 +13,7 @@ export const siteConfig = {
   coordinates: {
     lat: 0.5152777778,
     lng: 35.2663888889,
+    dms: "0° 30′ 55″ N · 35° 15′ 59″ E",
   },
   officeHours: "Monday – Friday: 8:00 AM – 5:30 PM | Saturday: 8:30 AM – 1:00 PM",
   accreditations: {
