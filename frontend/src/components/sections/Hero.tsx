@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowUpRight, CheckCircle, Phone } from 'lucide-react'
+import { ArrowDown, ArrowUpRight, CheckCircle, Phone } from 'lucide-react'
 import { siteConfig } from '@/lib/site-config'
 
 const heroImage = 'https://images.unsplash.com/photo-1767868277770-d8cb69800992?auto=format&fit=crop&w=2000&q=92'
@@ -33,6 +33,9 @@ export default function Hero() {
               <Phone size={15} className="text-primary-crimson" aria-hidden="true" />
               Talk with an expert
             </a>
+            <Link href="/#services" className="inline-flex min-h-11 items-center justify-center gap-2 px-2 text-sm font-semibold text-primary-crimson transition-colors hover:text-primary-burgundy focus-visible:outline-primary-crimson">
+              Explore services <ArrowDown size={15} aria-hidden="true" />
+            </Link>
           </div>
 
           <div className="grid max-w-2xl grid-cols-3 gap-4 border-t border-[#E4E2DC] pt-6 sm:gap-7">

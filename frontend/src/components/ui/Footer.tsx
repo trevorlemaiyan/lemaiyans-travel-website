@@ -4,20 +4,11 @@ import Logo from '@/components/ui/Logo'
 import { siteConfig } from '@/lib/site-config'
 
 export default function Footer() {
-  const quickLinks = [
-    { name: 'Our Services', href: '/services' },
+  const exploreLinks = [
     { name: 'Tours', href: '/tours' },
     { name: 'About Lemaiyans', href: '/about' },
     { name: 'Contact & Location', href: '/contact' },
     { name: 'Privacy Notice', href: '/privacy' },
-  ]
-
-  const services = [
-    { name: 'Air Ticketing & Reservations', href: '/services#air-ticketing' },
-    { name: 'Hotel & Accommodation Booking', href: '/services#hotel-bookings' },
-    { name: 'Visa Application & Advisory', href: '/services#visa-assistance' },
-    { name: 'Car Hire & Airport Transfers', href: '/services#car-hire' },
-    { name: 'Tailor-made Tours', href: '/tours' },
   ]
 
   return (
@@ -82,19 +73,19 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Active Services */}
+          {/* Explore */}
           <div className="lg:col-span-4 space-y-4">
             <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400">
-              Travel Capabilities
+              Explore
             </h4>
             <ul className="space-y-3">
-              {services.map((service) => (
-                <li key={service.name}>
+              {exploreLinks.map((link) => (
+                <li key={link.name}>
                   <Link
-                    href={service.href}
+                    href={link.href}
                     className="text-sm text-slate-300 hover:text-white transition-colors flex items-center justify-between group"
                   >
-                    <span>{service.name}</span>
+                    <span>{link.name}</span>
                     <ArrowUpRight size={13} className="text-slate-500 opacity-0 group-hover:opacity-100 transition-opacity" />
                   </Link>
                 </li>
@@ -143,7 +134,7 @@ export default function Footer() {
         <div className="mt-14 pt-8 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
           <p>© {new Date().getFullYear()} {siteConfig.name}. All rights reserved.</p>
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
-            <Link href="/services" className="hover:text-slate-200 transition-colors py-2.5 inline-flex items-center">Services</Link>
+            <Link href="/#services" className="hover:text-slate-200 transition-colors py-2.5 inline-flex items-center">Services</Link>
             <Link href="/about" className="hover:text-slate-200 transition-colors py-2.5 inline-flex items-center">About Us</Link>
             <Link href="/contact" className="hover:text-slate-200 transition-colors py-2.5 inline-flex items-center">Contact</Link>
             <Link href="/privacy" className="hover:text-slate-200 transition-colors py-2.5 inline-flex items-center">Privacy Policy</Link>

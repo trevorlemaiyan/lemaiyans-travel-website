@@ -8,7 +8,6 @@ import Logo from '@/components/ui/Logo'
 
 const navigation = [
   { name: 'Home', href: '/' },
-  { name: 'Services', href: '/services' },
   { name: 'Tours', href: '/tours' },
   { name: 'About', href: '/about' },
   { name: 'Contact', href: '/contact' },
@@ -53,7 +52,7 @@ export default function Header() {
       >
         <Logo showText className="shrink-0" />
 
-        <div className="hidden flex-1 items-center justify-center gap-1 desktop:flex xl:gap-2">
+        <div className="hidden flex-1 items-center justify-center gap-3 desktop:flex xl:gap-4">
           {navigation.map((item) => (
             <Link
               key={item.name}
@@ -88,7 +87,7 @@ export default function Header() {
           hidden={!isMenuOpen}
           className="absolute inset-x-2 top-[calc(100%+10px)] rounded-[1.5rem] border border-white/10 bg-[#151922] p-3 shadow-2xl shadow-slate-950/20 desktop:hidden"
         >
-          <div className="grid gap-1">
+          <div className="grid gap-2">
             {navigation.map((item) => (
               <Link
                 key={item.name}

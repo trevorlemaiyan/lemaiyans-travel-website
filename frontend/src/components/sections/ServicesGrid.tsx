@@ -1,8 +1,6 @@
-'use client'
-
 import Link from 'next/link'
 import TravelVisual from '@/components/ui/TravelVisual'
-import { ArrowUpRight, Plane, Building, FileCheck2, Car, Check } from 'lucide-react'
+import { Plane, Building, FileCheck2, Car, Check } from 'lucide-react'
 
 const activeServices = [
   {
@@ -12,12 +10,10 @@ const activeServices = [
     variant: 'flight' as const,
     icon: Plane,
     details: [
-      'Flight options across scheduled domestic and international airlines',
-      'Assistance with ticket changes, subject to airline rules, availability, and any applicable fees',
-      'Domestic flights across Kenya (Nairobi, Mombasa, Kisumu, Eldoret, Malindi, Diani)',
-      'Clear fare rules and baggage details, with e-ticket delivery after booking confirmation'
+      'Compare domestic and international flight options across scheduled airlines.',
+      'Review fare rules, baggage allowances, and connection details before booking.',
+      'Get help with ticket changes, subject to airline rules and availability.'
     ],
-    href: '/services#air-ticketing',
   },
   {
     id: 'hotel-bookings',
@@ -26,12 +22,10 @@ const activeServices = [
     variant: 'stay' as const,
     icon: Building,
     details: [
-      'Accommodation options with rates and booking terms confirmed before reservation',
-      'Corporate lodging with flexible check-in, breakfast, and executive workspaces',
-      'Resort, safari lodge, and beachfront villa reservations in top destinations',
-      'Booking confirmation vouchers for use with visa applications'
+      'Find hotels, resorts, and safari lodges for work or leisure.',
+      'Compare available rates, amenities, and cancellation terms before confirming.',
+      'Receive booking confirmations for your trip or visa application.'
     ],
-    href: '/services#hotel-bookings',
   },
   {
     id: 'visa-assistance',
@@ -40,12 +34,10 @@ const activeServices = [
     variant: 'visa' as const,
     icon: FileCheck2,
     details: [
-      'Review of supporting documents against published consular guidance',
-      'Assistance with Schengen Area, United Kingdom, United States, and UAE/Dubai visas',
-      'East Africa Tourist Visas and regional transit permit advisory',
-      'Appointment scheduling and certified travel insurance packaging'
+      'Get guidance on tourist, business, and transit visa requirements.',
+      'Review application documents against the relevant consular guidance.',
+      'Visa decisions and processing times remain with the issuing authorities.'
     ],
-    href: '/services#visa-assistance',
   },
   {
     id: 'car-hire',
@@ -54,18 +46,16 @@ const activeServices = [
     variant: 'ground' as const,
     icon: Car,
     details: [
-      'Airport pickups and drop-offs at selected airports in Kenya',
-      'Chauffeur-driven executive sedans, passenger vans, and 4x4 Land Cruisers',
-      'Professional, courteous local drivers with deep route knowledge',
-      'Available for corporate delegations, VIP guests, and inter-city travel'
+      'Arrange airport pickups and drop-offs at selected airports in Kenya.',
+      'Choose from executive cars, passenger vans, and 4x4 vehicles where available.',
+      'Vehicle, provider, and transfer availability are confirmed for each request.'
     ],
-    href: '/services#car-hire',
   },
 ]
 
 export default function ServicesGrid() {
   return (
-    <section className="py-20 lg:py-28 bg-[#FAF9F6]">
+    <section id="services" className="scroll-mt-28 py-20 lg:py-28 bg-[#FAF9F6]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="max-w-3xl mb-16 space-y-4">
@@ -84,9 +74,10 @@ export default function ServicesGrid() {
           {activeServices.map((svc) => {
             const Icon = svc.icon
             return (
-              <div
+              <article
                 key={svc.id}
-                className="executive-card overflow-hidden flex flex-col justify-between group"
+                id={svc.id}
+                className="scroll-mt-28 executive-card overflow-hidden flex flex-col justify-between group"
               >
                 <div className="relative h-60 w-full overflow-hidden">
                   <TravelVisual
@@ -114,23 +105,16 @@ export default function ServicesGrid() {
                     </ul>
                   </div>
 
-                  <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
-                    <Link
-                      href={svc.href}
-                      className="inline-flex items-center min-h-[44px] py-2 text-xs font-semibold text-primary-crimson hover:text-primary-burgundy transition-colors group-hover:underline underline-offset-4"
-                    >
-                      <span>View booking details &amp; scope</span>
-                    </Link>
-
+                  <div className="pt-4 border-t border-slate-100 flex items-center justify-end">
                     <Link
                       href={`/contact?service=${svc.id}`}
-                      className="inline-flex items-center min-h-[44px] py-2 px-2 text-xs text-slate-600 hover:text-slate-900 font-medium transition-colors"
+                      className="inline-flex items-center min-h-[44px] py-2 px-2 text-xs font-semibold text-primary-crimson hover:text-primary-burgundy transition-colors"
                     >
                       Request quotation
                     </Link>
                   </div>
                 </div>
-              </div>
+              </article>
             )
           })}
         </div>
