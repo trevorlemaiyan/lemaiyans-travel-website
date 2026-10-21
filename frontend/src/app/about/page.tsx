@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import Image from 'next/image'
+import TravelVisual from '@/components/ui/TravelVisual'
 import { ArrowRight, CheckCircle2, ShieldCheck, Award, Heart, Compass, Target, Globe } from 'lucide-react'
 import PageHero from '@/components/ui/PageHero'
 import { siteConfig } from '@/lib/site-config'
@@ -14,7 +14,7 @@ export default function AboutPage() {
     },
     {
       title: 'Customer-Centric Gratification',
-      description: 'Our customers are at the heart of everything we do; their gratification and seamless travel experience is our greatest reward.',
+      description: 'Our customers are at the heart of everything we do; their gratification and smooth, dependable travel experience is our greatest reward.',
     },
     {
       title: 'Uncompromising Safety',
@@ -22,7 +22,7 @@ export default function AboutPage() {
     },
     {
       title: 'Agility & Proactive Support',
-      description: 'We relentlessly monitor changing global situations and take proactive measures to ensure our clients’ travel schedules are never impacted.',
+      description: 'When plans change, our team can review available alternatives and help coordinate the next steps with the relevant provider.',
     },
     {
       title: 'Cost-Effective Solutions',
@@ -50,8 +50,8 @@ export default function AboutPage() {
             
             {/* Story Text */}
             <div className="lg:col-span-7 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-50 text-primary-crimson text-xs font-semibold">
-                <span>Company Background</span>
+              <div className="text-primary-crimson text-xs font-bold uppercase tracking-wider">
+                Company Background
               </div>
 
               <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight leading-tight">
@@ -60,7 +60,7 @@ export default function AboutPage() {
 
               <div className="space-y-4 text-slate-600 text-sm sm:text-base leading-relaxed">
                 <p>
-                  <strong>Lemaiyans Travels Limited</strong> was established in {siteConfig.founded} in Eldoret, Kenya, to deliver superior, stress-free travel management. Based in Eldoret, Kenya, we serve individual travellers, business executives, educational institutions, NGOs, and corporate entities traveling across Kenya and to every corner of the world.
+                  <strong>Lemaiyans Travels Limited</strong> was established in {siteConfig.founded} and is based in Eldoret, Kenya. From here, we support individual travellers, business executives, educational institutions, NGOs, and corporate entities across Kenya and internationally.
                 </p>
                 <p>
                   We value our clients and respect their need for an optimal solution that is both effective and economical. Dependability and cost-effectiveness while adhering to stringent quality norms are the hallmark of our business. Our consultants are expert professionals who study each unique requirement and recommend custom solutions so that we meet your expectations of quality, efficiency, and budget.
@@ -88,30 +88,27 @@ export default function AboutPage() {
               </div>
             </div>
 
-            {/* Visual Column */}
+            {/* Company travel visual */}
             <div className="lg:col-span-5 relative">
               <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/3] sm:aspect-[4/3.5] lg:aspect-[4/4.2] w-full bg-slate-900 border border-slate-200/80">
-                <Image
-                  src="/images/about/company-travel-landmarks.jpg"
-                  alt="Lemaiyans Travels Limited - Global Destinations and World Travel"
-                  fill
-                  priority
-                  quality={95}
-                  className="object-cover object-center"
-                  sizes="(max-width: 1024px) 100vw, 45vw"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent" />
-                <div className="absolute bottom-6 left-6 right-6 text-white space-y-1.5">
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-rose-300">
-                    Official Company Identity
-                  </span>
-                  <p className="font-display text-base sm:text-lg font-bold leading-snug">
-                    &ldquo;{siteConfig.motto}&rdquo;
-                  </p>
-                  <p className="text-xs text-slate-300">
-                    Lemaiyans Travels Limited · Core Foundation
-                  </p>
-                </div>
+                <TravelVisual
+                  label="A passenger aircraft above international landmarks"
+                  imageSrc="/images/about/eldoret-airport-sunset.jpg"
+                  aspectRatio="aspect-[4/3] sm:aspect-[4/3.5] lg:aspect-[4/4.2] h-full"
+                  icon={Compass}
+                >
+                  <div className="p-6 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent text-white space-y-1.5">
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-rose-300">
+                      Official Company Identity
+                    </span>
+                    <p className="font-display text-base sm:text-lg font-bold leading-snug">
+                      &ldquo;{siteConfig.motto}&rdquo;
+                    </p>
+                    <p className="text-xs text-slate-300">
+                      Lemaiyans Travels Limited · Core Foundation
+                    </p>
+                  </div>
+                </TravelVisual>
               </div>
             </div>
 
@@ -168,8 +165,8 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="max-w-3xl mb-16 space-y-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold">
-              <span>What We Value</span>
+            <div className="text-primary-crimson text-xs font-bold uppercase tracking-wider">
+              What We Value
             </div>
             <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight">
               Our Core Values &amp; Company Culture
@@ -208,7 +205,7 @@ export default function AboutPage() {
               Ready to Partner with Lemaiyans Travels?
             </h3>
             <p className="text-xs sm:text-sm text-slate-400">
-              Visit our offices at Nandi Arcade (1st Floor, Eldoret) or get in touch with our travel team online.
+              Visit our office at Nandi Arcade or get in touch with our travel team online from anywhere.
             </p>
           </div>
           <Link

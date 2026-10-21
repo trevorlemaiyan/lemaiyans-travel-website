@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { contactFormSchema, type ContactFormData, services } from '@/lib/validations'
@@ -11,20 +11,28 @@ export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
   const [errorMessage, setErrorMessage] = useState('')
+  const [successMessage, setSuccessMessage] = useState('')
   const [honeypot, setHoneypot] = useState('')
 
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
     reset
   } = useForm<ContactFormData>({
     resolver: zodResolver(contactFormSchema)
   })
 
+  useEffect(() => {
+    const requestedService = new URLSearchParams(window.location.search).get('service')
+    if (requestedService && services.some((service) => service.value === requestedService)) {
+      setValue('service', requestedService as ContactFormData['service'])
+    }
+  }, [setValue])
+
   const onSubmit = async (data: ContactFormData) => {
     if (honeypot) {
-      setSubmitStatus('success')
       reset()
       return
     }
@@ -32,6 +40,7 @@ export default function ContactForm() {
     setIsSubmitting(true)
     setSubmitStatus('idle')
     setErrorMessage('')
+    setSuccessMessage('')
 
     try {
       const response = await fetch(`${siteConfig.apiUrl}/api/contact`, {
@@ -47,6 +56,7 @@ export default function ContactForm() {
       }
 
       setSubmitStatus('success')
+      setSuccessMessage(result.message || 'Your inquiry has been sent to our travel desk.')
       reset()
     } catch (error) {
       setSubmitStatus('error')
@@ -68,22 +78,22 @@ export default function ContactForm() {
           Request a Quotation or Consultation
         </h3>
         <p className="text-xs sm:text-sm text-slate-600 mt-1">
-          Fill in your journey details below. Our travel consultants will respond promptly with optimal solutions and rates.
+        Share your journey details so our travel consultants can review the request and follow up.
         </p>
       </div>
 
       {submitStatus === 'success' && (
-        <div className="mb-6 p-4 rounded-xl bg-emerald-50 border border-emerald-300 text-emerald-900 text-xs sm:text-sm flex items-start gap-3">
+        <div role="status" aria-live="polite" className="mb-6 p-4 rounded-xl bg-emerald-50 border border-emerald-300 text-emerald-900 text-xs sm:text-sm flex items-start gap-3">
           <CheckCircle2 size={18} className="text-emerald-600 flex-shrink-0 mt-0.5" />
           <div>
-            <strong className="block font-semibold">Inquiry Received Successfully!</strong>
-            <span>Your request has been logged. Our travel consultants will contact you shortly with the best options.</span>
+            <strong className="block font-semibold">Inquiry sent</strong>
+            <span>{successMessage}</span>
           </div>
         </div>
       )}
 
       {submitStatus === 'error' && (
-        <div className="mb-6 p-4 rounded-xl bg-rose-50 border border-rose-300 text-rose-900 text-xs sm:text-sm flex items-start gap-3">
+        <div role="alert" className="mb-6 p-4 rounded-xl bg-rose-50 border border-rose-300 text-rose-900 text-xs sm:text-sm flex items-start gap-3">
           <AlertCircle size={18} className="text-rose-600 flex-shrink-0 mt-0.5" />
           <div>
             <strong className="block font-semibold">Dispatch Notice</strong>
@@ -92,8 +102,7 @@ export default function ContactForm() {
         </div>
       )}
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-        {/* Hidden Honeypot */}
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-5" aria-busy={isSubmitting}>
         <input
           type="text"
           name="organization_stamp"
@@ -105,63 +114,72 @@ export default function ContactForm() {
           aria-hidden="true"
         />
 
-        {/* Full Name */}
         <div>
-          <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1.5">
+          <label htmlFor="contact-full-name" className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1.5">
             Full Name <span className="text-primary-crimson">*</span>
           </label>
           <input
             {...register('fullName')}
+            id="contact-full-name"
             type="text"
             placeholder="e.g. John Kamau"
-            className="w-full px-4 py-3 text-sm bg-slate-50/70 border border-slate-200 rounded-xl focus:border-primary-crimson focus:bg-white focus:outline-none transition-colors"
+            className="w-full px-4 py-3 text-sm bg-slate-50/70 border border-slate-200 rounded-xl focus:border-primary-crimson focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary-crimson/40 transition-colors"
+            aria-invalid={Boolean(errors.fullName)}
+            aria-describedby={errors.fullName ? 'contact-full-name-error' : undefined}
           />
           {errors.fullName && (
-            <p className="text-xs text-primary-crimson mt-1">{errors.fullName.message}</p>
+            <p id="contact-full-name-error" className="text-xs text-primary-crimson mt-1">{errors.fullName.message}</p>
           )}
         </div>
 
-        {/* Email & Phone */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
           <div>
-            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1.5">
+            <label htmlFor="contact-email" className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1.5">
               Email Address <span className="text-primary-crimson">*</span>
             </label>
             <input
               {...register('email')}
+              id="contact-email"
               type="email"
               placeholder="e.g. client@example.com"
-              className="w-full px-4 py-3 text-sm bg-slate-50/70 border border-slate-200 rounded-xl focus:border-primary-crimson focus:bg-white focus:outline-none transition-colors"
+              className="w-full px-4 py-3 text-sm bg-slate-50/70 border border-slate-200 rounded-xl focus:border-primary-crimson focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary-crimson/40 transition-colors"
+              aria-invalid={Boolean(errors.email)}
+              aria-describedby={errors.email ? 'contact-email-error' : undefined}
             />
             {errors.email && (
-              <p className="text-xs text-primary-crimson mt-1">{errors.email.message}</p>
+              <p id="contact-email-error" className="text-xs text-primary-crimson mt-1">{errors.email.message}</p>
             )}
           </div>
 
           <div>
-            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1.5">
+            <label htmlFor="contact-phone" className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1.5">
               Phone Number <span className="text-primary-crimson">*</span>
             </label>
             <input
               {...register('phone')}
+              id="contact-phone"
               type="tel"
               placeholder="e.g. +254 700 000 000"
-              className="w-full px-4 py-3 text-sm bg-slate-50/70 border border-slate-200 rounded-xl focus:border-primary-crimson focus:bg-white focus:outline-none transition-colors"
+              className="w-full px-4 py-3 text-sm bg-slate-50/70 border border-slate-200 rounded-xl focus:border-primary-crimson focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary-crimson/40 transition-colors"
+              aria-invalid={Boolean(errors.phone)}
+              aria-describedby={errors.phone ? 'contact-phone-error' : undefined}
             />
             {errors.phone && (
-              <p className="text-xs text-primary-crimson mt-1">{errors.phone.message}</p>
+              <p id="contact-phone-error" className="text-xs text-primary-crimson mt-1">{errors.phone.message}</p>
             )}
           </div>
         </div>
 
-        {/* Service Requested */}
         <div>
-          <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1.5">
+          <label htmlFor="contact-service" className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1.5">
             Service Required <span className="text-primary-crimson">*</span>
           </label>
           <select
             {...register('service')}
-            className="w-full px-4 py-3 text-sm bg-slate-50/70 border border-slate-200 rounded-xl focus:border-primary-crimson focus:bg-white focus:outline-none transition-colors"
+            id="contact-service"
+            className="w-full px-4 py-3 text-sm bg-slate-50/70 border border-slate-200 rounded-xl focus:border-primary-crimson focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary-crimson/40 transition-colors"
+            aria-invalid={Boolean(errors.service)}
+            aria-describedby={errors.service ? 'contact-service-error' : undefined}
           >
             <option value="">Select a travel service...</option>
             {services.map((svc) => (
@@ -171,27 +189,28 @@ export default function ContactForm() {
             ))}
           </select>
           {errors.service && (
-            <p className="text-xs text-primary-crimson mt-1">{errors.service.message}</p>
+            <p id="contact-service-error" className="text-xs text-primary-crimson mt-1">{errors.service.message}</p>
           )}
         </div>
 
-        {/* Message */}
         <div>
-          <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1.5">
+          <label htmlFor="contact-message" className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1.5">
             Travel Itinerary or Specific Requirements <span className="text-primary-crimson">*</span>
           </label>
           <textarea
             {...register('message')}
+            id="contact-message"
             rows={4}
             placeholder="Please share your travel dates, departure & destination cities, passenger count, or specific hotel and visa requirements..."
-            className="w-full px-4 py-3 text-sm bg-slate-50/70 border border-slate-200 rounded-xl focus:border-primary-crimson focus:bg-white focus:outline-none transition-colors resize-y"
+            className="w-full px-4 py-3 text-sm bg-slate-50/70 border border-slate-200 rounded-xl focus:border-primary-crimson focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary-crimson/40 transition-colors resize-y"
+            aria-invalid={Boolean(errors.message)}
+            aria-describedby={errors.message ? 'contact-message-error' : undefined}
           />
           {errors.message && (
-            <p className="text-xs text-primary-crimson mt-1">{errors.message.message}</p>
+            <p id="contact-message-error" className="text-xs text-primary-crimson mt-1">{errors.message.message}</p>
           )}
         </div>
 
-        {/* Submit */}
         <div className="pt-2">
           <button
             type="submit"
@@ -204,10 +223,7 @@ export default function ContactForm() {
                 <span>Sending Your Request...</span>
               </>
             ) : (
-              <>
-                <span>Submit Travel Request</span>
-                <ArrowRight size={16} />
-              </>
+              <span>Submit Travel Request</span>
             )}
           </button>
         </div>

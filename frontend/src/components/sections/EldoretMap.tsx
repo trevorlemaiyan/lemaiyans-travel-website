@@ -20,15 +20,15 @@ export default function EldoretMap({ showTitle = true, compact = false }: Eldore
       <div className={compact ? 'w-full' : 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'}>
         {showTitle && (
           <div className="max-w-3xl mb-12 space-y-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-200/70 text-slate-800 text-xs font-semibold tracking-wide">
-              <Globe size={14} className="text-primary-crimson" />
+            <div className="flex items-center gap-2 text-primary-crimson text-xs font-bold uppercase tracking-wider">
+              <Globe size={14} />
               <span>Headquarters Location</span>
             </div>
             <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight">
-              Our Offices in Eldoret, Kenya
+              Our Office
             </h2>
             <p className="text-base text-slate-600 leading-relaxed">
-              We manage journeys worldwide for clients anywhere, but we take pride in our verified physical roots. Visit our travel office in central Eldoret for face-to-face consultations and document processing.
+              We support individuals and organizations planning travel across Kenya and internationally. Visit us at Nandi Arcade or work with us remotely.
             </p>
           </div>
         )}
@@ -47,7 +47,7 @@ export default function EldoretMap({ showTitle = true, compact = false }: Eldore
             {/* Coordinate pill */}
             <div className="absolute top-4 left-4 bg-slate-900/90 text-white px-3.5 py-1.5 rounded-full text-xs font-medium flex items-center gap-2 backdrop-blur-md shadow-md">
               <span className="w-2 h-2 rounded-full bg-emerald-400" />
-              <span>Eldoret CBD · Nandi Arcade, Oloo St</span>
+              <span>Nandi Arcade · Oloo Street</span>
             </div>
           </div>
 
@@ -72,7 +72,7 @@ export default function EldoretMap({ showTitle = true, compact = false }: Eldore
                     <MapPin size={18} />
                   </div>
                   <div>
-                    <strong className="block text-xs uppercase text-slate-400 font-semibold">Address</strong>
+                    <strong className="block text-xs uppercase text-slate-600 font-semibold">Address</strong>
                     <span className="text-slate-800">{siteConfig.address}</span>
                     <span className="block text-xs text-slate-500 mt-0.5">{siteConfig.poBox}</span>
                   </div>
@@ -83,7 +83,7 @@ export default function EldoretMap({ showTitle = true, compact = false }: Eldore
                     <Clock size={18} />
                   </div>
                   <div>
-                    <strong className="block text-xs uppercase text-slate-400 font-semibold">Desk Hours</strong>
+                    <strong className="block text-xs uppercase text-slate-600 font-semibold">Desk Hours</strong>
                     <span className="text-slate-800">{siteConfig.officeHours}</span>
                   </div>
                 </div>
@@ -93,7 +93,7 @@ export default function EldoretMap({ showTitle = true, compact = false }: Eldore
                     <Phone size={18} />
                   </div>
                   <div>
-                    <strong className="block text-xs uppercase text-slate-400 font-semibold">Direct Telephone</strong>
+                    <strong className="block text-xs uppercase text-slate-600 font-semibold">Direct Telephone</strong>
                     <a
                       href={`tel:${siteConfig.phoneTel}`}
                       className="text-slate-900 font-semibold hover:text-primary-crimson transition-colors"

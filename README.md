@@ -19,21 +19,22 @@ Lemaiyans_travels/
     └── src/
         ├── app/
         │   ├── api/
-        │   │   ├── contact/  # POST /api/contact (Sanitization, bot protection & mailer)
+        │   │   ├── contact/  # POST /api/contact (Validation, bot protection & mailer)
         │   │   └── health/   # GET /api/health (Service status & uptime)
         │   ├── about/        # Agency history, heritage & governance
         │   ├── contact/      # Contact desk & OpenStreetMap integration
         │   ├── privacy/      # Privacy notice and data policy
         │   ├── services/     # Deep-dive on active travel capabilities
+        │   ├── tours/        # Curated tour listings
         │   ├── globals.css   # Editorial styling & hairline grid utilities
-        │   ├── layout.tsx    # Root layout, Syne & Plus Jakarta Sans typography
+        │   ├── layout.tsx    # Root layout and Inter typography
         │   ├── page.tsx      # Editorial landing page assembly
         │   ├── robots.ts     # Search engine crawler policies
         │   └── sitemap.ts    # Dynamic XML sitemap
         ├── components/
         │   ├── layout/       # Header, navigation drawer
         │   ├── sections/     # Hero, ServicesGrid, CompanyOverview, EldoretMap, etc.
-        │   └── ui/           # Logo, PageHero, Footer, OptimizedImage
+        │   └── ui/           # Logo, PageHero, Footer, TravelVisual
         └── lib/
             ├── site-config.ts # Centralized business details & Eldoret coordinates
             └── validations.ts # Zod schema for form validation
@@ -43,16 +44,16 @@ Lemaiyans_travels/
 
 ## ✨ Features
 
-- **Editorial Aviation Design**: Custom typography pairing **Syne** (`font-display`) and **Plus Jakarta Sans** (`font-sans`), technical monospace stamps, and crisp hairline architectural gridlines.
+- **Editorial Aviation Design**: A single **Inter** typeface for display and body copy, restrained crimson accents, and a warm neutral canvas.
 - **Active Service Dockets**:
   - **Domestic & International Air Ticketing**: KQ, Jambojet, Fly540, Emirates, Qatar Airways, Ethiopian Airlines, Lufthansa.
   - **Corporate Travel Accounts**: Itemized statements, monthly credit facilities, and travel policy compliance.
   - **Visa Advisory & Paperwork Pre-Audits**: Schengen Area, United Kingdom, United States, and UAE/Dubai tourist visas.
-  - **Executive Car Hire & Airport Transfers**: Punctual meet-and-greet airport pickups and transfers at any airport in Kenya and worldwide, with chauffeur-driven executive sedans, 4x4 Land Cruisers, and passenger vans.
+  - **Executive Car Hire & Airport Transfers**: Meet-and-greet pickups at selected airports in Kenya, with international transfers arranged on request. Vehicle options include executive sedans, 4x4 Land Cruisers, and passenger vans.
 - **100% Free Interactive Map**: Embedded **OpenStreetMap** centered on Nandi Arcade in Eldoret CBD (`0.5193° N, 35.2748° E`) with zero API key or billing dependencies.
 - **Unified API Route Handlers**:
   - `POST /api/contact`: Form input sanitization, honeypot bot trap, Zod validation, and styled HTML email dispatch via Nodemailer.
-  - `GET /api/health`: Instant health check and uptime monitor.
+  - `GET /api/health`: Health check and uptime monitor.
 - **Zero CORS / Single-Origin**: Client requests hit relative paths (`/api/contact`), eliminating cross-origin complications and multi-server hosting costs.
 - **SEO & Social Optimization**: Dynamic `sitemap.xml`, `robots.txt`, and OpenGraph metadata.
 

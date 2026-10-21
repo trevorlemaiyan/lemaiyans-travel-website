@@ -17,7 +17,10 @@ export const contactFormSchema = z.object({
     .min(1, 'Phone number is required')
     .regex(/^[+]?[0-9\s\-()]{9,20}$/, 'Please enter a valid phone number'),
 
-  service: z.string().min(1, 'Please select a service'),
+  service: z.enum(
+    ['air-ticketing', 'corporate-travel', 'visa-assistance', 'hotel-bookings', 'car-hire', 'tour-planning', 'general'],
+    { errorMap: () => ({ message: 'Please select a valid service' }) }
+  ),
 
   message: z
     .string()
@@ -33,5 +36,6 @@ export const services = [
   { value: 'visa-assistance', label: 'Visa Advisory & Documentation Assistance' },
   { value: 'hotel-bookings', label: 'Hotel & Lodge Bookings' },
   { value: 'car-hire', label: 'Executive Car Hire & Airport Transfers' },
+  { value: 'tour-planning', label: 'Tailor-made Tour Planning' },
   { value: 'general', label: 'General Inquiries & Travel Advice' },
 ]

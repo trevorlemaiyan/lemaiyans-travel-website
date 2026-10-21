@@ -1,6 +1,6 @@
 'use client'
 
-import { MapPin, Phone, Mail, Clock, ShieldCheck, CheckCircle2, Award } from 'lucide-react'
+import { MapPin, Phone, Mail, Clock, ShieldCheck, CheckCircle2, Award, Instagram, Facebook } from 'lucide-react'
 import ContactForm from '@/components/sections/ContactForm'
 import EldoretMap from '@/components/sections/EldoretMap'
 import PageHero from '@/components/ui/PageHero'
@@ -11,7 +11,7 @@ export default function ContactPage() {
     <>
       <PageHero
         title="Contact Our Travel Desk"
-        subtitle="Visit our registered headquarters at Nandi Arcade, Eldoret, or transmit your travel requirements to our consultants for prompt, customized solutions."
+        subtitle="Our team supports clients from anywhere. Request a quotation online or visit our office in person."
         align="left"
       />
 
@@ -45,7 +45,7 @@ export default function ContactPage() {
                       <MapPin size={18} />
                     </div>
                     <div>
-                      <strong className="block text-xs uppercase text-slate-400 font-semibold">
+                      <strong className="block text-xs uppercase text-slate-600 font-semibold">
                         Registered Premises
                       </strong>
                       <span className="text-slate-800 font-medium">{siteConfig.address}</span>
@@ -58,11 +58,11 @@ export default function ContactPage() {
                       <Clock size={18} />
                     </div>
                     <div>
-                      <strong className="block text-xs uppercase text-slate-400 font-semibold">
+                      <strong className="block text-xs uppercase text-slate-600 font-semibold">
                         Desk Working Hours
                       </strong>
                       <span className="text-slate-800 font-medium">{siteConfig.officeHours}</span>
-                      <p className="text-slate-500 text-xs mt-0.5">Emergency flight monitoring available 24/7</p>
+                      <p className="text-slate-500 text-xs mt-0.5">For a time-sensitive travel change, call the desk directly.</p>
                     </div>
                   </div>
 
@@ -71,7 +71,7 @@ export default function ContactPage() {
                       <Phone size={18} />
                     </div>
                     <div>
-                      <strong className="block text-xs uppercase text-slate-400 font-semibold">
+                      <strong className="block text-xs uppercase text-slate-600 font-semibold">
                         Telephone Direct
                       </strong>
                       <a
@@ -88,7 +88,7 @@ export default function ContactPage() {
                       <Mail size={18} />
                     </div>
                     <div>
-                      <strong className="block text-xs uppercase text-slate-400 font-semibold">
+                      <strong className="block text-xs uppercase text-slate-600 font-semibold">
                         Electronic Mail
                       </strong>
                       <a
@@ -104,11 +104,38 @@ export default function ContactPage() {
                 <div className="pt-4 border-t border-slate-100">
                   <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80 text-xs text-slate-600 space-y-1">
                     <span className="font-semibold text-slate-800 block">
-                      Rapid Quotation Turnaround
+                    Response timing
                     </span>
                     <p>
-                      Our ticketing specialists evaluate each route and respond with custom flight itineraries within 30 to 60 minutes during desk hours.
+                      We review each request during desk hours. For time-sensitive travel, please call the desk.
                     </p>
+                  </div>
+                </div>
+
+                {/* Official Social Channels */}
+                <div className="pt-4 border-t border-slate-100 space-y-2.5">
+                  <span className="block text-xs uppercase text-slate-600 font-semibold">
+                    Official Social Channels
+                  </span>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                    <a
+                      href={siteConfig.socials.instagram.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2.5 p-3 rounded-xl bg-slate-50 hover:bg-rose-50 border border-slate-200/80 text-slate-800 hover:text-primary-crimson transition-all text-xs font-semibold"
+                    >
+                      <Instagram size={17} className="text-primary-crimson" />
+                      <span>@lemaiyans_travels</span>
+                    </a>
+                    <a
+                      href={siteConfig.socials.facebook.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2.5 p-3 rounded-xl bg-slate-50 hover:bg-blue-50 border border-slate-200/80 text-slate-800 hover:text-blue-700 transition-all text-xs font-semibold"
+                    >
+                      <Facebook size={17} className="text-blue-600" />
+                      <span>Lemaiyan&apos;s Travels</span>
+                    </a>
                   </div>
                 </div>
               </div>

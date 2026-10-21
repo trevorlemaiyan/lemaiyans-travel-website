@@ -15,10 +15,10 @@ interface HoverCardProps {
 export const HoverCard: React.FC<HoverCardProps> = ({
   children,
   className = '',
-  hoverScale = 1.05,
-  hoverY = -8,
-  shadowIntensity = 24,
-  duration = 0.3
+  hoverScale = 1.01,
+  hoverY = -2,
+  shadowIntensity = 8,
+  duration = 0.25
 }) => {
   const [isHovered, setIsHovered] = useState(false)
 
@@ -30,7 +30,7 @@ export const HoverCard: React.FC<HoverCardProps> = ({
       whileHover={{
         scale: hoverScale,
         y: hoverY,
-        boxShadow: `0 ${shadowIntensity}px ${shadowIntensity * 2}px rgba(0, 0, 0, 0.15)`
+        boxShadow: `0 ${shadowIntensity}px ${shadowIntensity * 2}px rgba(21, 25, 34, 0.08)`
       }}
       transition={{
         duration,

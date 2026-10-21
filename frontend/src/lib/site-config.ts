@@ -9,7 +9,7 @@ export const siteConfig = {
   email: "lemaiyans@gmail.com",
   poBox: "P.O. Box 2696-30100 Eldoret",
   address: "Nandi Arcade Building, First Floor, Oloo Street, Eldoret, Kenya",
-  locationShort: "Eldoret, Kenya (Serving Clients Worldwide)",
+  locationShort: "Based in Eldoret, Kenya · Serving clients worldwide",
   coordinates: {
     lat: 0.5193,
     lng: 35.2748,
@@ -19,7 +19,6 @@ export const siteConfig = {
     iata: {
       title: "IATA Accredited Agent",
       type: "GoLite Accreditation",
-      status: "Active (2025)",
     },
     kata: {
       title: "KATA Certified Member",
@@ -47,9 +46,26 @@ export const siteConfig = {
       status: "Licensed Operator",
     },
   },
+  socials: {
+    instagram: {
+      name: "Instagram",
+      handle: "@lemaiyans_travels",
+      url: "https://www.instagram.com/lemaiyans_travels/",
+    },
+    facebook: {
+      name: "Facebook",
+      handle: "Lemaiyan's Travels",
+      url: "https://www.facebook.com/lemaiyans.travels",
+    },
+  },
   facebook: {
     name: "Lemaiyan's Travels",
     url: "https://www.facebook.com/lemaiyans.travels",
+  },
+  instagram: {
+    name: "Instagram",
+    handle: "@lemaiyans_travels",
+    url: "https://www.instagram.com/lemaiyans_travels/",
   },
   apiUrl: process.env.NEXT_PUBLIC_API_URL || "",
 } as const

@@ -46,22 +46,22 @@ const CookieConsent = () => {
               We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.
               <a
                 href="/privacy"
-                className="text-primary-crimson hover:underline ml-1"
+                className="text-rose-400 hover:underline ml-1 font-medium"
               >
-                Learn more
+                Read our privacy policy
               </a>
             </p>
           </div>
           <div className="flex items-center space-x-3 flex-shrink-0">
             <button
               onClick={handleDecline}
-              className="px-4 py-2 text-sm border border-slate-600 rounded-lg hover:bg-slate-800 transition-colors duration-300"
+              className="px-4 py-2.5 min-h-[44px] text-sm border border-slate-600 rounded-lg hover:bg-slate-800 focus-visible:ring-2 focus-visible:ring-white transition-colors duration-200"
             >
               Decline
             </button>
             <button
               onClick={handleAccept}
-              className="px-4 py-2 text-sm bg-primary-crimson hover:bg-primary-burgundy rounded-lg transition-colors duration-300"
+              className="px-4 py-2.5 min-h-[44px] text-sm bg-primary-crimson hover:bg-primary-burgundy text-white font-medium rounded-lg focus-visible:ring-2 focus-visible:ring-rose-400 transition-colors duration-200"
             >
               Accept All
             </button>

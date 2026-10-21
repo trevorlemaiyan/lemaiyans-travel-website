@@ -15,44 +15,44 @@ const accreditations = [
   {
     icon: RiAwardLine,
     title: 'IATA Accredited Travel Agent',
-    badge: 'IATA Certified',
+    badge: 'IATA',
     sub: 'International Air Transport Association',
-    detail: 'Officially certified by IATA to promote and issue international air passenger transportation on scheduled airlines worldwide.',
+    detail: 'Travel agent accreditation for scheduled air passenger ticketing. Ask the travel desk for current supporting documents.',
   },
   {
     icon: RiShieldCheckLine,
-    title: 'KATA Active Member',
-    badge: 'KATA Verified',
+    title: 'KATA Member',
+    badge: 'Member',
     sub: 'Kenya Association of Travel Agents',
-    detail: 'Continuous member of Kenya’s premier travel agent association, upholding the highest standards of professional ethics and passenger advocacy.',
+    detail: 'Membership in the Kenya Association of Travel Agents. Ask the travel desk for current supporting documents.',
   },
   {
     icon: RiBuilding4Line,
     title: 'TRA Tourism Licence',
     badge: 'Class C Operator',
     sub: 'Tourism Regulatory Authority of Kenya',
-    detail: 'Officially licensed Class C (Travel Agency - Ticketing) commercial operator under the Tourism Act with registered office in Eldoret.',
+    detail: 'Class C travel agency and ticketing licence. Ask the travel desk for current supporting documents.',
   },
   {
     icon: RiFileTextLine,
-    title: 'KRA Tax Compliant Entity',
-    badge: 'Fully Compliant',
+    title: 'KRA Tax Compliance',
+    badge: 'KRA',
     sub: 'Kenya Revenue Authority',
-    detail: 'Fully compliant corporate taxpayer in good standing, ready for immediate institutional vendor onboarding and eTIMS tax invoicing.',
+    detail: 'Tax compliance documentation can be requested from the travel desk for procurement checks.',
   },
   {
     icon: RiHeartLine,
-    title: 'AGPO Certified Enterprise',
-    badge: 'National Treasury',
+    title: 'AGPO Registration',
+    badge: 'AGPO',
     sub: 'Access to Government Procurement Opportunities',
-    detail: 'Duly registered under the Public Procurement and Asset Disposal Act as a certified women-owned enterprise in Kenya.',
+    detail: 'Women-owned enterprise registration recorded by the agency. Ask the travel desk for current supporting documents.',
   },
   {
     icon: RiCheckboxCircleLine,
     title: 'County Business Permit',
-    badge: 'Authorized',
+    badge: 'County permit',
     sub: 'County Government of Uasin Gishu',
-    detail: 'Licensed commercial travel and passenger transport operator headquartered in Eldoret CBD, serving clients locally and worldwide.',
+    detail: 'County business permit recorded by the agency. Ask the travel desk for current supporting documents.',
   },
 ]
 
@@ -61,28 +61,26 @@ export default function Certifications() {
     <section className="py-20 lg:py-28 bg-white border-b border-slate-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Section Header */}
         <div className="max-w-3xl mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-xs font-semibold tracking-wide border border-emerald-200">
+          <div className="flex items-center gap-2 text-emerald-800 text-xs font-bold uppercase tracking-wider">
             <HiCheckBadge size={16} className="text-emerald-600" />
-            <span>Verified Industry Standing</span>
+            <span>Agency Credentials</span>
           </div>
           <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight">
             Accreditations &amp; Institutional Licensing
           </h2>
           <p className="text-base text-slate-600 leading-relaxed">
-            Lemaiyans Travels Limited is fully certified and accredited by national regulatory authorities and international aviation bodies for your peace of mind and prompt corporate procurement.
+            Credential details recorded by the agency. Contact the travel desk for supporting documents and current validity dates.
           </p>
         </div>
 
-        {/* 6 Clean Executive Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
           {accreditations.map((item) => {
             const Icon = item.icon
             return (
               <div
                 key={item.title}
-                className="executive-card p-7 sm:p-8 flex flex-col justify-between space-y-4"
+                className="executive-card p-7 sm:p-8 flex flex-col justify-between space-y-4 border border-slate-200/80"
               >
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">

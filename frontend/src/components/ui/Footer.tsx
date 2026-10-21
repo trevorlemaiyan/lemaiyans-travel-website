@@ -1,11 +1,12 @@
 import Link from 'next/link'
-import { MapPin, Phone, Mail, Clock, ArrowUpRight, ShieldCheck, Award } from 'lucide-react'
+import { MapPin, Phone, Mail, Clock, ArrowUpRight, ShieldCheck, Award, Instagram, Facebook } from 'lucide-react'
 import Logo from '@/components/ui/Logo'
 import { siteConfig } from '@/lib/site-config'
 
 export default function Footer() {
   const quickLinks = [
     { name: 'Our Services', href: '/services' },
+    { name: 'Tours', href: '/tours' },
     { name: 'About Lemaiyans', href: '/about' },
     { name: 'Contact & Location', href: '/contact' },
     { name: 'Privacy Notice', href: '/privacy' },
@@ -15,10 +16,8 @@ export default function Footer() {
     { name: 'Air Ticketing & Reservations', href: '/services#air-ticketing' },
     { name: 'Hotel & Accommodation Booking', href: '/services#hotel-bookings' },
     { name: 'Visa Application & Advisory', href: '/services#visa-assistance' },
-    { name: 'Car Hire & Airport Transfers (Any Airport)', href: '/services#car-hire' },
-    /* NOTE: Tour packages dormant until launch
-    { name: 'Tour Packages', href: '/services#tour-packages' },
-    */
+    { name: 'Car Hire & Airport Transfers', href: '/services#car-hire' },
+    { name: 'Tailor-made Tours', href: '/tours' },
   ]
 
   return (
@@ -53,6 +52,34 @@ export default function Footer() {
                 AGPO Certified
               </span>
             </div>
+
+            <div className="pt-2">
+              <span className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2.5">
+                Official Social Channels
+              </span>
+              <div className="flex flex-wrap items-center gap-3">
+                <a
+                  href={siteConfig.socials.instagram.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-white/5 hover:bg-rose-500/20 text-slate-200 hover:text-white border border-white/10 transition-colors text-xs font-medium"
+                  aria-label="Lemaiyans Travels on Instagram"
+                >
+                  <Instagram size={15} className="text-rose-400" />
+                  <span>@lemaiyans_travels</span>
+                </a>
+                <a
+                  href={siteConfig.socials.facebook.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-white/5 hover:bg-blue-500/20 text-slate-200 hover:text-white border border-white/10 transition-colors text-xs font-medium"
+                  aria-label="Lemaiyan's Travels on Facebook"
+                >
+                  <Facebook size={15} className="text-blue-400" />
+                  <span>Facebook Desk</span>
+                </a>
+              </div>
+            </div>
           </div>
 
           {/* Active Services */}
@@ -82,7 +109,7 @@ export default function Footer() {
             </h4>
             <div className="space-y-3 text-xs text-slate-300">
               <div className="flex items-start gap-2.5">
-                <MapPin size={16} className="text-primary-crimson flex-shrink-0 mt-0.5" />
+                <MapPin size={16} className="text-rose-400 flex-shrink-0 mt-0.5" />
                 <div>
                   <span className="block font-medium text-slate-200">{siteConfig.address}</span>
                   <span className="text-slate-400">{siteConfig.poBox}</span>
@@ -90,20 +117,20 @@ export default function Footer() {
               </div>
 
               <div className="flex items-center gap-2.5">
-                <Clock size={16} className="text-primary-crimson flex-shrink-0" />
+                <Clock size={16} className="text-rose-400 flex-shrink-0" />
                 <span>{siteConfig.officeHours}</span>
               </div>
 
               <div className="pt-2 space-y-1.5 border-t border-slate-800">
                 <div className="flex items-center gap-2">
-                  <Phone size={14} className="text-primary-crimson" />
-                  <a href={`tel:${siteConfig.phoneTel}`} className="font-semibold text-slate-100 hover:text-primary-crimson transition-colors">
+                  <Phone size={14} className="text-rose-400" />
+                  <a href={`tel:${siteConfig.phoneTel}`} className="font-semibold text-slate-100 hover:text-rose-300 transition-colors py-1 inline-block">
                     {siteConfig.phone}
                   </a>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Mail size={14} className="text-primary-crimson" />
-                  <a href={`mailto:${siteConfig.email}`} className="text-slate-300 hover:text-white transition-colors">
+                  <Mail size={14} className="text-rose-400" />
+                  <a href={`mailto:${siteConfig.email}`} className="text-slate-300 hover:text-white transition-colors py-1 inline-block">
                     {siteConfig.email}
                   </a>
                 </div>
@@ -113,14 +140,15 @@ export default function Footer() {
 
         </div>
 
-        {/* Bottom Bar */}
         <div className="mt-14 pt-8 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
           <p>© {new Date().getFullYear()} {siteConfig.name}. All rights reserved.</p>
-          <div className="flex items-center gap-6">
-            <Link href="/services" className="hover:text-slate-200 transition-colors">Services</Link>
-            <Link href="/about" className="hover:text-slate-200 transition-colors">About Us</Link>
-            <Link href="/contact" className="hover:text-slate-200 transition-colors">Contact</Link>
-            <Link href="/privacy" className="hover:text-slate-200 transition-colors">Privacy Policy</Link>
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+            <Link href="/services" className="hover:text-slate-200 transition-colors py-2.5 inline-flex items-center">Services</Link>
+            <Link href="/about" className="hover:text-slate-200 transition-colors py-2.5 inline-flex items-center">About Us</Link>
+            <Link href="/contact" className="hover:text-slate-200 transition-colors py-2.5 inline-flex items-center">Contact</Link>
+            <Link href="/privacy" className="hover:text-slate-200 transition-colors py-2.5 inline-flex items-center">Privacy Policy</Link>
+            <a href={siteConfig.socials.instagram.url} target="_blank" rel="noopener noreferrer" className="hover:text-rose-400 transition-colors py-2.5 inline-flex items-center gap-1">Instagram</a>
+            <a href={siteConfig.socials.facebook.url} target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors py-2.5 inline-flex items-center gap-1">Facebook</a>
           </div>
         </div>
 

@@ -1,7 +1,7 @@
 'use client'
 
-import Image from 'next/image'
-import { CheckCircle2, Award, Shield, Users, HeartHandshake } from 'lucide-react'
+import TravelVisual from '@/components/ui/TravelVisual'
+import { CheckCircle2, Award, Shield, Users, HeartHandshake, Compass } from 'lucide-react'
 import { siteConfig } from '@/lib/site-config'
 
 export default function CompanyOverview() {
@@ -12,15 +12,15 @@ export default function CompanyOverview() {
     },
     {
       title: 'Global Reach, Personal Touch',
-      description: 'Headquartered in Eldoret, Kenya, we serve local and international clientele traveling across all seven continents.',
+      description: 'We support travelers planning journeys across Kenya and to destinations around the world.',
     },
     {
       title: 'Cost-Effective & Dependable',
       description: 'We respect your need for optimal solutions that balance top-tier quality, efficiency, and strict budget norms.',
     },
     {
-      title: 'Certified & Fully Licensed',
-      description: 'IATA accredited, KATA registered, TRA licensed, and KRA tax-compliant for seamless individual and corporate engagements.',
+      title: 'Travel Credentials',
+      description: 'The company lists industry and regulatory credentials. Current supporting documents and validity dates are available on request.',
     },
   ]
 
@@ -30,38 +30,21 @@ export default function CompanyOverview() {
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
-          {/* Left Column: Visual Story with World Travel Imagery */}
           <div className="lg:col-span-5 relative">
             <div className="relative rounded-2xl overflow-hidden shadow-xl aspect-[4/5] max-h-[520px] w-full">
-              <Image
-                src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=2000&q=90"
-                alt="World landmarks and global travel - Lemaiyans Travels"
-                fill
-                quality={90}
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 45vw"
+              <TravelVisual
+                label={`Travel and aviation services since ${siteConfig.founded}`}
+                aspectRatio="aspect-[4/5] min-h-[460px] h-full"
+                icon={Compass}
+                variant="flight"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
-              
-              <div className="absolute bottom-6 left-6 right-6 text-white space-y-2">
-                <span className="text-[11px] font-mono uppercase tracking-wider text-rose-300">
-                  Established in {siteConfig.founded}
-                </span>
-                <h3 className="font-display text-xl font-bold leading-snug">
-                  Strategic Travel Solutions Built on Trust &amp; Excellence
-                </h3>
-                <p className="text-xs text-slate-300 leading-relaxed">
-                  Licensed by TRA &amp; accredited by IATA to promote and sell international air passenger transportation.
-                </p>
-              </div>
             </div>
           </div>
 
-          {/* Right Column: Company Story & Vision */}
           <div className="lg:col-span-7 space-y-8">
             <div className="space-y-3">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold tracking-wide">
-                <span>About Our Agency</span>
+              <div className="text-primary-crimson text-xs font-bold uppercase tracking-wider">
+                About Our Agency
               </div>
               <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight leading-tight">
                 Your Trusted Travel Partner Across Kenya &amp; Worldwide.

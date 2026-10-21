@@ -74,7 +74,7 @@ src/
 │   ├── sections/          # Page sections
 │   └── ui/                # Reusable UI components
 ├── data/
-│   └── tours.ts           # Tour packages data
+│   └── tours.ts           # Tour destination inspiration
 └── styles/                # Additional styles
 ```
 
@@ -96,12 +96,12 @@ See [DEPLOYMENT_GUIDE.md](./DEPLOYMENT_GUIDE.md) for detailed instructions.
 
 ## 📝 Content Management
 
-### Updating Tour Packages
+### Updating Tour Inspiration
 
 Edit `src/data/tours.ts`:
 
 ```typescript
-export const tours: TourPackage[] = [
+export const tourDestinations: TourDestination[] = [
   {
     id: 'tour-id',
     title: 'Tour Name',
@@ -167,7 +167,7 @@ export const metadata: Metadata = {
 - **Home**: Hero section, services overview, testimonials
 - **About**: Company information and team
 - **Services**: Detailed service descriptions
-- **Tours**: Tour packages (coming soon)
+- **Tours**: Destination inspiration and personal itinerary requests
 - **Blog**: Travel articles and tips
 - **Contact**: Contact form and information
 

@@ -26,75 +26,13 @@ public/images/
   - Gallery images: 1200x800px
   - Thumbnails: 400x300px
 
-## 🎯 Tour Packages Management
+## Tour Inspiration Management
 
-### Location: `src/data/tours.ts`
+The Tours page shows destination ideas only. The project does not use a database; its current tour content source is `src/data/tours.ts`.
 
-#### Adding a New Tour Package
+Update the `tourDestinations` array to add or edit a destination idea. Each item contains a region (`kenya` or `worldwide`), short descriptive copy, an image URL and alt text, and a photographer credit. The page does not advertise fixed dates, prices, availability, or inclusions. Confirm those details directly with a client when preparing a personal itinerary.
 
-```typescript
-{
-  id: 'unique-tour-id',
-  title: 'Tour Package Name',
-  description: 'Brief description of the tour',
-  duration: '3 Days / 2 Nights',
-  price: 'KES 45,000',
-  originalPrice: 'KES 55,000', // Optional - for showing discounts
-  image: '/images/tours/tour-image.jpg',
-  gallery: [
-    '/images/tours/tour-1.jpg',
-    '/images/tours/tour-2.jpg',
-    '/images/tours/tour-3.jpg'
-  ],
-  destination: 'Destination Name, Kenya',
-  category: 'domestic', // 'domestic' | 'international' | 'adventure' | 'luxury' | 'budget'
-  highlights: [
-    'Key highlight 1',
-    'Key highlight 2',
-    'Key highlight 3'
-  ],
-  itinerary: [
-    {
-      day: 1,
-      title: 'Day 1 Title',
-      description: 'Description of day 1 activities',
-      activities: ['Activity 1', 'Activity 2', 'Activity 3']
-    }
-    // Add more days as needed
-  ],
-  includes: [
-    'What is included 1',
-    'What is included 2'
-  ],
-  excludes: [
-    'What is excluded 1',
-    'What is excluded 2'
-  ],
-  availability: {
-    startDate: '2024-06-01',
-    endDate: '2024-12-31',
-    seats: 12
-  },
-  difficulty: 'easy', // 'easy' | 'moderate' | 'challenging'
-  rating: 4.8,
-  reviews: 127,
-  featured: true, // Show on homepage
-  active: true, // Show on tours page
-  createdAt: '2024-01-15T10:00:00Z',
-  updatedAt: '2024-01-15T10:00:00Z'
-}
-```
-
-#### Updating Tour Information
-1. Open `src/data/tours.ts`
-2. Find the tour you want to update
-3. Modify the relevant fields
-4. Update the `updatedAt` timestamp
-5. Save the file
-
-#### Deactivating a Tour
-Set `active: false` to temporarily remove a tour from the website without deleting it.
-
+The destination photos are served from Unsplash and are credited on the page. Replace them with company-sourced high-resolution images when available.
 ## 📝 Blog Management
 
 ### Location: `src/app/blog/page.tsx`
@@ -182,27 +120,25 @@ Update company address, phone numbers, email, and social media links.
 ## 🔄 Regular Updates Checklist
 
 ### Weekly Updates
-- [ ] Add new tour packages
-- [ ] Update tour availability and pricing
+- [ ] Refresh destination inspiration in `src/data/tours.ts`
+- [ ] Confirm itinerary availability and pricing directly with clients
 - [ ] Add new blog posts
 - [ ] Update gallery with new images
 - [ ] Check and update featured content
 
 ### Monthly Updates
-- [ ] Review and remove outdated tours
+- [ ] Review destination inspiration and image credits
 - [ ] Update seasonal promotions
 - [ ] Refresh homepage featured content
 - [ ] Check all image links and optimize sizes
 
 ### Content Updates Without Code
 
-#### Tour Packages
+#### Tour Inspiration
 1. Open `src/data/tours.ts`
-2. Copy an existing tour template
-3. Update the information
-4. Add new images to `/public/images/tours/`
-5. Update image paths in the tour data
-
+2. Edit the `tourDestinations` array
+3. Keep destination details illustrative; confirm actual tour arrangements, availability, and pricing with each client
+4. Include image alt text and a photographer credit for each photo
 #### Blog Posts
 1. Open `src/app/blog/page.tsx`
 2. Add new post to the `blogPosts` array
