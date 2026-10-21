@@ -33,12 +33,12 @@ export default function EldoretMap({ showTitle = true, compact = false }: Eldore
 
         {/* Refined Map & Address Card Container */}
         <div className="grid grid-cols-1 lg:grid-cols-12 rounded-2xl overflow-hidden shadow-lg border border-slate-200/80 bg-white">
-          {/* Direct Google Maps pin with visible coordinates for manual entry */}
+          {/* Direct Google Maps pin for the office location */}
           <a
             href={googleDirectionsUrl}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label={`Open the office pin in Google Maps at ${siteConfig.coordinates.dms}`}
+            aria-label="Open the office pin in Google Maps"
             className="group relative flex min-h-[380px] flex-col justify-between overflow-hidden bg-[#F3F1EC] p-6 text-[#151922] focus-visible:outline-primary-crimson lg:col-span-7 lg:min-h-[460px] lg:p-8"
           >
             <div aria-hidden="true" className="pointer-events-none absolute inset-0 opacity-70 [background-image:radial-gradient(#151922_0.7px,transparent_0.7px)] [background-size:20px_20px]" />
@@ -58,11 +58,7 @@ export default function EldoretMap({ showTitle = true, compact = false }: Eldore
               <p className="mt-1 text-sm text-slate-600">First Floor, Oloo Street</p>
             </div>
 
-            <div className="relative z-10 flex flex-col gap-2 border-t border-[#151922]/10 pt-4 sm:flex-row sm:items-end sm:justify-between">
-              <div>
-                <span className="block text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-500">Exact coordinates</span>
-                <span className="mt-1 block text-sm font-semibold tabular-nums text-[#151922]">{siteConfig.coordinates.dms}</span>
-              </div>
+            <div className="relative z-10 flex flex-col gap-2 border-t border-[#151922]/10 pt-4 sm:flex-row sm:items-end sm:justify-end">
               <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary-crimson">
                 Open pinned location <ExternalLink size={13} aria-hidden="true" />
               </span>

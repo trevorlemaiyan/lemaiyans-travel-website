@@ -122,7 +122,7 @@ export default function ContactForm() {
             {...register('fullName')}
             id="contact-full-name"
             type="text"
-            placeholder="e.g. John Kamau"
+            placeholder="e.g. John Doe"
             className="w-full px-4 py-3 text-sm bg-slate-50/70 border border-slate-200 rounded-xl focus:border-primary-crimson focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary-crimson/40 transition-colors"
             aria-invalid={Boolean(errors.fullName)}
             aria-describedby={errors.fullName ? 'contact-full-name-error' : undefined}
