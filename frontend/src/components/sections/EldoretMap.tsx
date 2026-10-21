@@ -11,7 +11,8 @@ interface EldoretMapProps {
 export default function EldoretMap({ showTitle = true, compact = false }: EldoretMapProps) {
   const lat = siteConfig.coordinates.lat
   const lon = siteConfig.coordinates.lng
-  const osmEmbedUrl = `https://www.openstreetmap.org/export/embed.html?bbox=35.2680%2C0.5135%2C35.2816%2C0.5251&layer=mapnik&marker=${lat}%2C${lon}`
+  const bbox = `${(lon - 0.009).toFixed(6)}%2C${(lat - 0.006).toFixed(6)}%2C${(lon + 0.009).toFixed(6)}%2C${(lat + 0.006).toFixed(6)}`
+  const osmEmbedUrl = `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik&marker=${lat}%2C${lon}`
   const osmDirectionsUrl = `https://www.openstreetmap.org/?mlat=${lat}&mlon=${lon}#map=17/${lat}/${lon}`
   const googleDirectionsUrl = `https://www.google.com/maps/search/?api=1&query=${lat},${lon}`
 

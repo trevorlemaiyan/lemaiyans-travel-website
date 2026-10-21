@@ -11,8 +11,8 @@ export const siteConfig = {
   address: "Nandi Arcade Building, First Floor, Oloo Street, Eldoret, Kenya",
   locationShort: "Based in Eldoret, Kenya · Serving clients worldwide",
   coordinates: {
-    lat: 0.5193,
-    lng: 35.2748,
+    lat: 0.5152777778,
+    lng: 35.2663888889,
   },
   officeHours: "Monday – Friday: 8:00 AM – 5:30 PM | Saturday: 8:30 AM – 1:00 PM",
   accreditations: {
@@ -55,12 +55,12 @@ export const siteConfig = {
     facebook: {
       name: "Facebook",
       handle: "Lemaiyan's Travels",
-      url: "https://www.facebook.com/lemaiyans.travels",
+      url: "https://web.facebook.com/profile.php?id=61590535782623",
     },
   },
   facebook: {
     name: "Lemaiyan's Travels",
-    url: "https://www.facebook.com/lemaiyans.travels",
+    url: "https://web.facebook.com/profile.php?id=61590535782623",
   },
   instagram: {
     name: "Instagram",

@@ -66,9 +66,6 @@ export default function Hero() {
             <figcaption className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-5 sm:p-6">
               <div>
                 <p className="text-sm font-semibold text-white sm:text-base">Your next journey starts here.</p>
-                <a href="https://unsplash.com/photos/airplane-on-the-runway-at-an-airport-XIIemdIapJs" target="_blank" rel="noreferrer" className="mt-1 inline-block text-xs text-white/75 underline decoration-white/40 underline-offset-2 hover:text-white">
-                  Photo: Sevcan Alkan / Unsplash
-                </a>
               </div>
               <span aria-hidden="true" className="mb-1 grid h-10 w-10 shrink-0 place-items-center rounded-full border border-white/30 bg-white/10 text-white backdrop-blur-sm">
                 <ArrowUpRight size={17} />

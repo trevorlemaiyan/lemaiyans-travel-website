@@ -20,12 +20,6 @@ function DestinationCard({ destination }: { destination: (typeof tourDestination
       <div className="space-y-3 p-5 sm:p-6">
         <h3 className="font-display text-xl font-bold text-slate-900">{destination.name}</h3>
         <p className="text-sm leading-relaxed text-slate-600">{destination.description}</p>
-        <p className="text-xs text-slate-500">
-          Photo credit:{' '}
-          <a href={destination.photoUrl} target="_blank" rel="noreferrer" className="underline decoration-slate-300 underline-offset-2 hover:text-primary-crimson">
-            {destination.credit}
-          </a>
-        </p>
       </div>
     </article>
   )
