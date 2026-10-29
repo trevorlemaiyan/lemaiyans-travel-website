@@ -1,10 +1,12 @@
 # Hosting and deployment notes
 
-The hosting provider has not been selected. The production host should support the Next.js server runtime and API route handlers; a static-only plan will not run the contact form endpoint.
+The app is a Next.js server application with an API route for contact inquiries. Use a host that supports Next.js server runtime and API route handlers; static-only hosting will not run the contact endpoint.
+
+For HostAfrica, see the [HostAfrica deployment runbook](HOSTAFRICA_DEPLOYMENT.md). HCode is the recommended path for this repository because HostAfrica lists Next.js support and Git-based deployment there.
 
 ## Prepare the host
 
-1. Create a Node.js service using the `frontend/` directory as the app root.
+1. Create a Node.js/Next.js service using the `frontend/` directory as the app root.
 2. Install dependencies with `npm ci` and use the scripts in `frontend/package.json` (`npm run build` and `npm start`).
 3. Configure the final domain and HTTPS at the host.
 4. Add `NEXT_PUBLIC_SITE_URL` with the canonical HTTPS site URL.
@@ -19,4 +21,4 @@ The hosting provider has not been selected. The production host should support t
 4. On the live domain, check the main pages, navigation, map, social links, and inquiry form.
 5. Submit a test inquiry and confirm the message reaches the company mailbox.
 
-No deployment provider or automatic deployment is configured by this project documentation. Do not infer a provider from the repository; confirm the intended Kenyan host before setting up its build settings or DNS.
+Do not point the domain to a new service until the app build succeeds and the correct DNS records are ready. Preserve existing mail-related DNS records when changing website records.

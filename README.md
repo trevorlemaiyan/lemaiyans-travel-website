@@ -25,6 +25,7 @@ README.md   Project entry point
 
 ## Before launch
 
-The planned host must support a Node.js Next.js application and API route handlers. Static-only hosting will not run the contact form API. The hosting provider and launch configuration are still to be selected.
+The production host must support a Node.js Next.js application and API route handlers. Static-only hosting will not run the contact form API. HostAfrica HCode is the current deployment target; see the deployment guide below.
 
 See the [launch checklist](docs/LAUNCH_CHECKLIST.md), [deployment guide](docs/DEPLOYMENT.md), and [architecture overview](docs/ARCHITECTURE.md).
+For the current HostAfrica setup, follow the [HostAfrica deployment runbook](docs/HOSTAFRICA_DEPLOYMENT.md).
