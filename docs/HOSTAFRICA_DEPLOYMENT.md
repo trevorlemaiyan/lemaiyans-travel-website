@@ -19,7 +19,7 @@ HostAfrica HCode lists Next.js support and Git-connected deployments. It is the 
 
 5. Deploy the production branch and review the build and runtime logs. Open the generated HCode URL and check the home page, `/tours`, `/about`, `/contact`, `/privacy`, and `/api/health`.
 6. In HCode, add the existing custom domain. Use the DNS records it gives you at HostAfrica's DNS manager. If the domain currently has email, preserve its MX and mail-related TXT records; change only the records needed to point the website to HCode. Wait for DNS to propagate, then enable/confirm HTTPS.
-7. After the HTTPS domain works, check `/robots.txt` and `/sitemap.xml`. Both should use the chosen domain. The current `robots.ts` contains a `.com` URL while the app metadata and sitemap use `.co.ke`; update that source file to the actual canonical domain before launch if those differ.
+7. After the HTTPS domain works, check `/robots.txt` and `/sitemap.xml`. Both should use the chosen domain. The app is configured for `lemaiyanstravels.co.ke`.
 8. Submit a test inquiry and confirm it reaches `CONTACT_EMAIL`. Without working SMTP configuration, the endpoint intentionally returns an unavailable response instead of sending mail.
 
 ## Updates after launch

@@ -15,7 +15,7 @@ export default function robots(): MetadataRoute.Robots {
         crawlDelay: 1,
       },
     ],
-    sitemap: 'https://lemaiyanstravels.com/sitemap.xml',
-    host: 'https://lemaiyanstravels.com',
+    sitemap: 'https://lemaiyanstravels.co.ke/sitemap.xml',
+    host: 'https://lemaiyanstravels.co.ke',
   }
 }
